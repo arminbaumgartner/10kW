@@ -177,6 +177,7 @@ ISR (TIMER0_COMPA_vect)
 {
 	TCNT0 = 0;
 	start = 1;
+	
 
 	
 	zahler_uebertragung = 0;

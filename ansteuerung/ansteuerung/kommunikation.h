@@ -4,8 +4,8 @@
 #define UBRR_CALC (F_CPU/16UL/BAUD-1)  //Baudrtate aus Takt berechnen
 
 #define NENNSPANNUNG 48000
-#define MAXSPANNUNG 50000
-#define MINSPANNUNG 44000
+#define MAXSPANNUNG 56000
+#define MINSPANNUNG 40000
 
 #define NENNZELLSPANNUNG 3300
 #define MINZELLSPANNUNG 2800
@@ -22,3 +22,4 @@ void daten_aufteilen(void);
 uint16_t ges_spannung_uebertragung(void);
 uint16_t niedrigste_akku_voltage_uebertragung (void);
 uint8_t temperatur_uebertragung(void);
+

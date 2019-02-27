@@ -40,8 +40,10 @@
 
 volatile char zeitlicher_ablauf=0;
 
-uint16_t testen = 3000;
+
+uint16_t ges_spannung_main;
 uint8_t ladestand_test = 0;
+
 
 char startbedinung;
 
@@ -129,6 +131,7 @@ int main(void)
 	_delay_ms(2000);
 	
 	
+	
 	//Für Anfangsausgabe
 	preset_drehzahl_gesch();
 	
@@ -136,13 +139,15 @@ int main(void)
 	
     while (1) 
     {	
+
 						
 		if(zeitlicher_ablauf >= 10)
 		{
 			
+			ges_spannung_main=ges_spannung_uebertragung();
 
 			geschwindigkeit_berechnung();
-			ladestand_test = akku_ladestand(testen);
+			ladestand_test = akku_ladestand(ges_spannung_main);
 			ladestand_ausgabe(ladestand_test);
 			
 			nen_test = temperatur_uebertragung();

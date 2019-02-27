@@ -37,7 +37,7 @@ int akku_ladestand (uint16_t spannung)
 {
 	uint8_t ladestand=100;
 	
-	ladestand = (spannung - LADUNG00)/4;
+	ladestand = ((spannung - MINSPANNUNG)/160);
 	
 	return ladestand;
 	
@@ -57,11 +57,15 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 	
 	char kennlinie_wert;
 	char regulierter_wert;
-
+	
 	float kennlinie_wert_float;
 	float kennlinie_voltage;
 	
 	float angleich_gerade_gas;
+	float angleich_gerade_bremsen;
+	
+	uint16_t ges_spannung_regelung;
+	uint8_t niedrigste_zell_spannung_regelung;
 	
 	
 	if (drehzahl >= MAXDREHZAHL)		//Überdrehzahl abfangen
@@ -69,7 +73,7 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 		drehzahl = MAXDREHZAHL;			//5000 U/min
 	}
 	
-
+/*
 	
 	if (drehzahl <= 2420)
 	{
@@ -87,17 +91,28 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 	{
 		kennlinie_voltage = 0;
 	}
+*/
+	kennlinie_voltage = (float)(drehzahl/DREHZAHLTEILER3);			//Teiler 106
+
+
+	ges_spannung_regelung = ges_spannung_uebertragung();
+	niedrigste_zell_spannung_regelung = niedrigste_akku_voltage_uebertragung();
+		
+	if (ges_spannung_regelung == 48000)
+	{
+		PORTB = PORTB ^ (1<<PORTB7);
+	}
 	
+	if (kennlinie_voltage >= 40 && ges_spannung_regelung <=44000)			//Wenn Spannung zu niedrig wird && voll betrieb
+	{
+		kennlinie_voltage = 40;
+	}
 	
-	//kennlinie_voltage = (float)(drehzahl/DREHZAHLTEILER1);
-	
-	//kennlinie_voltage = (float)(drehzahl/DREHZAHLTEILER);		//Teiler = 278	//100W motor
-	
-	kennlinie_wert_float = kennlinie_voltage * (253/48);			//5,27	// * (gesamtspannung_kom/NENNSPANNUNG)
+	kennlinie_wert_float = kennlinie_voltage * (253/48) * (NENNSPANNUNG/ges_spannung_regelung);			//5,27	// * (gesamtspannung_kom/NENNSPANNUNG)
 	kennlinie_wert = (char)kennlinie_wert_float;
 		
 	
-	/*
+	/*						//100W
 	if (drehzahl <= 1700)
 	{
 		angleich_gerade_gas = (WEGFAHR_WERT-(0.014*drehzahl));
@@ -108,7 +123,10 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 	}
 	*/
 	
+	//Gas-Funktion		Rekuperation-Funktion
+	
 	angleich_gerade_gas = SICHERHEITSBEREICH;
+	angleich_gerade_bremsen = SICHERHEITSBEREICH;
 	
 		
 	if (drehzahl == 0 && adc_wert > 20)		//Stillstand
@@ -118,13 +136,13 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 	}
 	else
 	{
-		if (kennlinie_wert >= (255-SICHERHEITSBEREICH))			//Overflows vermeiden //bei gas
+		if (kennlinie_wert >= (255-angleich_gerade_gas))			//Overflows vermeiden //bei gas
 		{
-			kennlinie_wert = (255-SICHERHEITSBEREICH);
+			kennlinie_wert = (255-angleich_gerade_gas);
 		}
-		else if (kennlinie_wert <= (0+SICHERHEITSBEREICH))		//beim bremsen 
+		else if (kennlinie_wert <= (0+angleich_gerade_bremsen))		//beim bremsen 
 		{
-			kennlinie_wert = (0+SICHERHEITSBEREICH);
+			kennlinie_wert = (0+angleich_gerade_bremsen);
 		}
 		
 		
@@ -135,10 +153,10 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 			
 			
 		}
-		else if (adc_wert < (kennlinie_wert-SICHERHEITSBEREICH))			//Unterberreich		//kann im Stillstand nicht eintretten
+		else if (adc_wert < (kennlinie_wert-angleich_gerade_bremsen))			//Unterberreich		//kann im Stillstand nicht eintretten
 		{
 		
-			regulierter_wert = kennlinie_wert-SICHERHEITSBEREICH;
+			regulierter_wert = kennlinie_wert-angleich_gerade_bremsen;
 						
 		}
 		else										
