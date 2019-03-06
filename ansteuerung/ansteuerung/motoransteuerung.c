@@ -331,6 +331,7 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 	//OCR4A = adc_high;
 	
 	
+	
 	if (adc_counter >= 20)
 	{
 		adc_counter = 0;
@@ -342,22 +343,12 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 		OCR4A = geschwindigkeits_regulierung(adc_high,current_adc_wert);
 		
 		hilfe = OCR4A;
-		
-		if (hilfe == 0)
-		{
-			PORTD = PORTD ^ (1<<PORTD4);
-		}
-		
-		//OCR4A = geschwindigkeits_regulierung(adc_high,current_adc_wert);
-		
-		
+				
 	}
 	else
 	{
 		adc_counter++;
 	}
-	
-	
 	
 
 	ADCSRA = ADCSRA | (1<<ADSC);	//Wandlung starten

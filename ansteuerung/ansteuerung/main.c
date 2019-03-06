@@ -75,15 +75,12 @@ int main(void)
 	PORTB = PORTB &~ (1<<PORTB3);	//PULL-UP aus
 
 	//Vorwärts - Rückwärts Schalter
-	DDRD = DDRD &~ (1<<DDD0);		//PD0 als INPUT //vorwärts / rückwärts Schalter
-	PORTD = PORTD | (1<<PORTD0);		//PULL-UP
-		
 	DDRB = DDRB &~ (1<<DDB4);	//PB4 als INPUT		//vorwärts / rückwärst Schalter
 	PORTB = PORTB | (1<<PORTB4);	//PULL-UP
 	
 	//Shutdown Pin	
 	DDRE = DDRE | (1<<DDE6);	//Shutdown-Pin (PE6) als OUTPUT
-	PORTE = PORTE &~ (1<<PORTE6);	//Shutdown-Pin auf HIGH -> da er LOW-AKTIVE ist   //muss noch geändert werden!!!!!
+	PORTE = PORTE &~ (1<<PORTE6);	//Shutdown-Pin auf HIGH -> da er LOW-AKTIVE ist 
 	
 	//ADC
 	DDRF = DDRF &~ (1<<DDF0);	//ADC0-Pin (PF0) als INPUT
@@ -99,8 +96,15 @@ int main(void)
 	//UART
 	PORTD = PORTD | (1<<PORTD2);		// pull up um keine störungen einzufangen
 	
+	//MOSFET für Relai
+	DDRD = DDRD &~ (1<<DDD4);	//MOSFET PIN 	
+	
+	//Modi Schalter
+	DDRD = DDRD &~ (1<<DDD0);
+	PORTD = PORTD | (1<<PORTD0);		//Pull-up
+	
+	
 	//Debug-Pins
-	DDRD = DDRD | (1<<DDD4);		
 	DDRB = DDRB | (1<<DDB7);
 	
 	
@@ -128,9 +132,11 @@ int main(void)
 	
 	LCD_Display();		//Drezahl, Geschwindkeit schreiben
 	
+	
 	_delay_ms(2000);
 	
-	
+	PORTE = PORTE &~ (1<<PORTE6);	//Shutdown-Pin auf HIGH -> da er LOW-AKTIVE ist   //muss noch geändert werden!!!!!
+	PORTD = PORTD | (1<<PORTD4);
 	
 	//Für Anfangsausgabe
 	preset_drehzahl_gesch();
