@@ -34,21 +34,16 @@ float raddurchmesser = 0.2;		//In Meter
 
 char overflow;
 
-/*
-volatile uint16_t step_dauer;
-volatile uint16_t step_dauer_help;
-volatile uint16_t drehzahl_pro_sekunde;
-volatile float geschwindigkeit_help;
-volatile uint16_t geschwindigkeit;
-volatile uint16_t drehzahl;
-*/
-
 volatile float step_dauer;
 volatile float step_dauer_help;
 volatile float drehzahl_pro_sekunde;
 volatile float geschwindigkeit_help;
 volatile float geschwindigkeit;
 volatile float drehzahl;
+volatile float drehzahl_alt_ermittelt=0;
+
+uint8_t drehzahl_mittelung_hilfe = 0;
+volatile float drehzahl_mittelung[10];
 
 
 volatile uint16_t geschwindigkeit_ausgabe;
@@ -59,9 +54,9 @@ char ausgabe[10];
 
 void Init_Timer1 (void)
 {
-	TCCR1B = TCCR1B | (1<<CS10);		// Teiler 256 (16MHz / 64 = 4µs)
-	TCCR1B = TCCR1B | (1<<CS11);		//Kleiner Schritt 4µs		(1*4µs)
-	TCCR1B = TCCR1B &~ (1<<CS12);		//Größter Schritt 262ms	(65535*4µs)
+	TCCR1B = TCCR1B | (1<<CS10);		// Teiler 256 (16MHz / 256 = 16µs)
+	TCCR1B = TCCR1B | (1<<CS11);		//Kleiner Schritt 16µs		(1*16µs)
+	TCCR1B = TCCR1B &~ (1<<CS12);		//Größter Schritt 1,048s	(65535*16µs)
 	
 	TIMSK1 = TIMSK1 | (1<<TOIE1);		//OVERFLOW-Interrupt aktivieren
 }
@@ -85,11 +80,13 @@ void drehzahl_berechnung (void)
 	}
 	else
 	{
+		/*
 		if(steps <= 25)			//Geschwindigkeits überhohung abfangen -> 25*4 = 100
 		{
 			steps = 25;
 		}
 		
+		*/
 		
 		if(steps >= 15500)		//Geschwindigkeits unterschreitung -> 13.750 nötig um 1 U/s zu generieren
 		{
@@ -107,6 +104,14 @@ void drehzahl_berechnung (void)
 		drehzahl_pro_sekunde = 1000/step_dauer_help;	//Werte von 1 bis 1000
 		
 		drehzahl = drehzahl_pro_sekunde*60;
+		
+		drehzahl_mittelung[drehzahl_mittelung_hilfe] = drehzahl;
+		drehzahl_mittelung_hilfe++;
+		
+		if (drehzahl_mittelung_hilfe >= 10)
+		{
+			drehzahl_mittelung_hilfe=0;
+		}
 	
 	}
 }
@@ -205,13 +210,37 @@ char umschalt_null (void)
 	}
 	
 }
+void drehzahl_save(float drehzahl_alt)
+{
+	drehzahl_alt_ermittelt = drehzahl_alt;		
+}
+float drehzahl_holen(void)
+{
+	return drehzahl;
+}
+float gemittelte_drehzahl_holen(void)
+{
+	float hilfsvariable=0;
+	
+	for(int i=0; i<10; i++)
+	{
+		hilfsvariable = (hilfsvariable+(drehzahl_mittelung[i]/10));		
+	}
+	
+	return hilfsvariable;
+	
+}
+float drehzahl_alt_holen(void)
+{
+	return drehzahl_alt_ermittelt;
+}
 
 ISR(TIMER1_OVF_vect)			//Motor steht
 {
 	
 	overflow = 1;
 	
-	steps = 0;
+	steps = 15500;
 	geschwindigkeit = 0;
 	geschwindigkeit_ausgabe = 0;
 	drehzahl = 0;

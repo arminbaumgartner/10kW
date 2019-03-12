@@ -64,14 +64,17 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 	float angleich_gerade_gas;
 	float angleich_gerade_bremsen;
 	
+	float drehzahl_regelung = gemittelte_drehzahl_holen();
+	float drehzahl_regelung_alt = drehzahl_alt_holen();
+	
 	uint16_t ges_spannung_regelung;
 	uint16_t niedrigste_zell_spannung_regelung;
 	uint8_t temperatur_regelung;
 	
 	
-	if (drehzahl >= MAXDREHZAHL)		//Überdrehzahl abfangen
+	if (drehzahl_regelung >= MAXDREHZAHL)		//Überdrehzahl abfangen
 	{
-		drehzahl = MAXDREHZAHL;			//5000 U/min
+		drehzahl_regelung = MAXDREHZAHL;			//5000 U/min
 	}
 	
 /*
@@ -93,7 +96,7 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 		kennlinie_voltage = 0;
 	}
 */
-	kennlinie_voltage = (float)(drehzahl/DREHZAHLTEILER3);			//Teiler 106
+	kennlinie_voltage = (float)(drehzahl_regelung/DREHZAHLTEILER3);			//Teiler 106
 
 
 	ges_spannung_regelung = ges_spannung_uebertragung();
@@ -112,6 +115,7 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 		
 	
 	//Beschleunigungskennlinie
+	/*
 	if (drehzahl <= 2000)
 	{
 		angleich_gerade_gas = (WEGFAHR_WERT+(0.00768*drehzahl)) ;		// * (gesamtspannung_kom/NENNSPANNUNG) //20Amper
@@ -120,8 +124,9 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 	{
 		angleich_gerade_gas = SICHERHEITSBEREICH;		// * (gesamtspannung_kom/NENNSPANNUNG)
 	}
+	*/
 	
-	//angleich_gerade_gas = SICHERHEITSBEREICH;			// * (gesamtspannung_kom/NENNSPANNUNG)
+	angleich_gerade_gas = SICHERHEITSBEREICH;			// * (gesamtspannung_kom/NENNSPANNUNG)
 	
 	
 	//Rekuperation-kennlinie
@@ -151,11 +156,9 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 	
 	
 	
-	
 	//		Fahrbetrieb	
-	if (drehzahl == 0 && adc_wert > 20)		//Stillstand
-	{
-		
+	if (drehzahl_regelung == 0 && adc_wert > 20)		//Stillstand
+	{		
 		regulierter_wert = WEGFAHR_WERT;	//Wegfahrwert
 	}
 	else
@@ -173,10 +176,16 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 		if (adc_wert > (kennlinie_wert+(char)angleich_gerade_gas))				//Überbereich
 		{
 			PORTB = PORTB | (1<<PORTB7);
+			
+			if((drehzahl_regelung_alt*1.05) <= drehzahl_regelung)		//sicherheit
+			{
+				regulierter_wert = kennlinie_wert;
+			}
+			else
+			{
+				regulierter_wert = kennlinie_wert+(char)angleich_gerade_gas;
 				
-			regulierter_wert = kennlinie_wert+(char)angleich_gerade_gas;
-			
-			
+			}
 		}
 		else if (adc_wert < (kennlinie_wert-angleich_gerade_bremsen))			//Unterberreich		//kann im Stillstand nicht eintretten
 		{
@@ -187,12 +196,13 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 		else										
 		{
 			PORTB = PORTB &~ (1<<PORTB7);
+			
 			regulierter_wert = adc_wert;			//Im Bereich
 		}		
 	}
 
 	
-	
+	drehzahl_save(drehzahl_regelung);
 	return regulierter_wert;
 	
 }

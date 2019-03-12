@@ -292,18 +292,22 @@ void Hallsensoren_abfragen(void)
 		}	//Klammer Switch
 	}
 }
-
+char adc_abfrage(void)
+{
+	return adc_high;
+}
 
 ISR(PCINT0_vect)
 {
 	
-	Hallsensoren_abfragen();
+	Hallsensoren_abfragen();		//Abfrage + Umschalten der Phase
 	
-	geschwindigkeit_auslesen();
+	geschwindigkeit_auslesen();		//TCNT1 auslesen
 	drehzahl_berechnung();
 
 	
 }	//Klammer Pin change
+/*
 ISR(INT0_vect)
 {
 	///		Vorwärts - Rückwärts	 ///
@@ -317,18 +321,22 @@ ISR(INT0_vect)
 	}
 
 }
+*/
 ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 {
 
 	
 	adc_low = ADCL;					//zuerst immer Low Bits holen
 	adc_high = ADCH;				//dann High Bits holen
+	
+	/*
 	if(adc_high >= 250)
 	{
 		adc_high = 250;
 	}
+	*/
 	
-	//OCR4A = adc_high;
+	///OCR4A = adc_high;
 	
 	
 	
@@ -338,12 +346,11 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 		
 		current_adc_wert = OCR4A;
 		
-		
+		PORTD = PORTD | (1<<PORTD4);
 		
 		OCR4A = geschwindigkeits_regulierung(adc_high,current_adc_wert);
 		
-		hilfe = OCR4A;
-				
+		PORTD = PORTD &~ (1<<PORTD4);				
 	}
 	else
 	{

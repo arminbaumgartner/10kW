@@ -45,7 +45,7 @@ uint16_t ges_spannung_main;
 uint8_t ladestand_test = 0;
 
 
-char startbedinung;
+char adc_wert_anfangsbedinung;
 
 uint16_t nen_test;
 
@@ -97,7 +97,7 @@ int main(void)
 	PORTD = PORTD | (1<<PORTD2);		// pull up um keine störungen einzufangen
 	
 	//MOSFET für Relai
-	DDRD = DDRD &~ (1<<DDD4);	//MOSFET PIN 	
+	DDRD = DDRD | (1<<DDD4);	//MOSFET PIN 	
 	
 	//Modi Schalter
 	DDRD = DDRD &~ (1<<DDD0);
@@ -132,11 +132,15 @@ int main(void)
 	
 	LCD_Display();		//Drezahl, Geschwindkeit schreiben
 	
+	adc_wert_anfangsbedinung = adc_abfrage();
+	
+	while (adc_wert_anfangsbedinung >= 0x01)
+	{
+	}
 	
 	_delay_ms(2000);
 	
 	PORTE = PORTE &~ (1<<PORTE6);	//Shutdown-Pin auf HIGH -> da er LOW-AKTIVE ist   //muss noch geändert werden!!!!!
-	PORTD = PORTD | (1<<PORTD4);
 	
 	//Für Anfangsausgabe
 	preset_drehzahl_gesch();
@@ -206,7 +210,5 @@ ISR(TIMER3_COMPA_vect)
 	
 
 }
-ISR(TIMER3_COMPB_vect)
-{
+
 	
-}

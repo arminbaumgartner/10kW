@@ -37,10 +37,8 @@ void delay_ms (unsigned int ms)   //Hilfsfunktion: Zeitvernichtung
 
 void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E) 
 {  
-	PORTF = PORTF | (1<<E); //E = 1   
-	delay_ms(5);  
+	PORTF = PORTF | (1<<E); //E = 1     
 	PORTF = PORTF &~(1<<E); //E = 0  
-	delay_ms(5); 
 }
 
 //////////////////////////////////////////////////////////////////////////// // 
@@ -63,21 +61,25 @@ void LCD_init(void)
 		PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6));	//Interface auf 8 Bit  
 		PORTF = PORTF | (1<<DB5) | (1<<DB4);    
 		Enable();
+		_delay_ms(10);
 	
 		//DB7..DB4 = 0011  #
 		PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6));	//Interface auf 8 Bit  
 		PORTF = PORTF | (1<<DB5) | (1<<DB4);    
 		Enable();
+		_delay_ms(10);
 	
 		//DB7..DB4 = 0011  
 		PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6));	//Interface auf 8 Bit  
 		PORTF = PORTF | (1<<DB5) | (1<<DB4);    
 		Enable();
+		_delay_ms(10);
 	
 		//DB7..DB4 = 0010  
 		PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6) &~(1<<DB4));  
 		PORTF = PORTF | (1<<DB5);					//Interface auf 4 Bit  
 		Enable();
+		_delay_ms(10);
 		
 	// 2-zeilig, 5x8 Matrix //  
 	
@@ -85,50 +87,60 @@ void LCD_init(void)
 	PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6) &~(1<<DB4));  
 	PORTF = PORTF | (1<<DB5);   //Upper Nibble  
 	Enable();
+	_delay_ms(10);
 	
 	//DB7..DB4 = 1000  
 	PORTF = PORTF | (1<<DB7);   //Lower Nibble  
 	PORTF = PORTF & (~(1<<DB6) & ~(1<<DB5) & ~(1<<DB4));  
 	Enable();
+	_delay_ms(10);
 	
 	//Display Off //  
 	//DB7..DB4 = 0000  
 	PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6) & ~(1<<DB5) & ~(1<<DB4)); //Upper Nibble  
 	Enable();
+	_delay_ms(10);
 	
 	//DB7..DB4 = 1000  
 	PORTF = PORTF | (1<<DB7);   //Lower Nibble  
 	PORTF = PORTF & (~(1<<DB6) & ~(1<<DB5) & ~(1<<DB4));  
 	Enable();
+	_delay_ms(10);
 	
 	//Clear Display //  
 	//DB7..DB4 = 0000  
 	PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6) & ~(1<<DB5) & ~(1<<DB4)); //Upper Nibble  
 	Enable();
+	_delay_ms(10);
 	
 	//DB7..DB4 = 0001  
 	PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6) & ~(1<<DB5)); //Lower Nibble  
 	PORTF = PORTF | (1<<DB4);  
 	Enable();
+	_delay_ms(10);
 	
 	//No Display Shift //  
 	//DB7..DB4 = 0000  
 	PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6) & ~(1<<DB5) & ~(1<<DB4)); //Upper Nibble  
 	Enable();
+	_delay_ms(10);
 	
 	//DB7..DB4 = 0011  
 	PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6)); //Lower Nibble  
 	PORTF = PORTF | (1<<DB5) | (1<<DB4);  
 	Enable();
+	_delay_ms(10);
 	
 	// Display ON , Cursor ON, Blinken ON //  
 	//DB7..DB4 = 0000  
 	PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6) & ~(1<<DB5) & ~(1<<DB4)); //Upper Nibble  
 	Enable();
+	_delay_ms(10);
 	
 	//DB7..DB4 = 1111  
 	PORTF = PORTF | (1<<DB7) | (1<<DB6) | (1<<DB5) | (1<<DB4); //Lower Nibble  
 	Enable(); 
+	_delay_ms(10);
 	
 }
 
