@@ -52,7 +52,7 @@ void akku_daten_einbeziehen (uint8_t ladestand, uint8_t temp)
 	}
 }
 
-char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
+char geschwindigkeits_regulierung(char adc_wert)
 {
 	
 	char kennlinie_wert;
@@ -64,8 +64,9 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 	float angleich_gerade_gas;
 	float angleich_gerade_bremsen;
 	
-	float drehzahl_regelung = gemittelte_drehzahl_holen();
-	float drehzahl_regelung_alt = drehzahl_alt_holen();
+	//float drehzahl_regelung = gemittelte_drehzahl_holen();
+	//float drehzahl_regelung_alt = drehzahl_alt_holen();
+	float drehzahl_regelung = drehzahl_holen();
 	
 	uint16_t ges_spannung_regelung;
 	uint16_t niedrigste_zell_spannung_regelung;
@@ -115,18 +116,18 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 		
 	
 	//Beschleunigungskennlinie
-	/*
+	
 	if (drehzahl <= 2000)
 	{
-		angleich_gerade_gas = (WEGFAHR_WERT+(0.00768*drehzahl)) ;		// * (gesamtspannung_kom/NENNSPANNUNG) //20Amper
+		angleich_gerade_gas = (WEGFAHR_WERT+(0.0397*drehzahl)) ;		// * (gesamtspannung_kom/NENNSPANNUNG) //20Amper
 	}
 	else
 	{
 		angleich_gerade_gas = SICHERHEITSBEREICH;		// * (gesamtspannung_kom/NENNSPANNUNG)
 	}
-	*/
 	
-	angleich_gerade_gas = SICHERHEITSBEREICH;			// * (gesamtspannung_kom/NENNSPANNUNG)
+	
+	//angleich_gerade_gas = SICHERHEITSBEREICH;			// * (gesamtspannung_kom/NENNSPANNUNG)
 	
 	
 	//Rekuperation-kennlinie
@@ -177,15 +178,9 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 		{
 			PORTB = PORTB | (1<<PORTB7);
 			
-			if((drehzahl_regelung_alt*1.05) <= drehzahl_regelung)		//sicherheit
-			{
-				regulierter_wert = kennlinie_wert;
-			}
-			else
-			{
-				regulierter_wert = kennlinie_wert+(char)angleich_gerade_gas;
-				
-			}
+			regulierter_wert = kennlinie_wert+(char)angleich_gerade_gas;
+			
+			
 		}
 		else if (adc_wert < (kennlinie_wert-angleich_gerade_bremsen))			//Unterberreich		//kann im Stillstand nicht eintretten
 		{
@@ -202,7 +197,10 @@ char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt)
 	}
 
 	
-	drehzahl_save(drehzahl_regelung);
+	//drehzahl_save(drehzahl_regelung);
+	
+	
+	
 	return regulierter_wert;
 	
 }

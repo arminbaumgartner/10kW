@@ -43,7 +43,7 @@ volatile float drehzahl;
 volatile float drehzahl_alt_ermittelt=0;
 
 uint8_t drehzahl_mittelung_hilfe = 0;
-volatile float drehzahl_mittelung[10];
+volatile float drehzahl_mittelung[3];
 
 
 volatile uint16_t geschwindigkeit_ausgabe;
@@ -73,44 +73,48 @@ void drehzahl_berechnung (void)
 {
 	if(overflow)
 	{
-		steps = 0;
+		steps = 15000;
 		drehzahl = 0;
 		drehzahl_pro_sekunde = 0;
 		step_dauer = 0;
 	}
 	else
 	{
-		/*
-		if(steps <= 25)			//Geschwindigkeits überhohung abfangen -> 25*4 = 100
+		
+		if (steps >= 40)		//Fehlerhafter hallsensor	 5000U/s
 		{
-			steps = 25;
-		}
+				
+			if(steps >= 15500)		//Geschwindigkeits unterschreitung -> 13.750 nötig um 1 U/s zu generieren
+			{
+				steps=15500;
+			}
 		
-		*/
-		
-		if(steps >= 15500)		//Geschwindigkeits unterschreitung -> 13.750 nötig um 1 U/s zu generieren
-		{
-			steps=15500;
-		}
-		
+			
 
-		step_dauer = steps*timer1_teiler_mult;		//Werte von max 55.000µs um auf 1U/s zu kommen
-		step_dauer = step_dauer/100;				//Werte von 1 bis 550				///////ab hier korriegieren /// Teiler vieleicht auf 64 statt 256
+			step_dauer = steps*timer1_teiler_mult;		//Werte von max 55.000µs um auf 1U/s zu kommen
+			step_dauer = step_dauer/100;				//Werte von 1 bis 550				///////ab hier korriegieren /// Teiler vieleicht auf 64 statt 256
 		
 		
-		step_dauer_help = (step_dauer*6*motor_teiler);	//Werte von 18 bis 9900
-		step_dauer_help = step_dauer_help/10;			//Werte von 1 bis 990
+			step_dauer_help = (step_dauer*6*motor_teiler);	//Werte von 18 bis 9900
+			step_dauer_help = step_dauer_help/10;			//Werte von 1 bis 990
 		
-		drehzahl_pro_sekunde = 1000/step_dauer_help;	//Werte von 1 bis 1000
+			drehzahl_pro_sekunde = 1000/step_dauer_help;	//Werte von 1 bis 1000
 		
-		drehzahl = drehzahl_pro_sekunde*60;
+			drehzahl = drehzahl_pro_sekunde*60;
+			
+			
+			
+			//drehzahl = 60/(steps*16*18);
+			
 		
-		drehzahl_mittelung[drehzahl_mittelung_hilfe] = drehzahl;
-		drehzahl_mittelung_hilfe++;
+			drehzahl_mittelung[drehzahl_mittelung_hilfe] = drehzahl;
+			drehzahl_mittelung_hilfe++;
 		
-		if (drehzahl_mittelung_hilfe >= 10)
-		{
-			drehzahl_mittelung_hilfe=0;
+			if (drehzahl_mittelung_hilfe >= 3)
+			{
+				drehzahl_mittelung_hilfe=0;
+			}
+		
 		}
 	
 	}
@@ -222,9 +226,9 @@ float gemittelte_drehzahl_holen(void)
 {
 	float hilfsvariable=0;
 	
-	for(int i=0; i<10; i++)
+	for(int i=0; i<3; i++)
 	{
-		hilfsvariable = (hilfsvariable+(drehzahl_mittelung[i]/10));		
+		hilfsvariable = (hilfsvariable+(drehzahl_mittelung[i]/3));		
 	}
 	
 	return hilfsvariable;

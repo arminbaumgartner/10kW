@@ -210,7 +210,7 @@ void Hallsensoren_abfragen(void)
 			}
 			default:
 			{
-				TCCR4E = 0x00;
+				//TCCR4E = 0x00;
 			}
 		}	//Klammen Switch
 		
@@ -287,7 +287,7 @@ void Hallsensoren_abfragen(void)
 			}
 			default:
 			{
-				TCCR4E = 0x00;
+				//TCCR4E = 0x00;
 			}
 		}	//Klammer Switch
 	}
@@ -299,11 +299,17 @@ char adc_abfrage(void)
 
 ISR(PCINT0_vect)
 {
+	geschwindigkeit_auslesen();		//TCNT1 auslesen
 	
 	Hallsensoren_abfragen();		//Abfrage + Umschalten der Phase
 	
-	geschwindigkeit_auslesen();		//TCNT1 auslesen
 	drehzahl_berechnung();
+	
+	if (drehzahl_holen() >= 2001)
+	{
+		OCR4A = geschwindigkeits_regulierung(adc_high);
+	}
+	
 
 	
 }	//Klammer Pin change
@@ -329,6 +335,13 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 	adc_low = ADCL;					//zuerst immer Low Bits holen
 	adc_high = ADCH;				//dann High Bits holen
 	
+	
+	if ((drehzahl_holen() <= 2000) && (adc_high >= 1))
+	{
+		OCR4A = geschwindigkeits_regulierung(adc_high);
+	}
+	
+	
 	/*
 	if(adc_high >= 250)
 	{
@@ -339,7 +352,7 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 	///OCR4A = adc_high;
 	
 	
-	
+	/*
 	if (adc_counter >= 20)
 	{
 		adc_counter = 0;
@@ -348,7 +361,7 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 		
 		PORTD = PORTD | (1<<PORTD4);
 		
-		OCR4A = geschwindigkeits_regulierung(adc_high,current_adc_wert);
+		OCR4A = geschwindigkeits_regulierung(adc_high);
 		
 		PORTD = PORTD &~ (1<<PORTD4);				
 	}
@@ -356,6 +369,7 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 	{
 		adc_counter++;
 	}
+	*/
 	
 
 	ADCSRA = ADCSRA | (1<<ADSC);	//Wandlung starten

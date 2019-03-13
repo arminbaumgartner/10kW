@@ -17,14 +17,14 @@
 #define NENNDREHZAHL 4700
 #define MAXDREHZAHL 5000
 
-#define SICHERHEITSBEREICH 7
-#define WEGFAHR_WERT 7
+#define SICHERHEITSBEREICH 10
+#define WEGFAHR_WERT 20
 
 
 
 
 int akku_ladestand (uint16_t spannung);
 void akku_daten_einbeziehen (uint8_t ladestand, uint8_t temp);
-char geschwindigkeits_regulierung(char adc_wert, char adc_wert_alt);
+char geschwindigkeits_regulierung(char adc_wert);
 
 void ladestand_ausgabe (uint8_t ladestand_ubernahme); 
