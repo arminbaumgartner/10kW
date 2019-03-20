@@ -2424,27 +2424,55 @@ void __vector_29 (void) __attribute__ ((signal,used, externally_visible)) ; void
 # 336 ".././motoransteuerung.c"
                ;
 
-
- if ((drehzahl_holen() <= 2000) && (adc_high >= 1))
+ if ((drehzahl_holen() <= 2000))
  {
   
-# 341 ".././motoransteuerung.c" 3
- (*(volatile uint8_t *)(0xCF)) 
-# 341 ".././motoransteuerung.c"
-       = geschwindigkeits_regulierung(adc_high);
- }
-# 375 ".././motoransteuerung.c"
- 
-# 375 ".././motoransteuerung.c" 3
-(*(volatile uint8_t *)(0x7A)) 
-# 375 ".././motoransteuerung.c"
+# 340 ".././motoransteuerung.c" 3
+ (*(volatile uint8_t *)((0x0B) + 0x20)) 
+# 340 ".././motoransteuerung.c"
        = 
-# 375 ".././motoransteuerung.c" 3
+# 340 ".././motoransteuerung.c" 3
+         (*(volatile uint8_t *)((0x0B) + 0x20)) 
+# 340 ".././motoransteuerung.c"
+               | (1<<
+# 340 ".././motoransteuerung.c" 3
+                     4
+# 340 ".././motoransteuerung.c"
+                           );
+
+  
+# 342 ".././motoransteuerung.c" 3
+ (*(volatile uint8_t *)(0xCF)) 
+# 342 ".././motoransteuerung.c"
+       = geschwindigkeits_regulierung(adc_high);
+
+  
+# 344 ".././motoransteuerung.c" 3
+ (*(volatile uint8_t *)((0x0B) + 0x20)) 
+# 344 ".././motoransteuerung.c"
+       = 
+# 344 ".././motoransteuerung.c" 3
+         (*(volatile uint8_t *)((0x0B) + 0x20)) 
+# 344 ".././motoransteuerung.c"
+               &~ (1<<
+# 344 ".././motoransteuerung.c" 3
+                      4
+# 344 ".././motoransteuerung.c"
+                            );
+
+ }
+# 376 ".././motoransteuerung.c"
+ 
+# 376 ".././motoransteuerung.c" 3
+(*(volatile uint8_t *)(0x7A)) 
+# 376 ".././motoransteuerung.c"
+       = 
+# 376 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x7A)) 
-# 375 ".././motoransteuerung.c"
+# 376 ".././motoransteuerung.c"
                 | (1<<
-# 375 ".././motoransteuerung.c" 3
+# 376 ".././motoransteuerung.c" 3
                       6
-# 375 ".././motoransteuerung.c"
+# 376 ".././motoransteuerung.c"
                           );
 }

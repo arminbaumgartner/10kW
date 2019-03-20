@@ -1012,11 +1012,13 @@ void LCD_Display(void);
 # 29 ".././main.c" 2
 
 # 1 ".././kommunikation.h" 1
-# 17 ".././kommunikation.h"
+# 18 ".././kommunikation.h"
 void init_usart (void);
 void init_transmission_timer(void);
 void save_akku_daten(void);
 void daten_aufteilen(void);
+
+void kommunikations_daten_mitteln(void);
 
 uint16_t ges_spannung_uebertragung(void);
 uint16_t niedrigste_akku_voltage_uebertragung (void);
@@ -1499,24 +1501,25 @@ __asm__ __volatile__ ("sei" ::: "memory")
 
  adc_wert_anfangsbedinung = adc_abfrage();
 
- while (adc_wert_anfangsbedinung >= 0x01)
+ do
  {
- }
+  adc_wert_anfangsbedinung = adc_abfrage();
+ }while (adc_wert_anfangsbedinung != 0x00);
 
  _delay_ms(2000);
 
  
-# 143 ".././main.c" 3
+# 144 ".././main.c" 3
 (*(volatile uint8_t *)((0x0E) + 0x20)) 
-# 143 ".././main.c"
+# 144 ".././main.c"
       = 
-# 143 ".././main.c" 3
+# 144 ".././main.c" 3
         (*(volatile uint8_t *)((0x0E) + 0x20)) 
-# 143 ".././main.c"
+# 144 ".././main.c"
               &~ (1<<
-# 143 ".././main.c" 3
+# 144 ".././main.c" 3
                      6
-# 143 ".././main.c"
+# 144 ".././main.c"
                            );
 
 
@@ -1526,7 +1529,7 @@ __asm__ __volatile__ ("sei" ::: "memory")
 
     while (1)
     {
-
+  kommunikations_daten_mitteln();
 
   if(zeitlicher_ablauf >= 10)
   {
@@ -1560,63 +1563,63 @@ void init_timer_zeitlicher_ablauf(void)
 
 
  
-# 185 ".././main.c" 3
+# 186 ".././main.c" 3
 (*(volatile uint8_t *)(0x91)) 
-# 185 ".././main.c"
+# 186 ".././main.c"
        = 
-# 185 ".././main.c" 3
+# 186 ".././main.c" 3
          (*(volatile uint8_t *)(0x91)) 
-# 185 ".././main.c"
+# 186 ".././main.c"
                 | (1<<
-# 185 ".././main.c" 3
+# 186 ".././main.c" 3
                       0
-# 185 ".././main.c"
+# 186 ".././main.c"
                           );
  
-# 186 ".././main.c" 3
+# 187 ".././main.c" 3
 (*(volatile uint8_t *)(0x91)) 
-# 186 ".././main.c"
+# 187 ".././main.c"
        = 
-# 186 ".././main.c" 3
+# 187 ".././main.c" 3
          (*(volatile uint8_t *)(0x91)) 
-# 186 ".././main.c"
+# 187 ".././main.c"
                 | (1<<
-# 186 ".././main.c" 3
+# 187 ".././main.c" 3
                       1
-# 186 ".././main.c"
+# 187 ".././main.c"
                           );
  
-# 187 ".././main.c" 3
+# 188 ".././main.c" 3
 (*(volatile uint8_t *)(0x91)) 
-# 187 ".././main.c"
+# 188 ".././main.c"
        = 
-# 187 ".././main.c" 3
+# 188 ".././main.c" 3
          (*(volatile uint8_t *)(0x91)) 
-# 187 ".././main.c"
+# 188 ".././main.c"
                 &~ (1<<
-# 187 ".././main.c" 3
+# 188 ".././main.c" 3
                        2
-# 187 ".././main.c"
+# 188 ".././main.c"
                            );
 
  
-# 189 ".././main.c" 3
+# 190 ".././main.c" 3
 (*(volatile uint8_t *)(0x71)) 
-# 189 ".././main.c"
+# 190 ".././main.c"
        = 
-# 189 ".././main.c" 3
+# 190 ".././main.c" 3
          (*(volatile uint8_t *)(0x71)) 
-# 189 ".././main.c"
+# 190 ".././main.c"
                 | (1<<
-# 189 ".././main.c" 3
+# 190 ".././main.c" 3
                       1
-# 189 ".././main.c"
+# 190 ".././main.c"
                             );
 
  
-# 191 ".././main.c" 3
+# 192 ".././main.c" 3
 (*(volatile uint16_t *)(0x98)) 
-# 191 ".././main.c"
+# 192 ".././main.c"
       = 2500;
 
 
@@ -1625,15 +1628,15 @@ void init_timer_zeitlicher_ablauf(void)
 }
 
 
-# 198 ".././main.c" 3
+# 199 ".././main.c" 3
 void __vector_32 (void) __attribute__ ((signal,used, externally_visible)) ; void __vector_32 (void)
 
-# 199 ".././main.c"
+# 200 ".././main.c"
 {
  
-# 200 ".././main.c" 3
+# 201 ".././main.c" 3
 (*(volatile uint16_t *)(0x94)) 
-# 200 ".././main.c"
+# 201 ".././main.c"
       = 0;
 
 

@@ -847,7 +847,7 @@ __vector_29:
 	.loc 1 336 0
 	lds r24,121
 	sts adc_high,r24
-	.loc 1 339 0
+	.loc 1 338 0
 	call drehzahl_holen
 .LVL7:
 	ldi r18,0
@@ -858,24 +858,25 @@ __vector_29:
 .LVL8:
 	cp __zero_reg__,r24
 	brlt .L30
-	.loc 1 339 0 is_stmt 0 discriminator 1
+	.loc 1 340 0
+	sbi 0xb,4
+	.loc 1 342 0
 	lds r24,adc_high
-	tst r24
-	breq .L30
-	.loc 1 341 0 is_stmt 1
 	call geschwindigkeits_regulierung
 .LVL9:
 	sts 207,r24
+	.loc 1 344 0
+	cbi 0xb,4
 .L30:
-	.loc 1 375 0
+	.loc 1 376 0
 	ldi r30,lo8(122)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 375 0
+	.loc 1 376 0
 	ori r24,lo8(64)
 	st Z,r24
 /* epilogue start */
-	.loc 1 376 0
+	.loc 1 377 0
 	pop r31
 	pop r30
 	pop r27

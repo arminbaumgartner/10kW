@@ -33,10 +33,15 @@ volatile unsigned char empfangs_daten[5];	//dynamischer Speicher der Akkudaten
 volatile unsigned char akku_daten[5];		//statischer Speicher der Akkudaten
 char overflow_counter=0;	//Zählt Overflows für Pause
 
-volatile uint16_t niedrige_akku_voltage;	//Akku Spannung	0-3650mV
-volatile uint8_t temperatur;//Temperatur	0-120C
+volatile uint16_t niedrige_akku_voltage_array[5];
+volatile uint8_t temperatur_array[5];
+volatile uint16_t ges_volatage_array[5];
 
-volatile uint16_t ges_volatage=0;	//Nennspannung 48000
+volatile uint16_t niedrige_akku_voltage=NENNZELLSPANNUNG;	//Akku Spannung	0-3650mV
+volatile uint8_t temperatur=ZIMMERTEMERATUR;//Temperatur	0-60C
+volatile uint16_t ges_volatage=NENNSPANNUNG;	//Nennspannung 48000
+
+volatile uint8_t zahler_array=0;
 
 char empfang_test;
 
@@ -88,12 +93,36 @@ void init_transmission_timer(void)
 }
 void daten_aufteilen(void)
 {
-	temperatur = akku_daten[0];					//Temperatur
-	niedrige_akku_voltage = akku_daten[1];					//Low-Spannung
-	niedrige_akku_voltage = niedrige_akku_voltage | (akku_daten[2]<<8);		//HIGH Byte der Spannung
-	ges_volatage = akku_daten[3];
-	ges_volatage = ges_volatage | (akku_daten[4]<<8);
-		
+	
+	temperatur_array[zahler_array] = akku_daten[0];					//Temperatur
+	niedrige_akku_voltage_array[zahler_array] = akku_daten[1];					//Low-Spannung
+	niedrige_akku_voltage_array[zahler_array] = niedrige_akku_voltage_array[zahler_array] | (akku_daten[2]<<8);		//HIGH Byte der Spannung
+	ges_volatage_array[zahler_array] = akku_daten[3];
+	ges_volatage_array[zahler_array] = ges_volatage_array[zahler_array] | (akku_daten[4]<<8);
+	
+	zahler_array++;
+	
+	if (zahler_array >= 5)
+	{
+		zahler_array=0;
+	}
+
+	//gechecked		
+	
+}
+void kommunikations_daten_mitteln(void)
+{	
+	for(int k=0; k<5; k++)
+	{
+		temperatur= (temperatur+(temperatur_array[k]/5));
+		niedrige_akku_voltage = (niedrige_akku_voltage+(niedrige_akku_voltage_array[k]/5));
+		ges_volatage = (ges_volatage+(ges_volatage_array[k]/5));
+	}
+	
+	if (niedrige_akku_voltage_array[zahler_array] == 2800)
+	{
+		PORTB = PORTB ^ (1<<PORTB7);
+	}
 	
 }
 void save_akku_daten(void)

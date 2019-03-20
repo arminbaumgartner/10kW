@@ -334,11 +334,15 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 	
 	adc_low = ADCL;					//zuerst immer Low Bits holen
 	adc_high = ADCH;				//dann High Bits holen
-	
-	
-	if ((drehzahl_holen() <= 2000) && (adc_high >= 1))
+		
+	if ((drehzahl_holen() <= 2000))
 	{
+		PORTD = PORTD | (1<<PORTD4);
+				
 		OCR4A = geschwindigkeits_regulierung(adc_high);
+		
+		PORTD = PORTD &~ (1<<PORTD4);
+		
 	}
 	
 	
@@ -359,11 +363,8 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 		
 		current_adc_wert = OCR4A;
 		
-		PORTD = PORTD | (1<<PORTD4);
-		
 		OCR4A = geschwindigkeits_regulierung(adc_high);
-		
-		PORTD = PORTD &~ (1<<PORTD4);				
+				
 	}
 	else
 	{

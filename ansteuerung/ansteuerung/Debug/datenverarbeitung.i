@@ -998,11 +998,13 @@ void LCD_string(char *data);
 void LCD_Display(void);
 # 23 ".././datenverarbeitung.c" 2
 # 1 ".././kommunikation.h" 1
-# 17 ".././kommunikation.h"
+# 18 ".././kommunikation.h"
 void init_usart (void);
 void init_transmission_timer(void);
 void save_akku_daten(void);
 void daten_aufteilen(void);
+
+void kommunikations_daten_mitteln(void);
 
 uint16_t ges_spannung_uebertragung(void);
 uint16_t niedrigste_akku_voltage_uebertragung (void);
@@ -1081,18 +1083,13 @@ char geschwindigkeits_regulierung(char adc_wert)
 
  kennlinie_wert_float = kennlinie_voltage * (253/48);
  kennlinie_wert = (char)kennlinie_wert_float;
+# 130 ".././datenverarbeitung.c"
+  angleich_gerade_gas = (16 -0.0045*drehzahl) + 15; ;
 
-
-
-
- if (drehzahl <= 2000)
- {
-  angleich_gerade_gas = (20 +(0.0397*drehzahl)) ;
- }
- else
- {
-  angleich_gerade_gas = 10;
- }
+  if (angleich_gerade_gas <= 0)
+  {
+   angleich_gerade_gas=0;
+  }
 
 
 
@@ -1102,23 +1099,28 @@ char geschwindigkeits_regulierung(char adc_wert)
  angleich_gerade_bremsen = 10;
 
 
+ if ((niedrigste_zell_spannung_regelung <= 2850) && (niedrigste_zell_spannung_regelung >= 2750))
+ {
 
- if (niedrigste_zell_spannung_regelung <= 2800)
- {
-  angleich_gerade_gas = (angleich_gerade_gas*0.85);
- }
- else if (niedrigste_zell_spannung_regelung <= 2800 +100)
- {
-  angleich_gerade_gas = (angleich_gerade_gas*0.90);
- }
- else if (niedrigste_zell_spannung_regelung <= 2800 + 200)
- {
-  angleich_gerade_gas = (angleich_gerade_gas*0.95);
  }
 
 
+ if (niedrigste_zell_spannung_regelung <= (2800 +1))
+ {
+  angleich_gerade_gas = (angleich_gerade_gas*0.60);
+ }
+ else if (niedrigste_zell_spannung_regelung <= (2800 +100))
+ {
+  angleich_gerade_gas = (angleich_gerade_gas*0.65);
+ }
+ else if (niedrigste_zell_spannung_regelung <= (2800 +200))
+ {
+  angleich_gerade_gas = (angleich_gerade_gas*0.70);
+ }
 
- if (temperatur_regelung >= 120)
+
+
+ if (temperatur_regelung >= 55)
  {
   angleich_gerade_gas = (angleich_gerade_gas*0.2);
  }
@@ -1128,7 +1130,7 @@ char geschwindigkeits_regulierung(char adc_wert)
 
  if (drehzahl_regelung == 0 && adc_wert > 20)
  {
-  regulierter_wert = 20;
+  regulierter_wert = 16;
  }
  else
  {
@@ -1144,19 +1146,6 @@ char geschwindigkeits_regulierung(char adc_wert)
 
   if (adc_wert > (kennlinie_wert+(char)angleich_gerade_gas))
   {
-   
-# 179 ".././datenverarbeitung.c" 3
-  (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 179 ".././datenverarbeitung.c"
-        = 
-# 179 ".././datenverarbeitung.c" 3
-          (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 179 ".././datenverarbeitung.c"
-                | (1<<
-# 179 ".././datenverarbeitung.c" 3
-                      7
-# 179 ".././datenverarbeitung.c"
-                            );
 
    regulierter_wert = kennlinie_wert+(char)angleich_gerade_gas;
 
@@ -1170,19 +1159,6 @@ char geschwindigkeits_regulierung(char adc_wert)
   }
   else
   {
-   
-# 193 ".././datenverarbeitung.c" 3
-  (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 193 ".././datenverarbeitung.c"
-        = 
-# 193 ".././datenverarbeitung.c" 3
-          (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 193 ".././datenverarbeitung.c"
-                &~ (1<<
-# 193 ".././datenverarbeitung.c" 3
-                       7
-# 193 ".././datenverarbeitung.c"
-                             );
 
    regulierter_wert = adc_wert;
   }

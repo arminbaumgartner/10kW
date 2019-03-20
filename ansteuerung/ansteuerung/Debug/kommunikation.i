@@ -963,11 +963,13 @@ void LCD_string(char *data);
 void LCD_Display(void);
 # 22 ".././kommunikation.c" 2
 # 1 ".././kommunikation.h" 1
-# 17 ".././kommunikation.h"
+# 18 ".././kommunikation.h"
 void init_usart (void);
 void init_transmission_timer(void);
 void save_akku_daten(void);
 void daten_aufteilen(void);
+
+void kommunikations_daten_mitteln(void);
 
 uint16_t ges_spannung_uebertragung(void);
 uint16_t niedrigste_akku_voltage_uebertragung (void);
@@ -993,10 +995,15 @@ volatile unsigned char empfangs_daten[5];
 volatile unsigned char akku_daten[5];
 char overflow_counter=0;
 
-volatile uint16_t niedrige_akku_voltage;
-volatile uint8_t temperatur;
+volatile uint16_t niedrige_akku_voltage_array[5];
+volatile uint8_t temperatur_array[5];
+volatile uint16_t ges_volatage_array[5];
 
-volatile uint16_t ges_volatage=0;
+volatile uint16_t niedrige_akku_voltage=3300;
+volatile uint8_t temperatur=20;
+volatile uint16_t ges_volatage=48000;
+
+volatile uint8_t zahler_array=0;
 
 char empfang_test;
 
@@ -1006,175 +1013,175 @@ char counter_falsch = 0;
 void init_usart (void)
 {
  
-# 48 ".././kommunikation.c" 3
+# 53 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0xCD)) 
-# 48 ".././kommunikation.c"
+# 53 ".././kommunikation.c"
        = (unsigned char)((16000000/16UL/9600UL -1)>>8);
  
-# 49 ".././kommunikation.c" 3
+# 54 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0xCC)) 
-# 49 ".././kommunikation.c"
+# 54 ".././kommunikation.c"
        = (unsigned char)((16000000/16UL/9600UL -1));
  
-# 50 ".././kommunikation.c" 3
+# 55 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0xC9)) 
-# 50 ".././kommunikation.c"
+# 55 ".././kommunikation.c"
        = 
-# 50 ".././kommunikation.c" 3
+# 55 ".././kommunikation.c" 3
          (*(volatile uint8_t *)(0xC9)) 
-# 50 ".././kommunikation.c"
+# 55 ".././kommunikation.c"
                 | (1<<
-# 50 ".././kommunikation.c" 3
+# 55 ".././kommunikation.c" 3
                       4
-# 50 ".././kommunikation.c"
+# 55 ".././kommunikation.c"
                            );
  
-# 51 ".././kommunikation.c" 3
+# 56 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0xC9)) 
-# 51 ".././kommunikation.c"
+# 56 ".././kommunikation.c"
        = 
-# 51 ".././kommunikation.c" 3
+# 56 ".././kommunikation.c" 3
          (*(volatile uint8_t *)(0xC9)) 
-# 51 ".././kommunikation.c"
+# 56 ".././kommunikation.c"
                 | (1<<
-# 51 ".././kommunikation.c" 3
+# 56 ".././kommunikation.c" 3
                       7
-# 51 ".././kommunikation.c"
+# 56 ".././kommunikation.c"
                             );
  
-# 52 ".././kommunikation.c" 3
+# 57 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0xC9)) 
-# 52 ".././kommunikation.c"
+# 57 ".././kommunikation.c"
        = 
-# 52 ".././kommunikation.c" 3
+# 57 ".././kommunikation.c" 3
          (*(volatile uint8_t *)(0xC9)) 
-# 52 ".././kommunikation.c"
+# 57 ".././kommunikation.c"
                 | (1<<
-# 52 ".././kommunikation.c" 3
+# 57 ".././kommunikation.c" 3
                       3
-# 52 ".././kommunikation.c"
+# 57 ".././kommunikation.c"
                            );
 
  
-# 54 ".././kommunikation.c" 3
+# 59 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0xCA)) 
-# 54 ".././kommunikation.c"
+# 59 ".././kommunikation.c"
        = 
-# 54 ".././kommunikation.c" 3
+# 59 ".././kommunikation.c" 3
          (*(volatile uint8_t *)(0xCA)) 
-# 54 ".././kommunikation.c"
+# 59 ".././kommunikation.c"
                 &~ (1<<
-# 54 ".././kommunikation.c" 3
+# 59 ".././kommunikation.c" 3
                        6
-# 54 ".././kommunikation.c"
+# 59 ".././kommunikation.c"
                               );
  
-# 55 ".././kommunikation.c" 3
+# 60 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0xCA)) 
-# 55 ".././kommunikation.c"
+# 60 ".././kommunikation.c"
        = 
-# 55 ".././kommunikation.c" 3
+# 60 ".././kommunikation.c" 3
          (*(volatile uint8_t *)(0xCA)) 
-# 55 ".././kommunikation.c"
+# 60 ".././kommunikation.c"
                 &~ (1<<
-# 55 ".././kommunikation.c" 3
+# 60 ".././kommunikation.c" 3
                        7
-# 55 ".././kommunikation.c"
+# 60 ".././kommunikation.c"
                               );
 
  
-# 57 ".././kommunikation.c" 3
+# 62 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0xCA)) 
-# 57 ".././kommunikation.c"
+# 62 ".././kommunikation.c"
        = 
-# 57 ".././kommunikation.c" 3
+# 62 ".././kommunikation.c" 3
          (*(volatile uint8_t *)(0xCA)) 
-# 57 ".././kommunikation.c"
+# 62 ".././kommunikation.c"
                 &~ (1<<
-# 57 ".././kommunikation.c" 3
+# 62 ".././kommunikation.c" 3
                        4
-# 57 ".././kommunikation.c"
+# 62 ".././kommunikation.c"
                             );
  
-# 58 ".././kommunikation.c" 3
+# 63 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0xCA)) 
-# 58 ".././kommunikation.c"
+# 63 ".././kommunikation.c"
        = 
-# 58 ".././kommunikation.c" 3
+# 63 ".././kommunikation.c" 3
          (*(volatile uint8_t *)(0xCA)) 
-# 58 ".././kommunikation.c"
+# 63 ".././kommunikation.c"
                 | (1<<
-# 58 ".././kommunikation.c" 3
+# 63 ".././kommunikation.c" 3
                       5
-# 58 ".././kommunikation.c"
+# 63 ".././kommunikation.c"
                            );
 
  
-# 60 ".././kommunikation.c" 3
+# 65 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0xCA)) 
-# 60 ".././kommunikation.c"
+# 65 ".././kommunikation.c"
        = 
-# 60 ".././kommunikation.c" 3
+# 65 ".././kommunikation.c" 3
          (*(volatile uint8_t *)(0xCA)) 
-# 60 ".././kommunikation.c"
+# 65 ".././kommunikation.c"
                 &~ (1<<
-# 60 ".././kommunikation.c" 3
+# 65 ".././kommunikation.c" 3
                        3
-# 60 ".././kommunikation.c"
+# 65 ".././kommunikation.c"
                             );
 
  
-# 62 ".././kommunikation.c" 3
+# 67 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0xCA)) 
-# 62 ".././kommunikation.c"
+# 67 ".././kommunikation.c"
        = 
-# 62 ".././kommunikation.c" 3
+# 67 ".././kommunikation.c" 3
          (*(volatile uint8_t *)(0xCA)) 
-# 62 ".././kommunikation.c"
+# 67 ".././kommunikation.c"
                 | (1<<
-# 62 ".././kommunikation.c" 3
+# 67 ".././kommunikation.c" 3
                       1
-# 62 ".././kommunikation.c"
+# 67 ".././kommunikation.c"
                             );
  
-# 63 ".././kommunikation.c" 3
+# 68 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0xCA)) 
-# 63 ".././kommunikation.c"
+# 68 ".././kommunikation.c"
        = 
-# 63 ".././kommunikation.c" 3
+# 68 ".././kommunikation.c" 3
          (*(volatile uint8_t *)(0xCA)) 
-# 63 ".././kommunikation.c"
+# 68 ".././kommunikation.c"
                 | (1<<
-# 63 ".././kommunikation.c" 3
+# 68 ".././kommunikation.c" 3
                       2
-# 63 ".././kommunikation.c"
+# 68 ".././kommunikation.c"
                             );
  
-# 64 ".././kommunikation.c" 3
+# 69 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0xC9)) 
-# 64 ".././kommunikation.c"
+# 69 ".././kommunikation.c"
        = 
-# 64 ".././kommunikation.c" 3
+# 69 ".././kommunikation.c" 3
          (*(volatile uint8_t *)(0xC9)) 
-# 64 ".././kommunikation.c"
+# 69 ".././kommunikation.c"
                 &~ (1<<
-# 64 ".././kommunikation.c" 3
+# 69 ".././kommunikation.c" 3
                        2
-# 64 ".././kommunikation.c"
+# 69 ".././kommunikation.c"
                              );
 
  
-# 66 ".././kommunikation.c" 3
+# 71 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0xCA)) 
-# 66 ".././kommunikation.c"
+# 71 ".././kommunikation.c"
        = 
-# 66 ".././kommunikation.c" 3
+# 71 ".././kommunikation.c" 3
          (*(volatile uint8_t *)(0xCA)) 
-# 66 ".././kommunikation.c"
+# 71 ".././kommunikation.c"
                 &~ (
-# 66 ".././kommunikation.c" 3
+# 71 ".././kommunikation.c" 3
                     0
-# 66 ".././kommunikation.c"
+# 71 ".././kommunikation.c"
                           );
 
 
@@ -1182,142 +1189,178 @@ void init_usart (void)
 void init_transmission_timer(void)
 {
  
-# 72 ".././kommunikation.c" 3
+# 77 ".././kommunikation.c" 3
 (*(volatile uint8_t *)((0x24) + 0x20)) 
-# 72 ".././kommunikation.c"
+# 77 ".././kommunikation.c"
        = 
-# 72 ".././kommunikation.c" 3
+# 77 ".././kommunikation.c" 3
          (*(volatile uint8_t *)((0x24) + 0x20)) 
-# 72 ".././kommunikation.c"
+# 77 ".././kommunikation.c"
                 &~ (1<<
-# 72 ".././kommunikation.c" 3
+# 77 ".././kommunikation.c" 3
                        6
-# 72 ".././kommunikation.c"
+# 77 ".././kommunikation.c"
                              );
  
-# 73 ".././kommunikation.c" 3
+# 78 ".././kommunikation.c" 3
 (*(volatile uint8_t *)((0x24) + 0x20)) 
-# 73 ".././kommunikation.c"
+# 78 ".././kommunikation.c"
        = 
-# 73 ".././kommunikation.c" 3
+# 78 ".././kommunikation.c" 3
          (*(volatile uint8_t *)((0x24) + 0x20)) 
-# 73 ".././kommunikation.c"
+# 78 ".././kommunikation.c"
                 &~ (1<<
-# 73 ".././kommunikation.c" 3
+# 78 ".././kommunikation.c" 3
                        7
-# 73 ".././kommunikation.c"
+# 78 ".././kommunikation.c"
                              );
 
  
-# 75 ".././kommunikation.c" 3
+# 80 ".././kommunikation.c" 3
 (*(volatile uint8_t *)((0x24) + 0x20)) 
-# 75 ".././kommunikation.c"
+# 80 ".././kommunikation.c"
        = 
-# 75 ".././kommunikation.c" 3
+# 80 ".././kommunikation.c" 3
          (*(volatile uint8_t *)((0x24) + 0x20)) 
-# 75 ".././kommunikation.c"
+# 80 ".././kommunikation.c"
                 &~ (1<<
-# 75 ".././kommunikation.c" 3
+# 80 ".././kommunikation.c" 3
                        0
-# 75 ".././kommunikation.c"
+# 80 ".././kommunikation.c"
                             );
  
-# 76 ".././kommunikation.c" 3
+# 81 ".././kommunikation.c" 3
 (*(volatile uint8_t *)((0x24) + 0x20)) 
-# 76 ".././kommunikation.c"
+# 81 ".././kommunikation.c"
        = 
-# 76 ".././kommunikation.c" 3
+# 81 ".././kommunikation.c" 3
          (*(volatile uint8_t *)((0x24) + 0x20)) 
-# 76 ".././kommunikation.c"
+# 81 ".././kommunikation.c"
                 &~ (1<<
-# 76 ".././kommunikation.c" 3
+# 81 ".././kommunikation.c" 3
                        1
-# 76 ".././kommunikation.c"
+# 81 ".././kommunikation.c"
                             );
  
-# 77 ".././kommunikation.c" 3
+# 82 ".././kommunikation.c" 3
 (*(volatile uint8_t *)((0x25) + 0x20)) 
-# 77 ".././kommunikation.c"
+# 82 ".././kommunikation.c"
        = 
-# 77 ".././kommunikation.c" 3
+# 82 ".././kommunikation.c" 3
          (*(volatile uint8_t *)((0x25) + 0x20)) 
-# 77 ".././kommunikation.c"
+# 82 ".././kommunikation.c"
                 &~ (1<<
-# 77 ".././kommunikation.c" 3
+# 82 ".././kommunikation.c" 3
                        3
-# 77 ".././kommunikation.c"
+# 82 ".././kommunikation.c"
                             );
 
  
-# 79 ".././kommunikation.c" 3
+# 84 ".././kommunikation.c" 3
 (*(volatile uint8_t *)((0x25) + 0x20)) 
-# 79 ".././kommunikation.c"
+# 84 ".././kommunikation.c"
        = 
-# 79 ".././kommunikation.c" 3
+# 84 ".././kommunikation.c" 3
          (*(volatile uint8_t *)((0x25) + 0x20)) 
-# 79 ".././kommunikation.c"
+# 84 ".././kommunikation.c"
                 &~ (1<<
-# 79 ".././kommunikation.c" 3
+# 84 ".././kommunikation.c" 3
                        0
-# 79 ".././kommunikation.c"
+# 84 ".././kommunikation.c"
                            );
  
-# 80 ".././kommunikation.c" 3
+# 85 ".././kommunikation.c" 3
 (*(volatile uint8_t *)((0x25) + 0x20)) 
-# 80 ".././kommunikation.c"
+# 85 ".././kommunikation.c"
        = 
-# 80 ".././kommunikation.c" 3
+# 85 ".././kommunikation.c" 3
          (*(volatile uint8_t *)((0x25) + 0x20)) 
-# 80 ".././kommunikation.c"
+# 85 ".././kommunikation.c"
                 &~ (1<<
-# 80 ".././kommunikation.c" 3
+# 85 ".././kommunikation.c" 3
                        1
-# 80 ".././kommunikation.c"
+# 85 ".././kommunikation.c"
                            );
  
-# 81 ".././kommunikation.c" 3
+# 86 ".././kommunikation.c" 3
 (*(volatile uint8_t *)((0x25) + 0x20)) 
-# 81 ".././kommunikation.c"
+# 86 ".././kommunikation.c"
        = 
-# 81 ".././kommunikation.c" 3
+# 86 ".././kommunikation.c" 3
          (*(volatile uint8_t *)((0x25) + 0x20)) 
-# 81 ".././kommunikation.c"
+# 86 ".././kommunikation.c"
                 | (1<<
-# 81 ".././kommunikation.c" 3
+# 86 ".././kommunikation.c" 3
                       2
-# 81 ".././kommunikation.c"
+# 86 ".././kommunikation.c"
                           );
 
  
-# 83 ".././kommunikation.c" 3
+# 88 ".././kommunikation.c" 3
 (*(volatile uint8_t *)((0x27) + 0x20)) 
-# 83 ".././kommunikation.c"
+# 88 ".././kommunikation.c"
       = 100;
 
  
-# 85 ".././kommunikation.c" 3
+# 90 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0x6E)) 
-# 85 ".././kommunikation.c"
+# 90 ".././kommunikation.c"
        = 
-# 85 ".././kommunikation.c" 3
+# 90 ".././kommunikation.c" 3
          (*(volatile uint8_t *)(0x6E)) 
-# 85 ".././kommunikation.c"
+# 90 ".././kommunikation.c"
                 | (1<<
-# 85 ".././kommunikation.c" 3
+# 90 ".././kommunikation.c" 3
                       1
-# 85 ".././kommunikation.c"
+# 90 ".././kommunikation.c"
                             );
 
 
 }
 void daten_aufteilen(void)
 {
- temperatur = akku_daten[0];
- niedrige_akku_voltage = akku_daten[1];
- niedrige_akku_voltage = niedrige_akku_voltage | (akku_daten[2]<<8);
- ges_volatage = akku_daten[3];
- ges_volatage = ges_volatage | (akku_daten[4]<<8);
 
+ temperatur_array[zahler_array] = akku_daten[0];
+ niedrige_akku_voltage_array[zahler_array] = akku_daten[1];
+ niedrige_akku_voltage_array[zahler_array] = niedrige_akku_voltage_array[zahler_array] | (akku_daten[2]<<8);
+ ges_volatage_array[zahler_array] = akku_daten[3];
+ ges_volatage_array[zahler_array] = ges_volatage_array[zahler_array] | (akku_daten[4]<<8);
+
+ zahler_array++;
+
+ if (zahler_array >= 5)
+ {
+  zahler_array=0;
+ }
+
+
+
+}
+void kommunikations_daten_mitteln(void)
+{
+ for(int k=0; k<5; k++)
+ {
+  temperatur= (temperatur+(temperatur_array[k]/5));
+  niedrige_akku_voltage = (niedrige_akku_voltage+(niedrige_akku_voltage_array[k]/5));
+  ges_volatage = (ges_volatage+(ges_volatage_array[k]/5));
+ }
+
+ if (niedrige_akku_voltage_array[zahler_array] == 2800)
+ {
+  
+# 124 ".././kommunikation.c" 3
+ (*(volatile uint8_t *)((0x05) + 0x20)) 
+# 124 ".././kommunikation.c"
+       = 
+# 124 ".././kommunikation.c" 3
+         (*(volatile uint8_t *)((0x05) + 0x20)) 
+# 124 ".././kommunikation.c"
+               ^ (1<<
+# 124 ".././kommunikation.c" 3
+                     7
+# 124 ".././kommunikation.c"
+                           );
+ }
 
 }
 void save_akku_daten(void)
@@ -1360,7 +1403,7 @@ uint16_t niedrigste_akku_voltage_uebertragung (void)
 }
 uint8_t temperatur_uebertragung(void)
 {
- if(temperatur <= 160)
+ if(temperatur <= 60)
  {
   return temperatur;
  }
@@ -1373,10 +1416,10 @@ uint8_t temperatur_uebertragung(void)
 }
 
 
-# 151 ".././kommunikation.c" 3
+# 180 ".././kommunikation.c" 3
 void __vector_25 (void) __attribute__ ((signal,used, externally_visible)) ; void __vector_25 (void)
 
-# 152 ".././kommunikation.c"
+# 181 ".././kommunikation.c"
 {
 
 
@@ -1386,16 +1429,16 @@ void __vector_25 (void) __attribute__ ((signal,used, externally_visible)) ; void
 
    overflow_counter = 0;
    
-# 160 ".././kommunikation.c" 3
+# 189 ".././kommunikation.c" 3
   (*(volatile uint8_t *)((0x26) + 0x20)) 
-# 160 ".././kommunikation.c"
+# 189 ".././kommunikation.c"
         = 0;
 
 
    empfangs_daten[zahler_uebertragung] = 
-# 163 ".././kommunikation.c" 3
+# 192 ".././kommunikation.c" 3
                                         (*(volatile uint8_t *)(0xCE))
-# 163 ".././kommunikation.c"
+# 192 ".././kommunikation.c"
                                             ;
 
 
@@ -1410,15 +1453,15 @@ void __vector_25 (void) __attribute__ ((signal,used, externally_visible)) ; void
 
 }
 
-# 176 ".././kommunikation.c" 3
+# 205 ".././kommunikation.c" 3
 void __vector_21 (void) __attribute__ ((signal,used, externally_visible)) ; void __vector_21 (void)
 
-# 177 ".././kommunikation.c"
+# 206 ".././kommunikation.c"
 {
  
-# 178 ".././kommunikation.c" 3
+# 207 ".././kommunikation.c" 3
 (*(volatile uint8_t *)((0x26) + 0x20)) 
-# 178 ".././kommunikation.c"
+# 207 ".././kommunikation.c"
       = 0;
  start = 1;
 

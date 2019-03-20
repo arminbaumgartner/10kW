@@ -72,14 +72,13 @@ char geschwindigkeits_regulierung(char adc_wert)
 	uint16_t niedrigste_zell_spannung_regelung;
 	uint8_t temperatur_regelung;
 	
-	
+		
 	if (drehzahl_regelung >= MAXDREHZAHL)		//Überdrehzahl abfangen
 	{
 		drehzahl_regelung = MAXDREHZAHL;			//5000 U/min
 	}
 	
-/*
-	
+/*	
 	if (drehzahl <= 2420)
 	{
 		kennlinie_voltage = (float)(drehzahl/DREHZAHLTEILER1);		//Teiler = 129
@@ -97,13 +96,14 @@ char geschwindigkeits_regulierung(char adc_wert)
 		kennlinie_voltage = 0;
 	}
 */
+
 	kennlinie_voltage = (float)(drehzahl_regelung/DREHZAHLTEILER3);			//Teiler 106
 
 
 	ges_spannung_regelung = ges_spannung_uebertragung();
 	niedrigste_zell_spannung_regelung = niedrigste_akku_voltage_uebertragung();
 	temperatur_regelung = temperatur_uebertragung();
-		
+	
 	
 	if (kennlinie_voltage >= 40 && ges_spannung_regelung <=44000)			//Wenn Spannung zu niedrig wird && voll betrieb
 	{
@@ -116,7 +116,7 @@ char geschwindigkeits_regulierung(char adc_wert)
 		
 	
 	//Beschleunigungskennlinie
-	
+	 /*
 	if (drehzahl <= 2000)
 	{
 		angleich_gerade_gas = (WEGFAHR_WERT+(0.0397*drehzahl)) ;		// * (gesamtspannung_kom/NENNSPANNUNG) //20Amper
@@ -125,32 +125,45 @@ char geschwindigkeits_regulierung(char adc_wert)
 	{
 		angleich_gerade_gas = SICHERHEITSBEREICH;		// * (gesamtspannung_kom/NENNSPANNUNG)
 	}
+	*/
+	 
+	 angleich_gerade_gas = (WEGFAHR_WERT-0.0045*drehzahl) + 15; ;		// * (gesamtspannung_kom/NENNSPANNUNG) /
+		 
+	 if (angleich_gerade_gas <= 0)
+	 {
+		 angleich_gerade_gas=0;
+	 }
 	
+	 
 	
-	//angleich_gerade_gas = SICHERHEITSBEREICH;			// * (gesamtspannung_kom/NENNSPANNUNG)
 	
 	
 	//Rekuperation-kennlinie
 	angleich_gerade_bremsen = SICHERHEITSBEREICH;
 	
 	
-	//		Sicherheit niedrigeste Zellspannung
-	if (niedrigste_zell_spannung_regelung <= MINZELLSPANNUNG)
+	if ((niedrigste_zell_spannung_regelung <= 2850) && (niedrigste_zell_spannung_regelung >= 2750))
 	{
-		angleich_gerade_gas = (angleich_gerade_gas*0.85);		//15% weniger gas
-	}
-	else if (niedrigste_zell_spannung_regelung <= MINZELLSPANNUNG+100)
-	{
-		angleich_gerade_gas = (angleich_gerade_gas*0.90);		//10% weniger gas
-	}
-	else if (niedrigste_zell_spannung_regelung <= MINZELLSPANNUNG + 200)
-	{
-		angleich_gerade_gas = (angleich_gerade_gas*0.95);		//5% weniger gas
+		
 	}
 	
+	//		Sicherheit niedrigeste Zellspannung
+	if (niedrigste_zell_spannung_regelung <= (MINZELLSPANNUNG+1))				//2801
+	{
+		angleich_gerade_gas = (angleich_gerade_gas*0.60);		//15% weniger gas
+	}
+	else if (niedrigste_zell_spannung_regelung <= (MINZELLSPANNUNG+100))		//2900
+	{
+		angleich_gerade_gas = (angleich_gerade_gas*0.65);		//10% weniger gas
+	}
+	else if (niedrigste_zell_spannung_regelung <= (MINZELLSPANNUNG+200))	//3000
+	{
+		angleich_gerade_gas = (angleich_gerade_gas*0.70);		//5% weniger gas
+	}
+
 	
 	//	Sicherheit Temperatur
-	if (temperatur_regelung >= 120)
+	if (temperatur_regelung >= 55)
 	{
 		angleich_gerade_gas = (angleich_gerade_gas*0.2);
 	}
@@ -176,9 +189,8 @@ char geschwindigkeits_regulierung(char adc_wert)
 		
 		if (adc_wert > (kennlinie_wert+(char)angleich_gerade_gas))				//Überbereich
 		{
-			PORTB = PORTB | (1<<PORTB7);
 			
-			regulierter_wert = kennlinie_wert+(char)angleich_gerade_gas;
+			regulierter_wert = kennlinie_wert+(char)angleich_gerade_gas; //*  NENNspannung/ges-spannung(gelesen)
 			
 			
 		}
@@ -190,7 +202,6 @@ char geschwindigkeits_regulierung(char adc_wert)
 		}
 		else										
 		{
-			PORTB = PORTB &~ (1<<PORTB7);
 			
 			regulierter_wert = adc_wert;			//Im Bereich
 		}		

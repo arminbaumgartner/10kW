@@ -134,9 +134,10 @@ int main(void)
 	
 	adc_wert_anfangsbedinung = adc_abfrage();
 	
-	while (adc_wert_anfangsbedinung >= 0x01)
+	do
 	{
-	}
+		adc_wert_anfangsbedinung = adc_abfrage();
+	}while (adc_wert_anfangsbedinung != 0x00);
 	
 	_delay_ms(2000);
 	
@@ -149,7 +150,7 @@ int main(void)
 	
     while (1) 
     {	
-
+		kommunikations_daten_mitteln();
 						
 		if(zeitlicher_ablauf >= 10)
 		{

@@ -60,13 +60,13 @@ akku_daten_einbeziehen:
 	.size	akku_daten_einbeziehen, .-akku_daten_einbeziehen
 .global	__gesf2
 .global	__divsf3
-.global	__lesf2
 .global	__mulsf3
+.global	__subsf3
 .global	__addsf3
+.global	__lesf2
 .global	__eqsf2
 .global	__fixunssfsi
 .global	__floatsisf
-.global	__subsf3
 .global	__ltsf2
 	.section	.text.geschwindigkeits_regulierung,"ax",@progbits
 .global	geschwindigkeits_regulierung
@@ -209,7 +209,7 @@ geschwindigkeits_regulierung:
 	tst r24
 	brlt .L5
 .LVL16:
-.L23:
+.L22:
 	.loc 1 108 0 is_stmt 0 discriminator 1
 	cpi r16,-31
 	sbci r17,-85
@@ -225,62 +225,57 @@ geschwindigkeits_regulierung:
 	mov r31,__tmp_reg__
 .LVL17:
 .L5:
-	.loc 1 120 0
+	.loc 1 130 0
 	lds r22,drehzahl
 	lds r23,drehzahl+1
 	lds r24,drehzahl+2
 	lds r25,drehzahl+3
-	ldi r18,0
-	ldi r19,0
-	ldi r20,lo8(-6)
-	ldi r21,lo8(68)
-	call __lesf2
-.LVL18:
-	cp __zero_reg__,r24
-	brlt .L31
-	.loc 1 122 0
-	lds r22,drehzahl
-	lds r23,drehzahl+1
-	lds r24,drehzahl+2
-	lds r25,drehzahl+3
-	ldi r18,lo8(120)
-	ldi r19,lo8(-100)
-	ldi r20,lo8(34)
-	ldi r21,lo8(61)
+	ldi r18,lo8(-68)
+	ldi r19,lo8(116)
+	ldi r20,lo8(-109)
+	ldi r21,lo8(59)
 	call __mulsf3
+.LVL18:
+	movw r18,r22
+	movw r20,r24
+	ldi r22,0
+	ldi r23,0
+	ldi r24,lo8(-128)
+	ldi r25,lo8(65)
+	call __subsf3
 .LVL19:
 	ldi r18,0
 	ldi r19,0
-	ldi r20,lo8(-96)
+	ldi r20,lo8(112)
 	ldi r21,lo8(65)
 	call __addsf3
 .LVL20:
 	movw r4,r22
 	movw r6,r24
 .LVL21:
-	rjmp .L7
+	.loc 1 132 0
+	ldi r18,0
+	ldi r19,0
+	movw r20,r18
+	call __lesf2
 .LVL22:
-.L31:
-	.loc 1 126 0
-	mov __tmp_reg__,r31
+	cp __zero_reg__,r24
+	brlt .L7
+	.loc 1 134 0
 	mov r4,__zero_reg__
 	mov r5,__zero_reg__
-	ldi r31,lo8(32)
-	mov r6,r31
-	ldi r31,lo8(65)
-	mov r7,r31
-	mov r31,__tmp_reg__
-.L7:
+	movw r6,r4
 .LVL23:
-	.loc 1 138 0
-	cpi r28,-15
+.L7:
+	.loc 1 151 0
+	cpi r28,-14
 	ldi r24,10
 	cpc r29,r24
 	brsh .L9
-	.loc 1 140 0
+	.loc 1 153 0
 	ldi r18,lo8(-102)
 	ldi r19,lo8(-103)
-	ldi r20,lo8(89)
+	ldi r20,lo8(25)
 	ldi r21,lo8(63)
 	movw r24,r6
 	movw r22,r4
@@ -291,15 +286,15 @@ geschwindigkeits_regulierung:
 .LVL25:
 	rjmp .L10
 .L9:
-	.loc 1 142 0
+	.loc 1 155 0
 	cpi r28,85
 	ldi r24,11
 	cpc r29,r24
 	brsh .L11
-	.loc 1 144 0
+	.loc 1 157 0
 	ldi r18,lo8(102)
 	ldi r19,lo8(102)
-	ldi r20,lo8(102)
+	ldi r20,lo8(38)
 	ldi r21,lo8(63)
 	movw r24,r6
 	movw r22,r4
@@ -310,14 +305,14 @@ geschwindigkeits_regulierung:
 .LVL27:
 	rjmp .L10
 .L11:
-	.loc 1 146 0
+	.loc 1 159 0
 	cpi r28,-71
 	sbci r29,11
 	brsh .L10
-	.loc 1 148 0
+	.loc 1 161 0
 	ldi r18,lo8(51)
 	ldi r19,lo8(51)
-	ldi r20,lo8(115)
+	ldi r20,lo8(51)
 	ldi r21,lo8(63)
 	movw r24,r6
 	movw r22,r4
@@ -327,11 +322,11 @@ geschwindigkeits_regulierung:
 	movw r6,r24
 .LVL29:
 .L10:
-	.loc 1 153 0
-	ldi r24,lo8(119)
+	.loc 1 166 0
+	ldi r24,lo8(54)
 	cp r24,r2
 	brsh .L12
-	.loc 1 155 0
+	.loc 1 168 0
 	ldi r18,lo8(-51)
 	ldi r19,lo8(-52)
 	ldi r20,lo8(76)
@@ -344,7 +339,7 @@ geschwindigkeits_regulierung:
 	movw r6,r24
 .LVL31:
 .L12:
-	.loc 1 161 0
+	.loc 1 174 0
 	ldi r18,0
 	ldi r19,0
 	movw r20,r18
@@ -354,11 +349,11 @@ geschwindigkeits_regulierung:
 .LVL32:
 	cpse r24,__zero_reg__
 	rjmp .L13
-	.loc 1 161 0 is_stmt 0 discriminator 1
+	.loc 1 174 0 is_stmt 0 discriminator 1
 	ldi r24,lo8(20)
 	cp r24,r3
 	brsh .+2
-	rjmp .L25
+	rjmp .L23
 .L13:
 	.loc 1 115 0 is_stmt 1
 	ldi r18,0
@@ -373,7 +368,7 @@ geschwindigkeits_regulierung:
 .LVL34:
 	mov r28,r22
 .LVL35:
-	.loc 1 167 0
+	.loc 1 180 0
 	ldi r23,0
 	ldi r24,0
 	ldi r25,0
@@ -400,8 +395,8 @@ geschwindigkeits_regulierung:
 	call __gesf2
 .LVL40:
 	tst r24
-	brlt .L32
-	.loc 1 169 0
+	brlt .L29
+	.loc 1 182 0
 	movw r24,r10
 	movw r22,r8
 	call __fixunssfsi
@@ -410,8 +405,8 @@ geschwindigkeits_regulierung:
 .LVL42:
 	rjmp .L18
 .LVL43:
-.L32:
-	.loc 1 171 0
+.L29:
+	.loc 1 184 0
 	ldi r18,0
 	ldi r19,0
 	ldi r20,lo8(32)
@@ -422,11 +417,11 @@ geschwindigkeits_regulierung:
 .LVL44:
 	cp __zero_reg__,r24
 	brlt .L18
-	.loc 1 173 0
+	.loc 1 186 0
 	ldi r28,lo8(10)
 .L18:
 .LVL45:
-	.loc 1 177 0
+	.loc 1 190 0
 	mov r14,r3
 	mov r15,__zero_reg__
 	mov r16,r28
@@ -442,17 +437,15 @@ geschwindigkeits_regulierung:
 	cp r24,r14
 	cpc r25,r15
 	brge .L20
-	.loc 1 179 0
-	sbi 0x5,7
-	.loc 1 181 0
+	.loc 1 193 0
 	mov r3,r28
 .LVL48:
 	add r3,r22
 .LVL49:
-	rjmp .L33
+	rjmp .L30
 .LVL50:
 .L20:
-	.loc 1 185 0
+	.loc 1 197 0
 	movw r22,r16
 	lsl r17
 	sbc r24,r24
@@ -478,48 +471,41 @@ geschwindigkeits_regulierung:
 	call __ltsf2
 .LVL54:
 	tst r24
-	brge .L34
-	.loc 1 188 0
+	brge .L30
+	.loc 1 200 0
 	movw r24,r10
 	movw r22,r8
 	call __fixunssfsi
 .LVL55:
 	mov r3,r22
 .LVL56:
-	rjmp .L33
+	rjmp .L30
 .LVL57:
-.L34:
-	.loc 1 193 0
-	cbi 0x5,7
+.L23:
+	.loc 1 176 0
+	set
+	clr r3
+	bld r3,4
 .LVL58:
-	rjmp .L33
+	.loc 1 215 0
+	rjmp .L30
 .LVL59:
-.L25:
-	.loc 1 163 0
-	mov __tmp_reg__,r31
-	ldi r31,lo8(20)
-	mov r3,r31
-	mov r31,__tmp_reg__
-.LVL60:
-	.loc 1 204 0
-	rjmp .L33
-.LVL61:
 .L4:
 	.loc 1 103 0
 	call ges_spannung_uebertragung
-.LVL62:
+.LVL60:
 	movw r16,r24
-.LVL63:
+.LVL61:
 	.loc 1 104 0
 	call niedrigste_akku_voltage_uebertragung
-.LVL64:
+.LVL62:
 	movw r28,r24
-.LVL65:
+.LVL63:
 	.loc 1 105 0
 	call temperatur_uebertragung
-.LVL66:
+.LVL64:
 	mov r2,r24
-.LVL67:
+.LVL65:
 	.loc 1 100 0
 	mov __tmp_reg__,r31
 	ldi r31,lo8(-29)
@@ -541,10 +527,10 @@ geschwindigkeits_regulierung:
 	ldi r31,lo8(69)
 	mov r15,r31
 	mov r31,__tmp_reg__
-	rjmp .L23
-.LVL68:
-.L33:
-	.loc 1 206 0
+	rjmp .L22
+.LVL66:
+.L30:
+	.loc 1 217 0
 	mov r24,r3
 /* epilogue start */
 	pop r29
@@ -563,11 +549,10 @@ geschwindigkeits_regulierung:
 	pop r6
 	pop r5
 	pop r4
-.LVL69:
+.LVL67:
 	pop r3
-.LVL70:
 	pop r2
-.LVL71:
+.LVL68:
 	ret
 	.cfi_endproc
 .LFE13:
@@ -580,14 +565,14 @@ geschwindigkeits_regulierung:
 	.type	ladestand_ausgabe, @function
 ladestand_ausgabe:
 .LFB14:
-	.loc 1 209 0
+	.loc 1 220 0
 	.cfi_startproc
-.LVL72:
+.LVL69:
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 210 0
+	.loc 1 221 0
 	push __zero_reg__
 .LCFI18:
 	.cfi_def_cfa_offset 3
@@ -596,11 +581,11 @@ ladestand_ausgabe:
 	.cfi_def_cfa_offset 4
 	ldi r24,lo8(.LC0)
 	ldi r25,hi8(.LC0)
-.LVL73:
+.LVL70:
 	push r25
 .LCFI20:
 	.cfi_def_cfa_offset 5
-.LVL74:
+.LVL71:
 	push r24
 .LCFI21:
 	.cfi_def_cfa_offset 6
@@ -613,17 +598,17 @@ ladestand_ausgabe:
 .LCFI23:
 	.cfi_def_cfa_offset 8
 	call sprintf
-.LVL75:
-	.loc 1 211 0
+.LVL72:
+	.loc 1 222 0
 	ldi r24,lo8(-64)
 	call LCD_cmd
-.LVL76:
-	.loc 1 212 0
+.LVL73:
+	.loc 1 223 0
 	ldi r24,lo8(ausgabe_02)
 	ldi r25,hi8(ausgabe_02)
 	call LCD_string
-.LVL77:
-	.loc 1 213 0
+.LVL74:
+	.loc 1 224 0
 	pop __tmp_reg__
 	pop __tmp_reg__
 	pop __tmp_reg__
@@ -869,20 +854,20 @@ nennspannung:
 	.long	.LVL13
 	.long	0x2df
 	.uleb128 0xb
-	.long	.LVL62
+	.long	.LVL60
 	.long	0x2c5
 	.uleb128 0xb
-	.long	.LVL64
+	.long	.LVL62
 	.long	0x2d2
 	.uleb128 0xb
-	.long	.LVL66
+	.long	.LVL64
 	.long	0x2df
 	.byte	0
 	.uleb128 0xc
 	.byte	0x1
 	.long	.LASF28
 	.byte	0x1
-	.byte	0xd0
+	.byte	0xdb
 	.byte	0x1
 	.long	.LFB14
 	.long	.LFE14
@@ -892,14 +877,14 @@ nennspannung:
 	.uleb128 0x6
 	.long	.LASF29
 	.byte	0x1
-	.byte	0xd0
+	.byte	0xdb
 	.long	0x3e
 	.long	.LLST15
 	.uleb128 0xb
-	.long	.LVL75
+	.long	.LVL72
 	.long	0x2ec
 	.uleb128 0xd
-	.long	.LVL76
+	.long	.LVL73
 	.long	0x2fa
 	.long	0x240
 	.uleb128 0xe
@@ -910,7 +895,7 @@ nennspannung:
 	.byte	0xc0
 	.byte	0
 	.uleb128 0xf
-	.long	.LVL77
+	.long	.LVL74
 	.long	0x307
 	.uleb128 0xe
 	.byte	0x6
@@ -985,21 +970,21 @@ nennspannung:
 	.long	.LASF36
 	.long	.LASF36
 	.byte	0x4
-	.byte	0x16
+	.byte	0x19
 	.uleb128 0x15
 	.byte	0x1
 	.byte	0x1
 	.long	.LASF37
 	.long	.LASF37
 	.byte	0x4
-	.byte	0x17
+	.byte	0x1a
 	.uleb128 0x15
 	.byte	0x1
 	.byte	0x1
 	.long	.LASF38
 	.long	.LASF38
 	.byte	0x4
-	.byte	0x18
+	.byte	0x1b
 	.uleb128 0x16
 	.byte	0x1
 	.byte	0x1
@@ -1555,21 +1540,21 @@ nennspannung:
 	.word	0x1
 	.byte	0x5e
 	.long	.LVL57
-	.long	.LVL60
+	.long	.LVL58
 	.word	0x1
 	.byte	0x53
-	.long	.LVL60
-	.long	.LVL61
+	.long	.LVL58
+	.long	.LVL59
 	.word	0x4
 	.byte	0xf3
 	.uleb128 0x1
 	.byte	0x68
 	.byte	0x9f
-	.long	.LVL61
-	.long	.LVL68
+	.long	.LVL59
+	.long	.LVL66
 	.word	0x1
 	.byte	0x53
-	.long	.LVL68
+	.long	.LVL66
 	.long	.LFE13
 	.word	0x4
 	.byte	0xf3
@@ -1600,11 +1585,11 @@ nennspannung:
 	.word	0x1
 	.byte	0x66
 	.long	.LVL45
-	.long	.LVL59
+	.long	.LVL57
 	.word	0x1
 	.byte	0x6c
+	.long	.LVL57
 	.long	.LVL59
-	.long	.LVL61
 	.word	0x10
 	.byte	0xf5
 	.uleb128 0x8
@@ -1634,18 +1619,6 @@ nennspannung:
 	.long	.LVL59
 	.word	0x1
 	.byte	0x53
-	.long	.LVL60
-	.long	.LVL61
-	.word	0x1
-	.byte	0x53
-	.long	.LVL68
-	.long	.LVL70
-	.word	0x1
-	.byte	0x53
-	.long	.LVL70
-	.long	.LFE13
-	.word	0x1
-	.byte	0x68
 	.long	0
 	.long	0
 .LLST6:
@@ -1661,8 +1634,8 @@ nennspannung:
 	.long	0x40a00000
 	.byte	0x1e
 	.byte	0x9f
+	.long	.LVL57
 	.long	.LVL59
-	.long	.LVL61
 	.word	0xc
 	.byte	0xf5
 	.uleb128 0x8
@@ -1691,8 +1664,8 @@ nennspannung:
 	.byte	0x5b
 	.byte	0x93
 	.uleb128 0x1
+	.long	.LVL57
 	.long	.LVL59
-	.long	.LVL61
 	.word	0xc
 	.byte	0x58
 	.byte	0x93
@@ -1706,8 +1679,8 @@ nennspannung:
 	.byte	0x5b
 	.byte	0x93
 	.uleb128 0x1
-	.long	.LVL61
-	.long	.LVL68
+	.long	.LVL59
+	.long	.LVL66
 	.word	0x6
 	.byte	0x9e
 	.uleb128 0x4
@@ -1716,7 +1689,7 @@ nennspannung:
 	.long	0
 .LLST8:
 	.long	.LVL21
-	.long	.LVL22
+	.long	.LVL59
 	.word	0xc
 	.byte	0x54
 	.byte	0x93
@@ -1730,23 +1703,8 @@ nennspannung:
 	.byte	0x57
 	.byte	0x93
 	.uleb128 0x1
-	.long	.LVL23
-	.long	.LVL61
-	.word	0xc
-	.byte	0x54
-	.byte	0x93
-	.uleb128 0x1
-	.byte	0x55
-	.byte	0x93
-	.uleb128 0x1
-	.byte	0x56
-	.byte	0x93
-	.uleb128 0x1
-	.byte	0x57
-	.byte	0x93
-	.uleb128 0x1
-	.long	.LVL68
-	.long	.LVL69
+	.long	.LVL66
+	.long	.LVL67
 	.word	0xc
 	.byte	0x54
 	.byte	0x93
@@ -1764,12 +1722,12 @@ nennspannung:
 	.long	0
 .LLST9:
 	.long	.LVL23
-	.long	.LVL61
+	.long	.LVL59
 	.word	0x6
 	.byte	0x9e
 	.uleb128 0x4
 	.long	0x41200000
-	.long	.LVL68
+	.long	.LVL66
 	.long	.LFE13
 	.word	0x6
 	.byte	0x9e
@@ -1793,8 +1751,8 @@ nennspannung:
 	.byte	0x5f
 	.byte	0x93
 	.uleb128 0x1
+	.long	.LVL57
 	.long	.LVL59
-	.long	.LVL61
 	.word	0xc
 	.byte	0x5c
 	.byte	0x93
@@ -1808,8 +1766,8 @@ nennspannung:
 	.byte	0x5f
 	.byte	0x93
 	.uleb128 0x1
-	.long	.LVL61
-	.long	.LVL68
+	.long	.LVL59
+	.long	.LVL66
 	.word	0x6
 	.byte	0x9e
 	.uleb128 0x4
@@ -1826,8 +1784,8 @@ nennspannung:
 	.byte	0x61
 	.byte	0x93
 	.uleb128 0x1
+	.long	.LVL57
 	.long	.LVL59
-	.long	.LVL61
 	.word	0x6
 	.byte	0x60
 	.byte	0x93
@@ -1835,8 +1793,8 @@ nennspannung:
 	.byte	0x61
 	.byte	0x93
 	.uleb128 0x1
-	.long	.LVL63
-	.long	.LVL68
+	.long	.LVL61
+	.long	.LVL66
 	.word	0x6
 	.byte	0x60
 	.byte	0x93
@@ -1865,8 +1823,8 @@ nennspannung:
 	.byte	0x6d
 	.byte	0x93
 	.uleb128 0x1
+	.long	.LVL57
 	.long	.LVL59
-	.long	.LVL61
 	.word	0x6
 	.byte	0x6c
 	.byte	0x93
@@ -1874,8 +1832,8 @@ nennspannung:
 	.byte	0x6d
 	.byte	0x93
 	.uleb128 0x1
-	.long	.LVL65
-	.long	.LVL66-1
+	.long	.LVL63
+	.long	.LVL64-1
 	.word	0x6
 	.byte	0x68
 	.byte	0x93
@@ -1883,8 +1841,8 @@ nennspannung:
 	.byte	0x69
 	.byte	0x93
 	.uleb128 0x1
-	.long	.LVL66-1
-	.long	.LVL68
+	.long	.LVL64-1
+	.long	.LVL66
 	.word	0x6
 	.byte	0x6c
 	.byte	0x93
@@ -1896,11 +1854,11 @@ nennspannung:
 	.long	0
 .LLST13:
 	.long	.LVL14
-	.long	.LVL61
+	.long	.LVL59
 	.word	0x1
 	.byte	0x52
-	.long	.LVL67
-	.long	.LVL71
+	.long	.LVL65
+	.long	.LVL68
 	.word	0x1
 	.byte	0x52
 	.long	0
@@ -1957,22 +1915,22 @@ nennspannung:
 	.long	0
 	.long	0
 .LLST15:
-	.long	.LVL72
-	.long	.LVL73
+	.long	.LVL69
+	.long	.LVL70
 	.word	0x1
 	.byte	0x68
-	.long	.LVL73
-	.long	.LVL74
+	.long	.LVL70
+	.long	.LVL71
 	.word	0x3
 	.byte	0x92
 	.uleb128 0x20
 	.sleb128 1
-	.long	.LVL74
-	.long	.LVL75-1
+	.long	.LVL71
+	.long	.LVL72-1
 	.word	0x2
 	.byte	0x91
 	.sleb128 -1
-	.long	.LVL75-1
+	.long	.LVL72-1
 	.long	.LFE14
 	.word	0x4
 	.byte	0xf3

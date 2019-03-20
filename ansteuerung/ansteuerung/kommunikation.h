@@ -11,13 +11,16 @@
 #define MINZELLSPANNUNG 2800
 #define MAXZELLSPANNUNG 3800
 
-#define MAXTEMPERATUR 160
+#define MAXTEMPERATUR 60
+#define ZIMMERTEMERATUR 20
 
 
 void init_usart (void);
 void init_transmission_timer(void);
 void save_akku_daten(void);
 void daten_aufteilen(void);
+
+void kommunikations_daten_mitteln(void);
 
 uint16_t ges_spannung_uebertragung(void);
 uint16_t niedrigste_akku_voltage_uebertragung (void);
