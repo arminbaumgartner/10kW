@@ -396,7 +396,7 @@ geschwindigkeit_berechnung:
 	sts step_dauer+3,__zero_reg__
 	rjmp .L8
 .L9:
-	.loc 1 162 0
+	.loc 1 136 0
 	lds r22,drehzahl
 	lds r23,drehzahl+1
 	lds r24,drehzahl+2
@@ -405,7 +405,7 @@ geschwindigkeit_berechnung:
 .LVL8:
 	sts drehzahl_ausgabe_01+1,r23
 	sts drehzahl_ausgabe_01,r22
-	.loc 1 164 0
+	.loc 1 138 0
 	lds r22,drehzahl_pro_sekunde
 	lds r23,drehzahl_pro_sekunde+1
 	lds r24,drehzahl_pro_sekunde+2
@@ -442,7 +442,7 @@ geschwindigkeit_berechnung:
 	sts geschwindigkeit_help+1,r23
 	sts geschwindigkeit_help+2,r24
 	sts geschwindigkeit_help+3,r25
-	.loc 1 169 0
+	.loc 1 143 0
 	lds r18,drehzahl_pro_sekunde
 	lds r19,drehzahl_pro_sekunde+1
 	lds r20,drehzahl_pro_sekunde+2
@@ -471,7 +471,7 @@ geschwindigkeit_berechnung:
 	sts geschwindigkeit_help+1,r23
 	sts geschwindigkeit_help+2,r24
 	sts geschwindigkeit_help+3,r25
-	.loc 1 170 0
+	.loc 1 144 0
 	lds r22,geschwindigkeit_help
 	lds r23,geschwindigkeit_help+1
 	lds r24,geschwindigkeit_help+2
@@ -482,7 +482,7 @@ geschwindigkeit_berechnung:
 	sts geschwindigkeit+1,r23
 	sts geschwindigkeit+2,r24
 	sts geschwindigkeit+3,r25
-	.loc 1 172 0
+	.loc 1 146 0
 	lds r22,geschwindigkeit
 	lds r23,geschwindigkeit+1
 	lds r24,geschwindigkeit+2
@@ -493,7 +493,7 @@ geschwindigkeit_berechnung:
 	sts geschwindigkeit_ausgabe,r22
 .L8:
 /* epilogue start */
-	.loc 1 177 0
+	.loc 1 151 0
 	pop r15
 	pop r14
 	pop r13
@@ -516,7 +516,7 @@ geschwindigkeit_berechnung:
 	.type	drehzahl_ausgabe, @function
 drehzahl_ausgabe:
 .LFB15:
-	.loc 1 180 0
+	.loc 1 154 0
 	.cfi_startproc
 	push r28
 .LCFI16:
@@ -530,7 +530,7 @@ drehzahl_ausgabe:
 /* frame size = 0 */
 /* stack size = 2 */
 .L__stack_usage = 2
-	.loc 1 181 0
+	.loc 1 155 0
 	ldi r28,lo8(ausgabe)
 	ldi r29,hi8(ausgabe)
 	ldi r24,lo8(5)
@@ -542,15 +542,15 @@ drehzahl_ausgabe:
 	st X+,r0
 	dec r24
 	brne 0b
-	.loc 1 182 0
+	.loc 1 156 0
 	ldi r24,lo8(-117)
 	call LCD_cmd
 .LVL19:
-	.loc 1 183 0
+	.loc 1 157 0
 	movw r24,r28
 	call LCD_string
 .LVL20:
-	.loc 1 185 0
+	.loc 1 159 0
 	lds r24,drehzahl_ausgabe_01
 	lds r25,drehzahl_ausgabe_01+1
 	push r25
@@ -575,15 +575,15 @@ drehzahl_ausgabe:
 	.cfi_def_cfa_offset 10
 	call sprintf
 .LVL21:
-	.loc 1 186 0
+	.loc 1 160 0
 	ldi r24,lo8(-118)
 	call LCD_cmd
 .LVL22:
-	.loc 1 187 0
+	.loc 1 161 0
 	movw r24,r28
 	call LCD_string
 .LVL23:
-	.loc 1 188 0
+	.loc 1 162 0
 	pop __tmp_reg__
 	pop __tmp_reg__
 	pop __tmp_reg__
@@ -604,7 +604,7 @@ drehzahl_ausgabe:
 	.type	geschwindigkeits_ausgabe, @function
 geschwindigkeits_ausgabe:
 .LFB16:
-	.loc 1 191 0
+	.loc 1 165 0
 	.cfi_startproc
 	push r28
 .LCFI25:
@@ -618,7 +618,7 @@ geschwindigkeits_ausgabe:
 /* frame size = 0 */
 /* stack size = 2 */
 .L__stack_usage = 2
-	.loc 1 192 0
+	.loc 1 166 0
 	ldi r28,lo8(ausgabe)
 	ldi r29,hi8(ausgabe)
 	ldi r24,lo8(5)
@@ -630,15 +630,15 @@ geschwindigkeits_ausgabe:
 	st X+,r0
 	dec r24
 	brne 0b
-	.loc 1 193 0
+	.loc 1 167 0
 	ldi r24,lo8(-53)
 	call LCD_cmd
 .LVL24:
-	.loc 1 194 0
+	.loc 1 168 0
 	movw r24,r28
 	call LCD_string
 .LVL25:
-	.loc 1 196 0
+	.loc 1 170 0
 	lds r24,geschwindigkeit_ausgabe
 	lds r25,geschwindigkeit_ausgabe+1
 	push r25
@@ -663,15 +663,15 @@ geschwindigkeits_ausgabe:
 	.cfi_def_cfa_offset 10
 	call sprintf
 .LVL26:
-	.loc 1 197 0
+	.loc 1 171 0
 	ldi r24,lo8(-54)
 	call LCD_cmd
 .LVL27:
-	.loc 1 198 0
+	.loc 1 172 0
 	movw r24,r28
 	call LCD_string
 .LVL28:
-	.loc 1 199 0
+	.loc 1 173 0
 	pop __tmp_reg__
 	pop __tmp_reg__
 	pop __tmp_reg__
@@ -692,18 +692,18 @@ geschwindigkeits_ausgabe:
 	.type	preset_drehzahl_gesch, @function
 preset_drehzahl_gesch:
 .LFB17:
-	.loc 1 201 0
+	.loc 1 175 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 202 0
+	.loc 1 176 0
 	sts drehzahl,__zero_reg__
 	sts drehzahl+1,__zero_reg__
 	sts drehzahl+2,__zero_reg__
 	sts drehzahl+3,__zero_reg__
-	.loc 1 203 0
+	.loc 1 177 0
 	sts geschwindigkeit,__zero_reg__
 	sts geschwindigkeit+1,__zero_reg__
 	sts geschwindigkeit+2,__zero_reg__
@@ -718,7 +718,7 @@ preset_drehzahl_gesch:
 	.type	umschalt_null, @function
 umschalt_null:
 .LFB18:
-	.loc 1 206 0
+	.loc 1 180 0
 	.cfi_startproc
 	push r28
 .LCFI34:
@@ -728,7 +728,7 @@ umschalt_null:
 /* frame size = 0 */
 /* stack size = 1 */
 .L__stack_usage = 1
-	.loc 1 207 0
+	.loc 1 181 0
 	lds r22,drehzahl
 	lds r23,drehzahl+1
 	lds r24,drehzahl+2
@@ -742,7 +742,7 @@ umschalt_null:
 	cpse r24,__zero_reg__
 	ldi r28,0
 .L15:
-	.loc 1 216 0
+	.loc 1 190 0
 	mov r24,r28
 /* epilogue start */
 	pop r28
@@ -755,14 +755,14 @@ umschalt_null:
 	.type	drehzahl_save, @function
 drehzahl_save:
 .LFB19:
-	.loc 1 218 0
+	.loc 1 192 0
 	.cfi_startproc
 .LVL30:
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 219 0
+	.loc 1 193 0
 	sts drehzahl_alt_ermittelt,r22
 	sts drehzahl_alt_ermittelt+1,r23
 	sts drehzahl_alt_ermittelt+2,r24
@@ -776,18 +776,18 @@ drehzahl_save:
 	.type	drehzahl_holen, @function
 drehzahl_holen:
 .LFB20:
-	.loc 1 222 0
+	.loc 1 196 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 223 0
+	.loc 1 197 0
 	lds r22,drehzahl
 	lds r23,drehzahl+1
 	lds r24,drehzahl+2
 	lds r25,drehzahl+3
-	.loc 1 224 0
+	.loc 1 198 0
 	ret
 	.cfi_endproc
 .LFE20:
@@ -798,7 +798,7 @@ drehzahl_holen:
 	.type	gemittelte_drehzahl_holen, @function
 gemittelte_drehzahl_holen:
 .LFB21:
-	.loc 1 226 0
+	.loc 1 200 0
 	.cfi_startproc
 	push r12
 .LCFI35:
@@ -830,18 +830,18 @@ gemittelte_drehzahl_holen:
 .L__stack_usage = 6
 .LVL31:
 .LBB2:
-	.loc 1 229 0
+	.loc 1 203 0
 	ldi r28,0
 	ldi r29,0
 .LBE2:
-	.loc 1 227 0
+	.loc 1 201 0
 	mov r12,__zero_reg__
 	mov r13,__zero_reg__
 	movw r14,r12
 .LVL32:
 .L19:
 .LBB3:
-	.loc 1 231 0 discriminator 3
+	.loc 1 205 0 discriminator 3
 	movw r30,r28
 	lsl r30
 	rol r31
@@ -868,7 +868,7 @@ gemittelte_drehzahl_holen:
 	movw r12,r22
 	movw r14,r24
 .LVL35:
-	.loc 1 229 0 discriminator 3
+	.loc 1 203 0 discriminator 3
 	adiw r28,1
 .LVL36:
 	cpi r28,3
@@ -876,7 +876,7 @@ gemittelte_drehzahl_holen:
 	brne .L19
 /* epilogue start */
 .LBE3:
-	.loc 1 236 0
+	.loc 1 210 0
 	pop r29
 	pop r28
 .LVL37:
@@ -894,18 +894,18 @@ gemittelte_drehzahl_holen:
 	.type	drehzahl_alt_holen, @function
 drehzahl_alt_holen:
 .LFB22:
-	.loc 1 238 0
+	.loc 1 212 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 239 0
+	.loc 1 213 0
 	lds r22,drehzahl_alt_ermittelt
 	lds r23,drehzahl_alt_ermittelt+1
 	lds r24,drehzahl_alt_ermittelt+2
 	lds r25,drehzahl_alt_ermittelt+3
-	.loc 1 240 0
+	.loc 1 214 0
 	ret
 	.cfi_endproc
 .LFE22:
@@ -915,7 +915,7 @@ drehzahl_alt_holen:
 	.type	__vector_20, @function
 __vector_20:
 .LFB23:
-	.loc 1 243 0
+	.loc 1 217 0
 	.cfi_startproc
 	push r1
 .LCFI41:
@@ -940,42 +940,42 @@ __vector_20:
 /* frame size = 0 */
 /* stack size = 5 */
 .L__stack_usage = 5
-	.loc 1 245 0
+	.loc 1 219 0
 	ldi r24,lo8(1)
 	sts overflow,r24
-	.loc 1 247 0
+	.loc 1 221 0
 	ldi r24,lo8(-116)
 	ldi r25,lo8(60)
 	sts steps+1,r25
 	sts steps,r24
-	.loc 1 248 0
+	.loc 1 222 0
 	sts geschwindigkeit,__zero_reg__
 	sts geschwindigkeit+1,__zero_reg__
 	sts geschwindigkeit+2,__zero_reg__
 	sts geschwindigkeit+3,__zero_reg__
-	.loc 1 249 0
+	.loc 1 223 0
 	sts geschwindigkeit_ausgabe+1,__zero_reg__
 	sts geschwindigkeit_ausgabe,__zero_reg__
-	.loc 1 250 0
+	.loc 1 224 0
 	sts drehzahl,__zero_reg__
 	sts drehzahl+1,__zero_reg__
 	sts drehzahl+2,__zero_reg__
 	sts drehzahl+3,__zero_reg__
-	.loc 1 251 0
+	.loc 1 225 0
 	sts drehzahl_ausgabe_01+1,__zero_reg__
 	sts drehzahl_ausgabe_01,__zero_reg__
-	.loc 1 252 0
+	.loc 1 226 0
 	sts drehzahl_pro_sekunde,__zero_reg__
 	sts drehzahl_pro_sekunde+1,__zero_reg__
 	sts drehzahl_pro_sekunde+2,__zero_reg__
 	sts drehzahl_pro_sekunde+3,__zero_reg__
-	.loc 1 253 0
+	.loc 1 227 0
 	sts step_dauer,__zero_reg__
 	sts step_dauer+1,__zero_reg__
 	sts step_dauer+2,__zero_reg__
 	sts step_dauer+3,__zero_reg__
 /* epilogue start */
-	.loc 1 255 0
+	.loc 1 229 0
 	pop r25
 	pop r24
 	pop r0
@@ -1162,7 +1162,7 @@ timer1_teiler_mult:
 	.byte	0x1
 	.long	.LASF14
 	.byte	0x1
-	.byte	0xb3
+	.byte	0x99
 	.byte	0x1
 	.long	.LFB15
 	.long	.LFE15
@@ -1230,7 +1230,7 @@ timer1_teiler_mult:
 	.byte	0x1
 	.long	.LASF15
 	.byte	0x1
-	.byte	0xbe
+	.byte	0xa4
 	.byte	0x1
 	.long	.LFB16
 	.long	.LFE16
@@ -1298,7 +1298,7 @@ timer1_teiler_mult:
 	.byte	0x1
 	.long	.LASF16
 	.byte	0x1
-	.byte	0xc8
+	.byte	0xae
 	.byte	0x1
 	.long	.LFB17
 	.long	.LFE17
@@ -1311,7 +1311,7 @@ timer1_teiler_mult:
 	.byte	0x1
 	.long	.LASF19
 	.byte	0x1
-	.byte	0xcd
+	.byte	0xb3
 	.byte	0x1
 	.long	0x77
 	.long	.LFB18
@@ -1322,7 +1322,7 @@ timer1_teiler_mult:
 	.byte	0x1
 	.long	.LASF17
 	.byte	0x1
-	.byte	0xd9
+	.byte	0xbf
 	.byte	0x1
 	.long	.LFB19
 	.long	.LFE19
@@ -1335,7 +1335,7 @@ timer1_teiler_mult:
 	.uleb128 0xf
 	.long	.LASF50
 	.byte	0x1
-	.byte	0xd9
+	.byte	0xbf
 	.long	0x23b
 	.byte	0xc
 	.byte	0x66
@@ -1359,7 +1359,7 @@ timer1_teiler_mult:
 	.byte	0x1
 	.long	.LASF20
 	.byte	0x1
-	.byte	0xdd
+	.byte	0xc3
 	.byte	0x1
 	.long	0x23b
 	.long	.LFB20
@@ -1373,7 +1373,7 @@ timer1_teiler_mult:
 	.byte	0x1
 	.long	.LASF51
 	.byte	0x1
-	.byte	0xe1
+	.byte	0xc7
 	.byte	0x1
 	.long	0x23b
 	.long	.LFB21
@@ -1384,7 +1384,7 @@ timer1_teiler_mult:
 	.uleb128 0x12
 	.long	.LASF21
 	.byte	0x1
-	.byte	0xe3
+	.byte	0xc9
 	.long	0x23b
 	.long	.LLST6
 	.uleb128 0x13
@@ -1392,7 +1392,7 @@ timer1_teiler_mult:
 	.uleb128 0x14
 	.string	"i"
 	.byte	0x1
-	.byte	0xe5
+	.byte	0xcb
 	.long	0x42
 	.long	.LLST7
 	.byte	0
@@ -1401,7 +1401,7 @@ timer1_teiler_mult:
 	.byte	0x1
 	.long	.LASF22
 	.byte	0x1
-	.byte	0xed
+	.byte	0xd3
 	.byte	0x1
 	.long	0x23b
 	.long	.LFB22
@@ -1415,7 +1415,7 @@ timer1_teiler_mult:
 	.byte	0x1
 	.long	.LASF23
 	.byte	0x1
-	.byte	0xf2
+	.byte	0xd8
 	.byte	0x1
 	.long	.LFB23
 	.long	.LFE23

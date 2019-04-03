@@ -89,8 +89,8 @@ void drehzahl_berechnung (void)
 				steps=15500;
 			}
 		
+		
 			
-
 			step_dauer = steps*timer1_teiler_mult;		//Werte von max 55.000µs um auf 1U/s zu kommen
 			step_dauer = step_dauer/100;				//Werte von 1 bis 550				///////ab hier korriegieren /// Teiler vieleicht auf 64 statt 256
 		
@@ -101,10 +101,10 @@ void drehzahl_berechnung (void)
 			drehzahl_pro_sekunde = 1000/step_dauer_help;	//Werte von 1 bis 1000
 		
 			drehzahl = drehzahl_pro_sekunde*60;
+					
 			
 			
-			
-			//drehzahl = 60/(steps*16*18);
+			//drehzahl = 625000/(steps*3);
 			
 		
 			drehzahl_mittelung[drehzahl_mittelung_hilfe] = drehzahl;
@@ -132,33 +132,7 @@ void geschwindigkeit_berechnung(void)
 	}
 	else
 	{
-		/*
-			
-		if(steps <= 25)			//Geschwindigkeits überhohung abfangen -> 25*4 = 100
-		{
-			steps = 25;
-		}
-	
-	
-		if(steps >= 15500)		//Geschwindigkeits unterschreitung -> 13.750 nötig um 1 U/s zu generieren
-		{
-			steps=15500;
-		}
-	
-
-		step_dauer = steps*timer1_teiler_mult;		//Werte von max 55.000µs um auf 1U/s zu kommen
-		step_dauer = step_dauer/100;				//Werte von 1 bis 550				///////ab hier korriegieren /// Teiler vieleicht auf 64 statt 256
-	
-	
-		step_dauer_help = (step_dauer*6*motor_teiler);	//Werte von 18 bis 9900
-		step_dauer_help = step_dauer_help/10;			//Werte von 1 bis 990
-	
-		drehzahl_pro_sekunde = 1000/step_dauer_help;	//Werte von 1 bis 1000
-	
-		drehzahl = drehzahl_pro_sekunde*60;
-		
-		*/
-		
+				
 		drehzahl_ausgabe_01 = (uint16_t)drehzahl;
 	
 		geschwindigkeit_help = ((drehzahl_pro_sekunde*raddurchmesser*3.14)/uebersetzung) * 3.6;

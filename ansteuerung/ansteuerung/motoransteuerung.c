@@ -42,6 +42,8 @@ char adc_counter=0;
 
 char hilfe;
 
+volatile uint8_t adc_0_flag = 0;
+
 void Init_PWM (void){
 	
 	TCCR4B = TCCR4B &~ (1<<CS40);		//CLKT4 Teiler auf 8 gesetzt -> 2MHz
@@ -146,10 +148,7 @@ void Hallsensoren_abfragen(void)
 			{
 				TCCR4E = 0x00;
 				PORTB = PHASE_B_OFF;
-				//PORTD = PHASE_C_GND1;
-				//PORTD = PHASE_C_GND2;
 				PORTD = PHASE_C_GND;
-				//TCCR4E = TCCR4E | (1<<OC4OE0)|(1<<OC4OE1);
 				TCCR4E = PHASE_A_PWM;
 				break;
 			}
@@ -157,10 +156,7 @@ void Hallsensoren_abfragen(void)
 			{
 				TCCR4E = 0x00;
 				PORTC = PHASE_A_OFF;
-				//PORTD = PHASE_C_GND1;
-				//PORTD = PHASE_C_GND2;
 				PORTD = PHASE_C_GND;
-				//TCCR4E = TCCR4E | (1<<OC4OE2) | (1<<OC4OE3);
 				TCCR4E = PHASE_B_PWM;
 				break;
 			}
@@ -168,10 +164,7 @@ void Hallsensoren_abfragen(void)
 			{
 				TCCR4E = 0x00;
 				PORTD = PHASE_C_OFF;
-				//PORTC = PHASE_A_GND1;
-				//PORTC = PHASE_A_GND2;
 				PORTC = PHASE_A_GND;
-				//TCCR4E = TCCR4E | (1<<OC4OE2) | (1<<OC4OE3);
 				TCCR4E = PHASE_B_PWM;
 				break;
 			}
@@ -179,10 +172,7 @@ void Hallsensoren_abfragen(void)
 			{
 				TCCR4E = 0x00;
 				PORTB = PHASE_B_OFF;
-				//PORTC = PHASE_A_GND1;
-				//PORTC = PHASE_A_GND2;
 				PORTC = PHASE_A_GND;
-				//TCCR4E = TCCR4E | (1<<OC4OE5)|(1<<OC4OE4);
 				TCCR4E = PHASE_C_PWM;
 				break;
 			}
@@ -190,10 +180,7 @@ void Hallsensoren_abfragen(void)
 			{
 				TCCR4E = 0x00;
 				PORTC = PHASE_A_OFF;
-				//PORTB = PHASE_B_GND1;
-				//PORTB = PHASE_B_GND2;
 				PORTB = PHASE_B_GND;
-				//TCCR4E = TCCR4E | (1<<OC4OE5)|(1<<OC4OE4);
 				TCCR4E = PHASE_C_PWM;
 				break;
 			}
@@ -201,10 +188,7 @@ void Hallsensoren_abfragen(void)
 			{
 				TCCR4E = 0x00;
 				PORTD = PHASE_C_OFF;
-				//PORTB = PHASE_B_GND1;
-				//PORTB = PHASE_B_GND2;
 				PORTB = PHASE_B_GND;
-				//TCCR4E = TCCR4E | (1<<OC4OE0)|(1<<OC4OE1);
 				TCCR4E = PHASE_A_PWM;
 				break;
 			}
@@ -223,10 +207,7 @@ void Hallsensoren_abfragen(void)
 			{
 				TCCR4E = 0x00;
 				PORTB = PHASE_B_OFF;
-				//PORTC = PHASE_A_GND1;
-				//PORTC = PHASE_A_GND2;
 				PORTC = PHASE_A_GND;
-				//TCCR4E = TCCR4E | (1<<OC4OE5)|(1<<OC4OE4);
 				TCCR4E = PHASE_C_PWM;
 				break;
 			}
@@ -234,10 +215,7 @@ void Hallsensoren_abfragen(void)
 			{
 				TCCR4E = 0x00;
 				PORTC = PHASE_A_OFF;
-				//PORTB = PHASE_B_GND1;
-				//PORTB = PHASE_B_GND2;
 				PORTB = PHASE_B_GND;
-				//TCCR4E = TCCR4E | (1<<OC4OE5)|(1<<OC4OE4);
 				TCCR4E = PHASE_C_PWM;
 				break;
 			}
@@ -245,10 +223,7 @@ void Hallsensoren_abfragen(void)
 			{
 				TCCR4E = 0x00;
 				PORTD = PHASE_C_OFF;
-				//PORTB = PHASE_B_GND1;
-				//PORTB = PHASE_B_GND2;
 				PORTB = PHASE_B_GND;
-				//TCCR4E = TCCR4E | (1<<OC4OE0)|(1<<OC4OE1);
 				TCCR4E = PHASE_A_PWM;
 				break;
 			}
@@ -256,10 +231,7 @@ void Hallsensoren_abfragen(void)
 			{
 				TCCR4E = 0x00;
 				PORTB = PHASE_B_OFF;
-				//PORTD = PHASE_C_GND1;
-				//PORTD = PHASE_C_GND2;
 				PORTD = PHASE_C_GND;
-				//TCCR4E = TCCR4E | (1<<OC4OE0)|(1<<OC4OE1);
 				TCCR4E = PHASE_A_PWM;
 				break;
 			}
@@ -267,10 +239,7 @@ void Hallsensoren_abfragen(void)
 			{
 				TCCR4E = 0x00;
 				PORTC = PHASE_A_OFF;
-				//PORTD = PHASE_C_GND1;
-				//PORTD = PHASE_C_GND2;
 				PORTD = PHASE_C_GND;
-				//TCCR4E = TCCR4E | (1<<OC4OE2) | (1<<OC4OE3);
 				TCCR4E = PHASE_B_PWM;
 				break;
 			}
@@ -278,10 +247,7 @@ void Hallsensoren_abfragen(void)
 			{
 				TCCR4E = 0x00;
 				PORTD = PHASE_C_OFF;
-				//PORTC = PHASE_A_GND1;
-				//PORTC = PHASE_A_GND2;
 				PORTC = PHASE_A_GND;
-				//TCCR4E = TCCR4E | (1<<OC4OE2) | (1<<OC4OE3);
 				TCCR4E = PHASE_B_PWM;
 				break;
 			}
@@ -334,17 +300,34 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 	
 	adc_low = ADCL;					//zuerst immer Low Bits holen
 	adc_high = ADCH;				//dann High Bits holen
-		
-	if ((drehzahl_holen() <= 2000))
+	
+	/*
+	
+	if (adc_high == 0)
 	{
-		PORTD = PORTD | (1<<PORTD4);
-				
-		OCR4A = geschwindigkeits_regulierung(adc_high);
-		
-		PORTD = PORTD &~ (1<<PORTD4);
-		
+		adc_0_flag = 1;
 	}
 	
+	*/
+	
+	if (1)
+	{
+		if ((drehzahl_holen() <= 2000))
+		{
+			PORTD = PORTD | (1<<PORTD4);
+			
+			OCR4A = geschwindigkeits_regulierung(adc_high);
+			
+			PORTD = PORTD &~ (1<<PORTD4);
+			
+		}		
+	}
+	else
+	{
+		OCR4A = 0;
+	}
+		
+		
 	
 	/*
 	if(adc_high >= 250)

@@ -707,8 +707,10 @@ LCD_string:
 .LC0:
 	.string	"Akku:"
 .LC1:
-	.string	"U/m"
+	.string	"%"
 .LC2:
+	.string	"U/m"
+.LC3:
 	.string	"km/h"
 	.section	.text.LCD_Display,"ax",@progbits
 .global	LCD_Display
@@ -730,24 +732,33 @@ LCD_Display:
 	ldi r25,hi8(.LC0)
 	call LCD_string
 .LVL55:
-	.loc 1 263 0
-	ldi r24,lo8(-113)
+	.loc 1 258 0
+	ldi r24,lo8(-61)
 	call LCD_cmd
 .LVL56:
-	.loc 1 264 0
+	.loc 1 259 0
 	ldi r24,lo8(.LC1)
 	ldi r25,hi8(.LC1)
 	call LCD_string
 .LVL57:
-	.loc 1 271 0
-	ldi r24,lo8(-49)
+	.loc 1 266 0
+	ldi r24,lo8(-113)
 	call LCD_cmd
 .LVL58:
-	.loc 1 272 0
+	.loc 1 267 0
 	ldi r24,lo8(.LC2)
 	ldi r25,hi8(.LC2)
 	call LCD_string
 .LVL59:
+	.loc 1 274 0
+	ldi r24,lo8(-49)
+	call LCD_cmd
+.LVL60:
+	.loc 1 275 0
+	ldi r24,lo8(.LC3)
+	ldi r25,hi8(.LC3)
+	call LCD_string
+.LVL61:
 	ret
 	.cfi_endproc
 .LFE17:
@@ -757,7 +768,7 @@ LCD_Display:
 	.file 3 "c:\\program files (x86)\\atmel\\studio\\7.0\\toolchain\\avr8\\avr8-gnu-toolchain\\avr\\include\\stdint.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0x6e3
+	.long	0x713
 	.word	0x2
 	.long	.Ldebug_abbrev0
 	.byte	0x4
@@ -1478,7 +1489,7 @@ LCD_Display:
 	.byte	0x68
 	.byte	0x2
 	.byte	0x9
-	.byte	0x8f
+	.byte	0xc3
 	.byte	0
 	.uleb128 0x13
 	.long	.LVL57
@@ -1505,11 +1516,12 @@ LCD_Display:
 	.byte	0x68
 	.byte	0x2
 	.byte	0x9
-	.byte	0xcf
+	.byte	0x8f
 	.byte	0
-	.uleb128 0x19
+	.uleb128 0x13
 	.long	.LVL59
 	.long	0x610
+	.long	0x6e9
 	.uleb128 0x14
 	.byte	0x6
 	.byte	0x68
@@ -1521,6 +1533,32 @@ LCD_Display:
 	.byte	0x5
 	.byte	0x3
 	.long	.LC2
+	.byte	0
+	.uleb128 0x13
+	.long	.LVL60
+	.long	0x599
+	.long	0x6fd
+	.uleb128 0x14
+	.byte	0x1
+	.byte	0x68
+	.byte	0x2
+	.byte	0x9
+	.byte	0xcf
+	.byte	0
+	.uleb128 0x19
+	.long	.LVL61
+	.long	0x610
+	.uleb128 0x14
+	.byte	0x6
+	.byte	0x68
+	.byte	0x93
+	.uleb128 0x1
+	.byte	0x69
+	.byte	0x93
+	.uleb128 0x1
+	.byte	0x5
+	.byte	0x3
+	.long	.LC3
 	.byte	0
 	.byte	0
 	.byte	0

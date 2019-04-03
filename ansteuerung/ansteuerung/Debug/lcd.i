@@ -2061,6 +2061,9 @@ void LCD_Display(void)
  LCD_cmd(0x80);
  LCD_string("Akku:");
 
+ LCD_cmd(0xC3);
+ LCD_string("%");
+
 
 
 

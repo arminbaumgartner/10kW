@@ -230,9 +230,9 @@ geschwindigkeits_regulierung:
 	lds r23,drehzahl+1
 	lds r24,drehzahl+2
 	lds r25,drehzahl+3
-	ldi r18,lo8(-68)
-	ldi r19,lo8(116)
-	ldi r20,lo8(-109)
+	ldi r18,lo8(66)
+	ldi r19,lo8(96)
+	ldi r20,lo8(101)
 	ldi r21,lo8(59)
 	call __mulsf3
 .LVL18:
@@ -240,14 +240,14 @@ geschwindigkeits_regulierung:
 	movw r20,r24
 	ldi r22,0
 	ldi r23,0
-	ldi r24,lo8(-128)
+	ldi r24,lo8(96)
 	ldi r25,lo8(65)
 	call __subsf3
 .LVL19:
 	ldi r18,0
 	ldi r19,0
-	ldi r20,lo8(112)
-	ldi r21,lo8(65)
+	ldi r20,lo8(-32)
+	ldi r21,lo8(64)
 	call __addsf3
 .LVL20:
 	movw r4,r22
@@ -267,12 +267,12 @@ geschwindigkeits_regulierung:
 	movw r6,r4
 .LVL23:
 .L7:
-	.loc 1 151 0
+	.loc 1 152 0
 	cpi r28,-14
 	ldi r24,10
 	cpc r29,r24
 	brsh .L9
-	.loc 1 153 0
+	.loc 1 154 0
 	ldi r18,lo8(-102)
 	ldi r19,lo8(-103)
 	ldi r20,lo8(25)
@@ -286,12 +286,12 @@ geschwindigkeits_regulierung:
 .LVL25:
 	rjmp .L10
 .L9:
-	.loc 1 155 0
+	.loc 1 156 0
 	cpi r28,85
 	ldi r24,11
 	cpc r29,r24
 	brsh .L11
-	.loc 1 157 0
+	.loc 1 158 0
 	ldi r18,lo8(102)
 	ldi r19,lo8(102)
 	ldi r20,lo8(38)
@@ -305,11 +305,11 @@ geschwindigkeits_regulierung:
 .LVL27:
 	rjmp .L10
 .L11:
-	.loc 1 159 0
+	.loc 1 160 0
 	cpi r28,-71
 	sbci r29,11
 	brsh .L10
-	.loc 1 161 0
+	.loc 1 162 0
 	ldi r18,lo8(51)
 	ldi r19,lo8(51)
 	ldi r20,lo8(51)
@@ -322,11 +322,11 @@ geschwindigkeits_regulierung:
 	movw r6,r24
 .LVL29:
 .L10:
-	.loc 1 166 0
+	.loc 1 167 0
 	ldi r24,lo8(54)
 	cp r24,r2
 	brsh .L12
-	.loc 1 168 0
+	.loc 1 169 0
 	ldi r18,lo8(-51)
 	ldi r19,lo8(-52)
 	ldi r20,lo8(76)
@@ -339,7 +339,7 @@ geschwindigkeits_regulierung:
 	movw r6,r24
 .LVL31:
 .L12:
-	.loc 1 174 0
+	.loc 1 175 0
 	ldi r18,0
 	ldi r19,0
 	movw r20,r18
@@ -349,7 +349,7 @@ geschwindigkeits_regulierung:
 .LVL32:
 	cpse r24,__zero_reg__
 	rjmp .L13
-	.loc 1 174 0 is_stmt 0 discriminator 1
+	.loc 1 175 0 is_stmt 0 discriminator 1
 	ldi r24,lo8(20)
 	cp r24,r3
 	brsh .+2
@@ -368,7 +368,7 @@ geschwindigkeits_regulierung:
 .LVL34:
 	mov r28,r22
 .LVL35:
-	.loc 1 180 0
+	.loc 1 181 0
 	ldi r23,0
 	ldi r24,0
 	ldi r25,0
@@ -396,7 +396,7 @@ geschwindigkeits_regulierung:
 .LVL40:
 	tst r24
 	brlt .L29
-	.loc 1 182 0
+	.loc 1 183 0
 	movw r24,r10
 	movw r22,r8
 	call __fixunssfsi
@@ -406,7 +406,7 @@ geschwindigkeits_regulierung:
 	rjmp .L18
 .LVL43:
 .L29:
-	.loc 1 184 0
+	.loc 1 185 0
 	ldi r18,0
 	ldi r19,0
 	ldi r20,lo8(32)
@@ -417,11 +417,11 @@ geschwindigkeits_regulierung:
 .LVL44:
 	cp __zero_reg__,r24
 	brlt .L18
-	.loc 1 186 0
+	.loc 1 187 0
 	ldi r28,lo8(10)
 .L18:
 .LVL45:
-	.loc 1 190 0
+	.loc 1 191 0
 	mov r14,r3
 	mov r15,__zero_reg__
 	mov r16,r28
@@ -437,7 +437,7 @@ geschwindigkeits_regulierung:
 	cp r24,r14
 	cpc r25,r15
 	brge .L20
-	.loc 1 193 0
+	.loc 1 194 0
 	mov r3,r28
 .LVL48:
 	add r3,r22
@@ -445,7 +445,7 @@ geschwindigkeits_regulierung:
 	rjmp .L30
 .LVL50:
 .L20:
-	.loc 1 197 0
+	.loc 1 198 0
 	movw r22,r16
 	lsl r17
 	sbc r24,r24
@@ -472,7 +472,7 @@ geschwindigkeits_regulierung:
 .LVL54:
 	tst r24
 	brge .L30
-	.loc 1 200 0
+	.loc 1 201 0
 	movw r24,r10
 	movw r22,r8
 	call __fixunssfsi
@@ -482,12 +482,13 @@ geschwindigkeits_regulierung:
 	rjmp .L30
 .LVL57:
 .L23:
-	.loc 1 176 0
-	set
-	clr r3
-	bld r3,4
+	.loc 1 177 0
+	mov __tmp_reg__,r31
+	ldi r31,lo8(14)
+	mov r3,r31
+	mov r31,__tmp_reg__
 .LVL58:
-	.loc 1 215 0
+	.loc 1 216 0
 	rjmp .L30
 .LVL59:
 .L4:
@@ -530,7 +531,7 @@ geschwindigkeits_regulierung:
 	rjmp .L22
 .LVL66:
 .L30:
-	.loc 1 217 0
+	.loc 1 218 0
 	mov r24,r3
 /* epilogue start */
 	pop r29
@@ -565,14 +566,14 @@ geschwindigkeits_regulierung:
 	.type	ladestand_ausgabe, @function
 ladestand_ausgabe:
 .LFB14:
-	.loc 1 220 0
+	.loc 1 221 0
 	.cfi_startproc
 .LVL69:
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 221 0
+	.loc 1 222 0
 	push __zero_reg__
 .LCFI18:
 	.cfi_def_cfa_offset 3
@@ -599,16 +600,16 @@ ladestand_ausgabe:
 	.cfi_def_cfa_offset 8
 	call sprintf
 .LVL72:
-	.loc 1 222 0
+	.loc 1 223 0
 	ldi r24,lo8(-64)
 	call LCD_cmd
 .LVL73:
-	.loc 1 223 0
+	.loc 1 224 0
 	ldi r24,lo8(ausgabe_02)
 	ldi r25,hi8(ausgabe_02)
 	call LCD_string
 .LVL74:
-	.loc 1 224 0
+	.loc 1 225 0
 	pop __tmp_reg__
 	pop __tmp_reg__
 	pop __tmp_reg__
@@ -867,7 +868,7 @@ nennspannung:
 	.byte	0x1
 	.long	.LASF28
 	.byte	0x1
-	.byte	0xdb
+	.byte	0xdc
 	.byte	0x1
 	.long	.LFB14
 	.long	.LFE14
@@ -877,7 +878,7 @@ nennspannung:
 	.uleb128 0x6
 	.long	.LASF29
 	.byte	0x1
-	.byte	0xdb
+	.byte	0xdc
 	.long	0x3e
 	.long	.LLST15
 	.uleb128 0xb

@@ -1154,7 +1154,7 @@ void geschwindigkeit_berechnung(void)
  }
  else
  {
-# 162 ".././berechnung.c"
+
   drehzahl_ausgabe_01 = (uint16_t)drehzahl;
 
   geschwindigkeit_help = ((drehzahl_pro_sekunde*raddurchmesser*3.14)/uebersetzung) * 3.6;
@@ -1236,10 +1236,10 @@ float drehzahl_alt_holen(void)
 }
 
 
-# 242 ".././berechnung.c" 3
+# 216 ".././berechnung.c" 3
 void __vector_20 (void) __attribute__ ((signal,used, externally_visible)) ; void __vector_20 (void)
 
-# 243 ".././berechnung.c"
+# 217 ".././berechnung.c"
 {
 
  overflow = 1;

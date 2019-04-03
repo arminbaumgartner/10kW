@@ -30,27 +30,15 @@
 #include "kommunikation.h"
 #include "datenverarbeitung.h"
 
-/*
-#include "berechnung.c"
-#include "motoransteuerung.c"
-#include "lcd.c"
-#include "kommunikation.c"
-#include "datenverarbeitung.c"
-*/
-
 volatile char zeitlicher_ablauf=0;
 
 
-uint16_t ges_spannung_main;
-uint8_t ladestand_test = 0;
-
-
-char adc_wert_anfangsbedinung;
-
-uint16_t nen_test;
-
 int main(void)
 {
+
+	uint16_t ges_spannung_main;
+	uint8_t ladestand_test = 0;
+
 	
 	CLKPR = 0x80;						//Clock prescaler 16MHz
 	CLKPR = 0x00;
@@ -119,9 +107,7 @@ int main(void)
 	init_usart();				//Initialisierung von Kommunikationsschnittstelle UART
 	init_transmission_timer();	//Initaliesierung von Timer0 für UART
 	
-	
 	init_timer_zeitlicher_ablauf();
-	
 	
 	LCD_init();			//Initialisierung  LCD
 	LCD_cmd(0x0C);		//Display ON, Cursor OFF, Blinking OFF 
@@ -132,12 +118,6 @@ int main(void)
 	
 	LCD_Display();		//Drezahl, Geschwindkeit schreiben
 	
-	adc_wert_anfangsbedinung = adc_abfrage();
-	
-	do
-	{
-		adc_wert_anfangsbedinung = adc_abfrage();
-	}while (adc_wert_anfangsbedinung != 0x00);
 	
 	_delay_ms(2000);
 	
@@ -161,7 +141,6 @@ int main(void)
 			ladestand_test = akku_ladestand(ges_spannung_main);
 			ladestand_ausgabe(ladestand_test);
 			
-			nen_test = temperatur_uebertragung();
 			
 
 			//dtostrf((float)drehzahl, 5, 0, ausgabe);

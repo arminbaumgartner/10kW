@@ -1084,7 +1084,7 @@ char geschwindigkeits_regulierung(char adc_wert)
  kennlinie_wert_float = kennlinie_voltage * (253/48);
  kennlinie_wert = (char)kennlinie_wert_float;
 # 130 ".././datenverarbeitung.c"
-  angleich_gerade_gas = (16 -0.0045*drehzahl) + 15; ;
+  angleich_gerade_gas = (14 -0.0035*drehzahl) + 7; ;
 
   if (angleich_gerade_gas <= 0)
   {
@@ -1103,6 +1103,7 @@ char geschwindigkeits_regulierung(char adc_wert)
  {
 
  }
+
 
 
  if (niedrigste_zell_spannung_regelung <= (2800 +1))
@@ -1130,7 +1131,7 @@ char geschwindigkeits_regulierung(char adc_wert)
 
  if (drehzahl_regelung == 0 && adc_wert > 20)
  {
-  regulierter_wert = 16;
+  regulierter_wert = 14;
  }
  else
  {

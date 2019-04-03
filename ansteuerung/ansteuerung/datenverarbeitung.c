@@ -127,7 +127,7 @@ char geschwindigkeits_regulierung(char adc_wert)
 	}
 	*/
 	 
-	 angleich_gerade_gas = (WEGFAHR_WERT-0.0045*drehzahl) + 15; ;		// * (gesamtspannung_kom/NENNSPANNUNG) /
+	 angleich_gerade_gas = (WEGFAHR_WERT-0.0035*drehzahl) + 7; ;		// * (gesamtspannung_kom/NENNSPANNUNG) /
 		 
 	 if (angleich_gerade_gas <= 0)
 	 {
@@ -146,6 +146,7 @@ char geschwindigkeits_regulierung(char adc_wert)
 	{
 		
 	}
+	
 	
 	//		Sicherheit niedrigeste Zellspannung
 	if (niedrigste_zell_spannung_regelung <= (MINZELLSPANNUNG+1))				//2801

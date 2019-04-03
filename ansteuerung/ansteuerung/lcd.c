@@ -255,6 +255,9 @@ void LCD_Display(void)
 	LCD_cmd(0x80);   //gehe zu 1. Zeile, 1. Position
 	LCD_string("Akku:");
 	
+	LCD_cmd(0xC3);   //gehe zu 2. Zeile, 1. Position
+	LCD_string("%");
+	
 	/*
 	LCD_cmd(0x80);   //gehe zu 1. Zeile, 1. Position
 	LCD_string("Drehzahl: ");
