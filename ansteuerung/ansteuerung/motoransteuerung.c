@@ -43,6 +43,7 @@ char adc_counter=0;
 char hilfe;
 
 volatile uint8_t adc_0_flag = 0;
+volatile uint8_t phasen_flag =0;
 
 void Init_PWM (void){
 	
@@ -72,14 +73,14 @@ void Init_PWM (void){
 	
 	OCR4C = 255;						//200*500ns = 100µs = 10kHz  //umgeändert auf 255 test zwecke
 
-	TCCR4E = 0x00;						//Start
+	TCCR4E = 0x00;						//Start //Alle hochohmig
 	
 	DT4 = 0xff;		//500ns = 0x88;					//Death time
 	
 }
  void Init_Pinchange( void )
  {
-	PCICR =  PCICR | (1<<PCIE0);		//Enable pin change interrupt0 wenn 1 interrupt von den interrupts auslöst (PORTB)
+	PCICR =  PCICR &~ (1<<PCIE0);		//disable pin change interrupt0 
 	 
 	PCMSK0 = PCMSK0 | (1<<PCINT1);		//Enable pin change interrupt on PB1
 	PCMSK0 = PCMSK0 | (1<<PCINT2);		//Enable pin change interrupt on PB2
@@ -302,14 +303,20 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 	adc_high = ADCH;				//dann High Bits holen
 	
 		
-	if (adc_high <= 0)
+	if (adc_high <= 0 && phasen_flag == 0)
 	{
 		adc_0_flag = 1;
+		phasen_flag = 1;
+	}
+	
+	if(phasen_flag == 1 && adc_high >= 1)
+	{
+		phasen_flag = 2;
+		PCICR =  PCICR | (1<<PCIE0);	
 	}
 	
 	
-	
-	if (adc_0_flag)
+	if (phasen_flag == 2)
 	{
 		if ((drehzahl_holen() <= 2000))
 		{

@@ -1022,207 +1022,208 @@ char adc_counter=0;
 char hilfe;
 
 volatile uint8_t adc_0_flag = 0;
+volatile uint8_t phasen_flag =0;
 
 void Init_PWM (void){
 
  
-# 49 ".././motoransteuerung.c" 3
+# 50 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC1)) 
-# 49 ".././motoransteuerung.c"
+# 50 ".././motoransteuerung.c"
        = 
-# 49 ".././motoransteuerung.c" 3
+# 50 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0xC1)) 
-# 49 ".././motoransteuerung.c"
+# 50 ".././motoransteuerung.c"
                 &~ (1<<
-# 49 ".././motoransteuerung.c" 3
+# 50 ".././motoransteuerung.c" 3
                        0
-# 49 ".././motoransteuerung.c"
+# 50 ".././motoransteuerung.c"
                            );
  
-# 50 ".././motoransteuerung.c" 3
+# 51 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC1)) 
-# 50 ".././motoransteuerung.c"
+# 51 ".././motoransteuerung.c"
        = 
-# 50 ".././motoransteuerung.c" 3
+# 51 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0xC1)) 
-# 50 ".././motoransteuerung.c"
+# 51 ".././motoransteuerung.c"
                 &~ (1<<
-# 50 ".././motoransteuerung.c" 3
+# 51 ".././motoransteuerung.c" 3
                        1
-# 50 ".././motoransteuerung.c"
+# 51 ".././motoransteuerung.c"
                            );
  
-# 51 ".././motoransteuerung.c" 3
+# 52 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC1)) 
-# 51 ".././motoransteuerung.c"
+# 52 ".././motoransteuerung.c"
        = 
-# 51 ".././motoransteuerung.c" 3
+# 52 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0xC1)) 
-# 51 ".././motoransteuerung.c"
+# 52 ".././motoransteuerung.c"
                 | (1<<
-# 51 ".././motoransteuerung.c" 3
+# 52 ".././motoransteuerung.c" 3
                       2
-# 51 ".././motoransteuerung.c"
+# 52 ".././motoransteuerung.c"
                           );
  
-# 52 ".././motoransteuerung.c" 3
+# 53 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC1)) 
-# 52 ".././motoransteuerung.c"
+# 53 ".././motoransteuerung.c"
        = 
-# 52 ".././motoransteuerung.c" 3
+# 53 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0xC1)) 
-# 52 ".././motoransteuerung.c"
+# 53 ".././motoransteuerung.c"
                 &~ (1<<
-# 52 ".././motoransteuerung.c" 3
+# 53 ".././motoransteuerung.c" 3
                        3
-# 52 ".././motoransteuerung.c"
+# 53 ".././motoransteuerung.c"
                            );
 
  
-# 54 ".././motoransteuerung.c" 3
+# 55 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC0)) 
-# 54 ".././motoransteuerung.c"
+# 55 ".././motoransteuerung.c"
        = 
-# 54 ".././motoransteuerung.c" 3
+# 55 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0xC0)) 
-# 54 ".././motoransteuerung.c"
+# 55 ".././motoransteuerung.c"
                 | (1<<
-# 54 ".././motoransteuerung.c" 3
+# 55 ".././motoransteuerung.c" 3
                       1
-# 54 ".././motoransteuerung.c"
+# 55 ".././motoransteuerung.c"
                            );
  
-# 55 ".././motoransteuerung.c" 3
+# 56 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC3)) 
-# 55 ".././motoransteuerung.c"
+# 56 ".././motoransteuerung.c"
        = 
-# 55 ".././motoransteuerung.c" 3
+# 56 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0xC3)) 
-# 55 ".././motoransteuerung.c"
+# 56 ".././motoransteuerung.c"
                 &~ (1<<
-# 55 ".././motoransteuerung.c" 3
+# 56 ".././motoransteuerung.c" 3
                        0
-# 55 ".././motoransteuerung.c"
+# 56 ".././motoransteuerung.c"
                             );
  
-# 56 ".././motoransteuerung.c" 3
+# 57 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC3)) 
-# 56 ".././motoransteuerung.c"
+# 57 ".././motoransteuerung.c"
        = 
-# 56 ".././motoransteuerung.c" 3
+# 57 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0xC3)) 
-# 56 ".././motoransteuerung.c"
+# 57 ".././motoransteuerung.c"
                 | (1<<
-# 56 ".././motoransteuerung.c" 3
+# 57 ".././motoransteuerung.c" 3
                       1
-# 56 ".././motoransteuerung.c"
+# 57 ".././motoransteuerung.c"
                            );
 
  
-# 58 ".././motoransteuerung.c" 3
+# 59 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC0)) 
-# 58 ".././motoransteuerung.c"
+# 59 ".././motoransteuerung.c"
        = 
-# 58 ".././motoransteuerung.c" 3
+# 59 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0xC0)) 
-# 58 ".././motoransteuerung.c"
+# 59 ".././motoransteuerung.c"
                 | (1<<
-# 58 ".././motoransteuerung.c" 3
+# 59 ".././motoransteuerung.c" 3
                       6
-# 58 ".././motoransteuerung.c"
+# 59 ".././motoransteuerung.c"
                             );
  
-# 59 ".././motoransteuerung.c" 3
+# 60 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC0)) 
-# 59 ".././motoransteuerung.c"
+# 60 ".././motoransteuerung.c"
        = 
-# 59 ".././motoransteuerung.c" 3
+# 60 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0xC0)) 
-# 59 ".././motoransteuerung.c"
+# 60 ".././motoransteuerung.c"
                 &~ (1<<
-# 59 ".././motoransteuerung.c" 3
+# 60 ".././motoransteuerung.c" 3
                        7
-# 59 ".././motoransteuerung.c"
+# 60 ".././motoransteuerung.c"
                              );
 
  
-# 61 ".././motoransteuerung.c" 3
+# 62 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC0)) 
-# 61 ".././motoransteuerung.c"
+# 62 ".././motoransteuerung.c"
        = 
-# 61 ".././motoransteuerung.c" 3
+# 62 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0xC0)) 
-# 61 ".././motoransteuerung.c"
+# 62 ".././motoransteuerung.c"
                 | (1<<
-# 61 ".././motoransteuerung.c" 3
+# 62 ".././motoransteuerung.c" 3
                       4
-# 61 ".././motoransteuerung.c"
+# 62 ".././motoransteuerung.c"
                             );
  
-# 62 ".././motoransteuerung.c" 3
+# 63 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC0)) 
-# 62 ".././motoransteuerung.c"
+# 63 ".././motoransteuerung.c"
        = 
-# 62 ".././motoransteuerung.c" 3
+# 63 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0xC0)) 
-# 62 ".././motoransteuerung.c"
+# 63 ".././motoransteuerung.c"
                 &~ (1<<
-# 62 ".././motoransteuerung.c" 3
+# 63 ".././motoransteuerung.c" 3
                        5
-# 62 ".././motoransteuerung.c"
+# 63 ".././motoransteuerung.c"
                              );
  
-# 63 ".././motoransteuerung.c" 3
+# 64 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC2)) 
-# 63 ".././motoransteuerung.c"
+# 64 ".././motoransteuerung.c"
        = 
-# 63 ".././motoransteuerung.c" 3
+# 64 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0xC2)) 
-# 63 ".././motoransteuerung.c"
+# 64 ".././motoransteuerung.c"
                 | (1<<
-# 63 ".././motoransteuerung.c" 3
+# 64 ".././motoransteuerung.c" 3
                       2
-# 63 ".././motoransteuerung.c"
+# 64 ".././motoransteuerung.c"
                             );
  
-# 64 ".././motoransteuerung.c" 3
+# 65 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC2)) 
-# 64 ".././motoransteuerung.c"
+# 65 ".././motoransteuerung.c"
        = 
-# 64 ".././motoransteuerung.c" 3
+# 65 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0xC2)) 
-# 64 ".././motoransteuerung.c"
+# 65 ".././motoransteuerung.c"
                 &~ (1<<
-# 64 ".././motoransteuerung.c" 3
+# 65 ".././motoransteuerung.c" 3
                        3
-# 64 ".././motoransteuerung.c"
+# 65 ".././motoransteuerung.c"
                              );
 
  
-# 66 ".././motoransteuerung.c" 3
+# 67 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC1)) 
-# 66 ".././motoransteuerung.c"
+# 67 ".././motoransteuerung.c"
        = 
-# 66 ".././motoransteuerung.c" 3
+# 67 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0xC1)) 
-# 66 ".././motoransteuerung.c"
+# 67 ".././motoransteuerung.c"
                 &~ (1<<
-# 66 ".././motoransteuerung.c" 3
+# 67 ".././motoransteuerung.c" 3
                        4
-# 66 ".././motoransteuerung.c"
+# 67 ".././motoransteuerung.c"
                              );
  
-# 67 ".././motoransteuerung.c" 3
+# 68 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC1)) 
-# 67 ".././motoransteuerung.c"
+# 68 ".././motoransteuerung.c"
        = 
-# 67 ".././motoransteuerung.c" 3
+# 68 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0xC1)) 
-# 67 ".././motoransteuerung.c"
+# 68 ".././motoransteuerung.c"
                 &~ (1<<
-# 67 ".././motoransteuerung.c" 3
+# 68 ".././motoransteuerung.c" 3
                        5
-# 67 ".././motoransteuerung.c"
+# 68 ".././motoransteuerung.c"
                              );
 
 
@@ -1230,347 +1231,347 @@ void Init_PWM (void){
 
 
  
-# 73 ".././motoransteuerung.c" 3
+# 74 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xD1)) 
-# 73 ".././motoransteuerung.c"
+# 74 ".././motoransteuerung.c"
       = 255;
 
  
-# 75 ".././motoransteuerung.c" 3
+# 76 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xC4)) 
-# 75 ".././motoransteuerung.c"
+# 76 ".././motoransteuerung.c"
        = 0x00;
 
  
-# 77 ".././motoransteuerung.c" 3
+# 78 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0xD4)) 
-# 77 ".././motoransteuerung.c"
+# 78 ".././motoransteuerung.c"
     = 0xff;
 
 }
  void Init_Pinchange( void )
  {
  
-# 82 ".././motoransteuerung.c" 3
+# 83 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0x68)) 
-# 82 ".././motoransteuerung.c"
+# 83 ".././motoransteuerung.c"
       = 
-# 82 ".././motoransteuerung.c" 3
+# 83 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x68)) 
-# 82 ".././motoransteuerung.c"
-               | (1<<
-# 82 ".././motoransteuerung.c" 3
-                     0
-# 82 ".././motoransteuerung.c"
-                          );
+# 83 ".././motoransteuerung.c"
+               &~ (1<<
+# 83 ".././motoransteuerung.c" 3
+                      0
+# 83 ".././motoransteuerung.c"
+                           );
 
  
-# 84 ".././motoransteuerung.c" 3
+# 85 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0x6B)) 
-# 84 ".././motoransteuerung.c"
+# 85 ".././motoransteuerung.c"
        = 
-# 84 ".././motoransteuerung.c" 3
+# 85 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x6B)) 
-# 84 ".././motoransteuerung.c"
+# 85 ".././motoransteuerung.c"
                 | (1<<
-# 84 ".././motoransteuerung.c" 3
+# 85 ".././motoransteuerung.c" 3
                       1
-# 84 ".././motoransteuerung.c"
+# 85 ".././motoransteuerung.c"
                             );
  
-# 85 ".././motoransteuerung.c" 3
+# 86 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0x6B)) 
-# 85 ".././motoransteuerung.c"
+# 86 ".././motoransteuerung.c"
        = 
-# 85 ".././motoransteuerung.c" 3
+# 86 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x6B)) 
-# 85 ".././motoransteuerung.c"
+# 86 ".././motoransteuerung.c"
                 | (1<<
-# 85 ".././motoransteuerung.c" 3
+# 86 ".././motoransteuerung.c" 3
                       2
-# 85 ".././motoransteuerung.c"
+# 86 ".././motoransteuerung.c"
                             );
  
-# 86 ".././motoransteuerung.c" 3
+# 87 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0x6B)) 
-# 86 ".././motoransteuerung.c"
+# 87 ".././motoransteuerung.c"
        = 
-# 86 ".././motoransteuerung.c" 3
+# 87 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x6B)) 
-# 86 ".././motoransteuerung.c"
+# 87 ".././motoransteuerung.c"
                 | (1<<
-# 86 ".././motoransteuerung.c" 3
+# 87 ".././motoransteuerung.c" 3
                       3
-# 86 ".././motoransteuerung.c"
+# 87 ".././motoransteuerung.c"
                             );
  
-# 87 ".././motoransteuerung.c" 3
+# 88 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0x6B)) 
-# 87 ".././motoransteuerung.c"
+# 88 ".././motoransteuerung.c"
        = 
-# 87 ".././motoransteuerung.c" 3
+# 88 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x6B)) 
-# 87 ".././motoransteuerung.c"
+# 88 ".././motoransteuerung.c"
                 | (1<<
-# 87 ".././motoransteuerung.c" 3
+# 88 ".././motoransteuerung.c" 3
                       4
-# 87 ".././motoransteuerung.c"
+# 88 ".././motoransteuerung.c"
                             );
 
 
 
  
-# 91 ".././motoransteuerung.c" 3
+# 92 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0x69)) 
-# 91 ".././motoransteuerung.c"
+# 92 ".././motoransteuerung.c"
       = 
-# 91 ".././motoransteuerung.c" 3
+# 92 ".././motoransteuerung.c" 3
         (*(volatile uint8_t *)(0x69)) 
-# 91 ".././motoransteuerung.c"
+# 92 ".././motoransteuerung.c"
               | (1<<
-# 91 ".././motoransteuerung.c" 3
+# 92 ".././motoransteuerung.c" 3
                     0
-# 91 ".././motoransteuerung.c"
+# 92 ".././motoransteuerung.c"
                          );
  
-# 92 ".././motoransteuerung.c" 3
+# 93 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0x69)) 
-# 92 ".././motoransteuerung.c"
+# 93 ".././motoransteuerung.c"
       = 
-# 92 ".././motoransteuerung.c" 3
+# 93 ".././motoransteuerung.c" 3
         (*(volatile uint8_t *)(0x69)) 
-# 92 ".././motoransteuerung.c"
+# 93 ".././motoransteuerung.c"
               &~ (1<<
-# 92 ".././motoransteuerung.c" 3
+# 93 ".././motoransteuerung.c" 3
                      1
-# 92 ".././motoransteuerung.c"
+# 93 ".././motoransteuerung.c"
                           );
 
  
-# 94 ".././motoransteuerung.c" 3
+# 95 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)((0x1D) + 0x20)) 
-# 94 ".././motoransteuerung.c"
+# 95 ".././motoransteuerung.c"
       = 
-# 94 ".././motoransteuerung.c" 3
+# 95 ".././motoransteuerung.c" 3
         (*(volatile uint8_t *)((0x1D) + 0x20)) 
-# 94 ".././motoransteuerung.c"
+# 95 ".././motoransteuerung.c"
               | (1<<
-# 94 ".././motoransteuerung.c" 3
+# 95 ".././motoransteuerung.c" 3
                     0
-# 94 ".././motoransteuerung.c"
+# 95 ".././motoransteuerung.c"
                         );
 
  }
  void Init_ADC(void)
  {
   
-# 99 ".././motoransteuerung.c" 3
+# 100 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x7C)) 
-# 99 ".././motoransteuerung.c"
+# 100 ".././motoransteuerung.c"
        = 
-# 99 ".././motoransteuerung.c" 3
+# 100 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x7C)) 
-# 99 ".././motoransteuerung.c"
+# 100 ".././motoransteuerung.c"
                | (1<<
-# 99 ".././motoransteuerung.c" 3
+# 100 ".././motoransteuerung.c" 3
                      6
-# 99 ".././motoransteuerung.c"
+# 100 ".././motoransteuerung.c"
                           );
   
-# 100 ".././motoransteuerung.c" 3
+# 101 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x7C)) 
-# 100 ".././motoransteuerung.c"
+# 101 ".././motoransteuerung.c"
        = 
-# 100 ".././motoransteuerung.c" 3
+# 101 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x7C)) 
-# 100 ".././motoransteuerung.c"
+# 101 ".././motoransteuerung.c"
                &~(1<<
-# 100 ".././motoransteuerung.c" 3
+# 101 ".././motoransteuerung.c" 3
                      7
-# 100 ".././motoransteuerung.c"
+# 101 ".././motoransteuerung.c"
                           );
 
   
-# 102 ".././motoransteuerung.c" 3
+# 103 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x7C)) 
-# 102 ".././motoransteuerung.c"
+# 103 ".././motoransteuerung.c"
         = 
-# 102 ".././motoransteuerung.c" 3
+# 103 ".././motoransteuerung.c" 3
           (*(volatile uint8_t *)(0x7C)) 
-# 102 ".././motoransteuerung.c"
+# 103 ".././motoransteuerung.c"
                 | (1<<
-# 102 ".././motoransteuerung.c" 3
+# 103 ".././motoransteuerung.c" 3
                       5
-# 102 ".././motoransteuerung.c"
+# 103 ".././motoransteuerung.c"
                            );
 
   
-# 104 ".././motoransteuerung.c" 3
+# 105 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x7C)) 
-# 104 ".././motoransteuerung.c"
+# 105 ".././motoransteuerung.c"
        = 
-# 104 ".././motoransteuerung.c" 3
+# 105 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x7C)) 
-# 104 ".././motoransteuerung.c"
+# 105 ".././motoransteuerung.c"
                &~ (1<<
-# 104 ".././motoransteuerung.c" 3
+# 105 ".././motoransteuerung.c" 3
                       0
-# 104 ".././motoransteuerung.c"
+# 105 ".././motoransteuerung.c"
                           );
   
-# 105 ".././motoransteuerung.c" 3
+# 106 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x7C)) 
-# 105 ".././motoransteuerung.c"
+# 106 ".././motoransteuerung.c"
        = 
-# 105 ".././motoransteuerung.c" 3
+# 106 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x7C)) 
-# 105 ".././motoransteuerung.c"
+# 106 ".././motoransteuerung.c"
                &~ (1<<
-# 105 ".././motoransteuerung.c" 3
+# 106 ".././motoransteuerung.c" 3
                       1
-# 105 ".././motoransteuerung.c"
+# 106 ".././motoransteuerung.c"
                           );
   
-# 106 ".././motoransteuerung.c" 3
+# 107 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x7C)) 
-# 106 ".././motoransteuerung.c"
+# 107 ".././motoransteuerung.c"
        = 
-# 106 ".././motoransteuerung.c" 3
+# 107 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x7C)) 
-# 106 ".././motoransteuerung.c"
+# 107 ".././motoransteuerung.c"
                &~ (1<<
-# 106 ".././motoransteuerung.c" 3
+# 107 ".././motoransteuerung.c" 3
                       2
-# 106 ".././motoransteuerung.c"
+# 107 ".././motoransteuerung.c"
                           );
   
-# 107 ".././motoransteuerung.c" 3
+# 108 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x7C)) 
-# 107 ".././motoransteuerung.c"
+# 108 ".././motoransteuerung.c"
        = 
-# 107 ".././motoransteuerung.c" 3
+# 108 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x7C)) 
-# 107 ".././motoransteuerung.c"
+# 108 ".././motoransteuerung.c"
                &~ (1<<
-# 107 ".././motoransteuerung.c" 3
+# 108 ".././motoransteuerung.c" 3
                       3
-# 107 ".././motoransteuerung.c"
+# 108 ".././motoransteuerung.c"
                           );
   
-# 108 ".././motoransteuerung.c" 3
+# 109 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x7C)) 
-# 108 ".././motoransteuerung.c"
+# 109 ".././motoransteuerung.c"
        = 
-# 108 ".././motoransteuerung.c" 3
+# 109 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x7C)) 
-# 108 ".././motoransteuerung.c"
+# 109 ".././motoransteuerung.c"
                &~ (1<<
-# 108 ".././motoransteuerung.c" 3
+# 109 ".././motoransteuerung.c" 3
                       4
-# 108 ".././motoransteuerung.c"
+# 109 ".././motoransteuerung.c"
                           );
   
-# 109 ".././motoransteuerung.c" 3
+# 110 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x7B)) 
-# 109 ".././motoransteuerung.c"
+# 110 ".././motoransteuerung.c"
         = 
-# 109 ".././motoransteuerung.c" 3
+# 110 ".././motoransteuerung.c" 3
           (*(volatile uint8_t *)(0x7B)) 
-# 109 ".././motoransteuerung.c"
+# 110 ".././motoransteuerung.c"
                  &~ (1<<
-# 109 ".././motoransteuerung.c" 3
+# 110 ".././motoransteuerung.c" 3
                         5
-# 109 ".././motoransteuerung.c"
+# 110 ".././motoransteuerung.c"
                             );
 
   
-# 111 ".././motoransteuerung.c" 3
+# 112 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x7A)) 
-# 111 ".././motoransteuerung.c"
+# 112 ".././motoransteuerung.c"
         = 
-# 111 ".././motoransteuerung.c" 3
+# 112 ".././motoransteuerung.c" 3
           (*(volatile uint8_t *)(0x7A)) 
-# 111 ".././motoransteuerung.c"
+# 112 ".././motoransteuerung.c"
                  | (1<<
-# 111 ".././motoransteuerung.c" 3
+# 112 ".././motoransteuerung.c" 3
                        7
-# 111 ".././motoransteuerung.c"
+# 112 ".././motoransteuerung.c"
                            );
   
-# 112 ".././motoransteuerung.c" 3
+# 113 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x7A)) 
-# 112 ".././motoransteuerung.c"
+# 113 ".././motoransteuerung.c"
         = 
-# 112 ".././motoransteuerung.c" 3
+# 113 ".././motoransteuerung.c" 3
           (*(volatile uint8_t *)(0x7A)) 
-# 112 ".././motoransteuerung.c"
+# 113 ".././motoransteuerung.c"
                  | (1<<
-# 112 ".././motoransteuerung.c" 3
+# 113 ".././motoransteuerung.c" 3
                        3
-# 112 ".././motoransteuerung.c"
+# 113 ".././motoransteuerung.c"
                            );
 
   
-# 114 ".././motoransteuerung.c" 3
+# 115 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x7A)) 
-# 114 ".././motoransteuerung.c"
+# 115 ".././motoransteuerung.c"
         = 
-# 114 ".././motoransteuerung.c" 3
+# 115 ".././motoransteuerung.c" 3
           (*(volatile uint8_t *)(0x7A)) 
-# 114 ".././motoransteuerung.c"
+# 115 ".././motoransteuerung.c"
                  &~ (1<<
-# 114 ".././motoransteuerung.c" 3
+# 115 ".././motoransteuerung.c" 3
                         0
-# 114 ".././motoransteuerung.c"
+# 115 ".././motoransteuerung.c"
                              );
   
-# 115 ".././motoransteuerung.c" 3
+# 116 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x7A)) 
-# 115 ".././motoransteuerung.c"
+# 116 ".././motoransteuerung.c"
         = 
-# 115 ".././motoransteuerung.c" 3
+# 116 ".././motoransteuerung.c" 3
           (*(volatile uint8_t *)(0x7A)) 
-# 115 ".././motoransteuerung.c"
+# 116 ".././motoransteuerung.c"
                  | (1<<
-# 115 ".././motoransteuerung.c" 3
+# 116 ".././motoransteuerung.c" 3
                        1
-# 115 ".././motoransteuerung.c"
+# 116 ".././motoransteuerung.c"
                             );
   
-# 116 ".././motoransteuerung.c" 3
+# 117 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x7A)) 
-# 116 ".././motoransteuerung.c"
+# 117 ".././motoransteuerung.c"
         = 
-# 116 ".././motoransteuerung.c" 3
+# 117 ".././motoransteuerung.c" 3
           (*(volatile uint8_t *)(0x7A)) 
-# 116 ".././motoransteuerung.c"
+# 117 ".././motoransteuerung.c"
                  | (1<<
-# 116 ".././motoransteuerung.c" 3
+# 117 ".././motoransteuerung.c" 3
                        2
-# 116 ".././motoransteuerung.c"
+# 117 ".././motoransteuerung.c"
                             );
 
   
-# 118 ".././motoransteuerung.c" 3
+# 119 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x7A)) 
-# 118 ".././motoransteuerung.c"
+# 119 ".././motoransteuerung.c"
         = 
-# 118 ".././motoransteuerung.c" 3
+# 119 ".././motoransteuerung.c" 3
           (*(volatile uint8_t *)(0x7A)) 
-# 118 ".././motoransteuerung.c"
+# 119 ".././motoransteuerung.c"
                  | (1<<
-# 118 ".././motoransteuerung.c" 3
+# 119 ".././motoransteuerung.c" 3
                        6
-# 118 ".././motoransteuerung.c"
+# 119 ".././motoransteuerung.c"
                            );
 
  }
 void Hallsensoren_abfragen(void)
 {
  stufe = 
-# 123 ".././motoransteuerung.c" 3
+# 124 ".././motoransteuerung.c" 3
         (*(volatile uint8_t *)((0x03) + 0x20)) 
-# 123 ".././motoransteuerung.c"
+# 124 ".././motoransteuerung.c"
              & 0x0e;
  stufe = stufe/2;
 
@@ -1580,13 +1581,13 @@ void Hallsensoren_abfragen(void)
  {
 
   if((
-# 131 ".././motoransteuerung.c" 3
+# 132 ".././motoransteuerung.c" 3
      (*(volatile uint8_t *)((0x03) + 0x20)) 
-# 131 ".././motoransteuerung.c"
+# 132 ".././motoransteuerung.c"
           & (1<<
-# 131 ".././motoransteuerung.c" 3
+# 132 ".././motoransteuerung.c" 3
                 4
-# 131 ".././motoransteuerung.c"
+# 132 ".././motoransteuerung.c"
                      )) == 0x00)
   {
    vor = 1;
@@ -1606,360 +1607,360 @@ void Hallsensoren_abfragen(void)
    case 0x05:
    {
     
-# 149 ".././motoransteuerung.c" 3
+# 150 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 149 ".././motoransteuerung.c"
+# 150 ".././motoransteuerung.c"
           = 0x00;
     
-# 150 ".././motoransteuerung.c" 3
+# 151 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 150 ".././motoransteuerung.c"
+# 151 ".././motoransteuerung.c"
          = (
-# 150 ".././motoransteuerung.c" 3
+# 151 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 150 ".././motoransteuerung.c"
+# 151 ".././motoransteuerung.c"
            &~ (1<<
-# 150 ".././motoransteuerung.c" 3
+# 151 ".././motoransteuerung.c" 3
            6
-# 150 ".././motoransteuerung.c"
+# 151 ".././motoransteuerung.c"
            ) &~ (1<<
-# 150 ".././motoransteuerung.c" 3
+# 151 ".././motoransteuerung.c" 3
            5
-# 150 ".././motoransteuerung.c"
+# 151 ".././motoransteuerung.c"
            ));
     
-# 151 ".././motoransteuerung.c" 3
+# 152 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 151 ".././motoransteuerung.c"
+# 152 ".././motoransteuerung.c"
          = ((
-# 151 ".././motoransteuerung.c" 3
+# 152 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 151 ".././motoransteuerung.c"
+# 152 ".././motoransteuerung.c"
            &~ (1<<
-# 151 ".././motoransteuerung.c" 3
+# 152 ".././motoransteuerung.c" 3
            7
-# 151 ".././motoransteuerung.c"
+# 152 ".././motoransteuerung.c"
            )) | (1<<
-# 151 ".././motoransteuerung.c" 3
+# 152 ".././motoransteuerung.c" 3
            6
-# 151 ".././motoransteuerung.c"
+# 152 ".././motoransteuerung.c"
            ));
     
-# 152 ".././motoransteuerung.c" 3
+# 153 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 152 ".././motoransteuerung.c"
+# 153 ".././motoransteuerung.c"
           = (
-# 152 ".././motoransteuerung.c" 3
+# 153 ".././motoransteuerung.c" 3
             (*(volatile uint8_t *)(0xC4)) 
-# 152 ".././motoransteuerung.c"
+# 153 ".././motoransteuerung.c"
             | (1<<
-# 152 ".././motoransteuerung.c" 3
+# 153 ".././motoransteuerung.c" 3
             0
-# 152 ".././motoransteuerung.c"
+# 153 ".././motoransteuerung.c"
             )|(1<<
-# 152 ".././motoransteuerung.c" 3
+# 153 ".././motoransteuerung.c" 3
             1
-# 152 ".././motoransteuerung.c"
+# 153 ".././motoransteuerung.c"
             ));
     break;
    }
    case 0x01:
    {
     
-# 157 ".././motoransteuerung.c" 3
+# 158 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 157 ".././motoransteuerung.c"
+# 158 ".././motoransteuerung.c"
           = 0x00;
     
-# 158 ".././motoransteuerung.c" 3
+# 159 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 158 ".././motoransteuerung.c"
+# 159 ".././motoransteuerung.c"
          = (
-# 158 ".././motoransteuerung.c" 3
+# 159 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 158 ".././motoransteuerung.c"
+# 159 ".././motoransteuerung.c"
            &~ (1<<
-# 158 ".././motoransteuerung.c" 3
+# 159 ".././motoransteuerung.c" 3
            7
-# 158 ".././motoransteuerung.c"
+# 159 ".././motoransteuerung.c"
            ) &~ (1<<
-# 158 ".././motoransteuerung.c" 3
+# 159 ".././motoransteuerung.c" 3
            6
-# 158 ".././motoransteuerung.c"
+# 159 ".././motoransteuerung.c"
            ));
     
-# 159 ".././motoransteuerung.c" 3
+# 160 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 159 ".././motoransteuerung.c"
+# 160 ".././motoransteuerung.c"
          = ((
-# 159 ".././motoransteuerung.c" 3
+# 160 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 159 ".././motoransteuerung.c"
+# 160 ".././motoransteuerung.c"
            &~ (1<<
-# 159 ".././motoransteuerung.c" 3
+# 160 ".././motoransteuerung.c" 3
            7
-# 159 ".././motoransteuerung.c"
+# 160 ".././motoransteuerung.c"
            )) | (1<<
-# 159 ".././motoransteuerung.c" 3
+# 160 ".././motoransteuerung.c" 3
            6
-# 159 ".././motoransteuerung.c"
+# 160 ".././motoransteuerung.c"
            ));
     
-# 160 ".././motoransteuerung.c" 3
+# 161 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 160 ".././motoransteuerung.c"
+# 161 ".././motoransteuerung.c"
           = (
-# 160 ".././motoransteuerung.c" 3
+# 161 ".././motoransteuerung.c" 3
             (*(volatile uint8_t *)(0xC4)) 
-# 160 ".././motoransteuerung.c"
+# 161 ".././motoransteuerung.c"
             | (1<<
-# 160 ".././motoransteuerung.c" 3
+# 161 ".././motoransteuerung.c" 3
             2
-# 160 ".././motoransteuerung.c"
+# 161 ".././motoransteuerung.c"
             ) | (1<<
-# 160 ".././motoransteuerung.c" 3
+# 161 ".././motoransteuerung.c" 3
             3
-# 160 ".././motoransteuerung.c"
+# 161 ".././motoransteuerung.c"
             ));
     break;
    }
    case 0x03:
    {
     
-# 165 ".././motoransteuerung.c" 3
+# 166 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 165 ".././motoransteuerung.c"
+# 166 ".././motoransteuerung.c"
           = 0x00;
     
-# 166 ".././motoransteuerung.c" 3
+# 167 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 166 ".././motoransteuerung.c"
+# 167 ".././motoransteuerung.c"
          = (
-# 166 ".././motoransteuerung.c" 3
+# 167 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 166 ".././motoransteuerung.c"
+# 167 ".././motoransteuerung.c"
            &~ (1<<
-# 166 ".././motoransteuerung.c" 3
+# 167 ".././motoransteuerung.c" 3
            7
-# 166 ".././motoransteuerung.c"
+# 167 ".././motoransteuerung.c"
            ) &~ (1<<
-# 166 ".././motoransteuerung.c" 3
+# 167 ".././motoransteuerung.c" 3
            6
-# 166 ".././motoransteuerung.c"
+# 167 ".././motoransteuerung.c"
            ));
     
-# 167 ".././motoransteuerung.c" 3
+# 168 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 167 ".././motoransteuerung.c"
+# 168 ".././motoransteuerung.c"
          = ((
-# 167 ".././motoransteuerung.c" 3
+# 168 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 167 ".././motoransteuerung.c"
+# 168 ".././motoransteuerung.c"
            &~ (1<<
-# 167 ".././motoransteuerung.c" 3
+# 168 ".././motoransteuerung.c" 3
            7
-# 167 ".././motoransteuerung.c"
+# 168 ".././motoransteuerung.c"
            )) | (1<<
-# 167 ".././motoransteuerung.c" 3
+# 168 ".././motoransteuerung.c" 3
            6
-# 167 ".././motoransteuerung.c"
+# 168 ".././motoransteuerung.c"
            ));
     
-# 168 ".././motoransteuerung.c" 3
+# 169 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 168 ".././motoransteuerung.c"
+# 169 ".././motoransteuerung.c"
           = (
-# 168 ".././motoransteuerung.c" 3
+# 169 ".././motoransteuerung.c" 3
             (*(volatile uint8_t *)(0xC4)) 
-# 168 ".././motoransteuerung.c"
+# 169 ".././motoransteuerung.c"
             | (1<<
-# 168 ".././motoransteuerung.c" 3
+# 169 ".././motoransteuerung.c" 3
             2
-# 168 ".././motoransteuerung.c"
+# 169 ".././motoransteuerung.c"
             ) | (1<<
-# 168 ".././motoransteuerung.c" 3
+# 169 ".././motoransteuerung.c" 3
             3
-# 168 ".././motoransteuerung.c"
+# 169 ".././motoransteuerung.c"
             ));
     break;
    }
    case 0x02:
    {
     
-# 173 ".././motoransteuerung.c" 3
+# 174 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 173 ".././motoransteuerung.c"
+# 174 ".././motoransteuerung.c"
           = 0x00;
     
-# 174 ".././motoransteuerung.c" 3
+# 175 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 174 ".././motoransteuerung.c"
+# 175 ".././motoransteuerung.c"
          = (
-# 174 ".././motoransteuerung.c" 3
+# 175 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 174 ".././motoransteuerung.c"
+# 175 ".././motoransteuerung.c"
            &~ (1<<
-# 174 ".././motoransteuerung.c" 3
+# 175 ".././motoransteuerung.c" 3
            6
-# 174 ".././motoransteuerung.c"
+# 175 ".././motoransteuerung.c"
            ) &~ (1<<
-# 174 ".././motoransteuerung.c" 3
+# 175 ".././motoransteuerung.c" 3
            5
-# 174 ".././motoransteuerung.c"
+# 175 ".././motoransteuerung.c"
            ));
     
-# 175 ".././motoransteuerung.c" 3
+# 176 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 175 ".././motoransteuerung.c"
+# 176 ".././motoransteuerung.c"
          = ((
-# 175 ".././motoransteuerung.c" 3
+# 176 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 175 ".././motoransteuerung.c"
+# 176 ".././motoransteuerung.c"
            &~ (1<<
-# 175 ".././motoransteuerung.c" 3
+# 176 ".././motoransteuerung.c" 3
            7
-# 175 ".././motoransteuerung.c"
+# 176 ".././motoransteuerung.c"
            )) | (1<<
-# 175 ".././motoransteuerung.c" 3
+# 176 ".././motoransteuerung.c" 3
            6
-# 175 ".././motoransteuerung.c"
+# 176 ".././motoransteuerung.c"
            ));
     
-# 176 ".././motoransteuerung.c" 3
+# 177 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 176 ".././motoransteuerung.c"
+# 177 ".././motoransteuerung.c"
           = (
-# 176 ".././motoransteuerung.c" 3
+# 177 ".././motoransteuerung.c" 3
             (*(volatile uint8_t *)(0xC4)) 
-# 176 ".././motoransteuerung.c"
+# 177 ".././motoransteuerung.c"
             | (1<<
-# 176 ".././motoransteuerung.c" 3
+# 177 ".././motoransteuerung.c" 3
             5
-# 176 ".././motoransteuerung.c"
+# 177 ".././motoransteuerung.c"
             )|(1<<
-# 176 ".././motoransteuerung.c" 3
+# 177 ".././motoransteuerung.c" 3
             4
-# 176 ".././motoransteuerung.c"
+# 177 ".././motoransteuerung.c"
             ));
     break;
    }
    case 0x06:
    {
     
-# 181 ".././motoransteuerung.c" 3
+# 182 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 181 ".././motoransteuerung.c"
+# 182 ".././motoransteuerung.c"
           = 0x00;
     
-# 182 ".././motoransteuerung.c" 3
+# 183 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 182 ".././motoransteuerung.c"
+# 183 ".././motoransteuerung.c"
          = (
-# 182 ".././motoransteuerung.c" 3
+# 183 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 182 ".././motoransteuerung.c"
+# 183 ".././motoransteuerung.c"
            &~ (1<<
-# 182 ".././motoransteuerung.c" 3
+# 183 ".././motoransteuerung.c" 3
            7
-# 182 ".././motoransteuerung.c"
+# 183 ".././motoransteuerung.c"
            ) &~ (1<<
-# 182 ".././motoransteuerung.c" 3
+# 183 ".././motoransteuerung.c" 3
            6
-# 182 ".././motoransteuerung.c"
+# 183 ".././motoransteuerung.c"
            ));
     
-# 183 ".././motoransteuerung.c" 3
+# 184 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 183 ".././motoransteuerung.c"
+# 184 ".././motoransteuerung.c"
          = ((
-# 183 ".././motoransteuerung.c" 3
+# 184 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 183 ".././motoransteuerung.c"
+# 184 ".././motoransteuerung.c"
            &~ (1<<
-# 183 ".././motoransteuerung.c" 3
+# 184 ".././motoransteuerung.c" 3
            6
-# 183 ".././motoransteuerung.c"
+# 184 ".././motoransteuerung.c"
            )) | (1<<
-# 183 ".././motoransteuerung.c" 3
+# 184 ".././motoransteuerung.c" 3
            5
-# 183 ".././motoransteuerung.c"
+# 184 ".././motoransteuerung.c"
            ));
     
-# 184 ".././motoransteuerung.c" 3
+# 185 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 184 ".././motoransteuerung.c"
+# 185 ".././motoransteuerung.c"
           = (
-# 184 ".././motoransteuerung.c" 3
+# 185 ".././motoransteuerung.c" 3
             (*(volatile uint8_t *)(0xC4)) 
-# 184 ".././motoransteuerung.c"
+# 185 ".././motoransteuerung.c"
             | (1<<
-# 184 ".././motoransteuerung.c" 3
+# 185 ".././motoransteuerung.c" 3
             5
-# 184 ".././motoransteuerung.c"
+# 185 ".././motoransteuerung.c"
             )|(1<<
-# 184 ".././motoransteuerung.c" 3
+# 185 ".././motoransteuerung.c" 3
             4
-# 184 ".././motoransteuerung.c"
+# 185 ".././motoransteuerung.c"
             ));
     break;
    }
    case 0x04:
    {
     
-# 189 ".././motoransteuerung.c" 3
+# 190 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 189 ".././motoransteuerung.c"
+# 190 ".././motoransteuerung.c"
           = 0x00;
     
-# 190 ".././motoransteuerung.c" 3
+# 191 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 190 ".././motoransteuerung.c"
+# 191 ".././motoransteuerung.c"
          = (
-# 190 ".././motoransteuerung.c" 3
+# 191 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 190 ".././motoransteuerung.c"
+# 191 ".././motoransteuerung.c"
            &~ (1<<
-# 190 ".././motoransteuerung.c" 3
+# 191 ".././motoransteuerung.c" 3
            7
-# 190 ".././motoransteuerung.c"
+# 191 ".././motoransteuerung.c"
            ) &~ (1<<
-# 190 ".././motoransteuerung.c" 3
+# 191 ".././motoransteuerung.c" 3
            6
-# 190 ".././motoransteuerung.c"
+# 191 ".././motoransteuerung.c"
            ));
     
-# 191 ".././motoransteuerung.c" 3
+# 192 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 191 ".././motoransteuerung.c"
+# 192 ".././motoransteuerung.c"
          = ((
-# 191 ".././motoransteuerung.c" 3
+# 192 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 191 ".././motoransteuerung.c"
+# 192 ".././motoransteuerung.c"
            &~ (1<<
-# 191 ".././motoransteuerung.c" 3
+# 192 ".././motoransteuerung.c" 3
            6
-# 191 ".././motoransteuerung.c"
+# 192 ".././motoransteuerung.c"
            )) | (1<<
-# 191 ".././motoransteuerung.c" 3
+# 192 ".././motoransteuerung.c" 3
            5
-# 191 ".././motoransteuerung.c"
+# 192 ".././motoransteuerung.c"
            ));
     
-# 192 ".././motoransteuerung.c" 3
+# 193 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 192 ".././motoransteuerung.c"
+# 193 ".././motoransteuerung.c"
           = (
-# 192 ".././motoransteuerung.c" 3
+# 193 ".././motoransteuerung.c" 3
             (*(volatile uint8_t *)(0xC4)) 
-# 192 ".././motoransteuerung.c"
+# 193 ".././motoransteuerung.c"
             | (1<<
-# 192 ".././motoransteuerung.c" 3
+# 193 ".././motoransteuerung.c" 3
             0
-# 192 ".././motoransteuerung.c"
+# 193 ".././motoransteuerung.c"
             )|(1<<
-# 192 ".././motoransteuerung.c" 3
+# 193 ".././motoransteuerung.c" 3
             1
-# 192 ".././motoransteuerung.c"
+# 193 ".././motoransteuerung.c"
             ));
     break;
    }
@@ -1977,360 +1978,360 @@ void Hallsensoren_abfragen(void)
    case 0x05:
    {
     
-# 208 ".././motoransteuerung.c" 3
+# 209 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 208 ".././motoransteuerung.c"
+# 209 ".././motoransteuerung.c"
           = 0x00;
     
-# 209 ".././motoransteuerung.c" 3
+# 210 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 209 ".././motoransteuerung.c"
+# 210 ".././motoransteuerung.c"
          = (
-# 209 ".././motoransteuerung.c" 3
+# 210 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 209 ".././motoransteuerung.c"
+# 210 ".././motoransteuerung.c"
            &~ (1<<
-# 209 ".././motoransteuerung.c" 3
+# 210 ".././motoransteuerung.c" 3
            6
-# 209 ".././motoransteuerung.c"
+# 210 ".././motoransteuerung.c"
            ) &~ (1<<
-# 209 ".././motoransteuerung.c" 3
+# 210 ".././motoransteuerung.c" 3
            5
-# 209 ".././motoransteuerung.c"
+# 210 ".././motoransteuerung.c"
            ));
     
-# 210 ".././motoransteuerung.c" 3
+# 211 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 210 ".././motoransteuerung.c"
+# 211 ".././motoransteuerung.c"
          = ((
-# 210 ".././motoransteuerung.c" 3
+# 211 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 210 ".././motoransteuerung.c"
+# 211 ".././motoransteuerung.c"
            &~ (1<<
-# 210 ".././motoransteuerung.c" 3
+# 211 ".././motoransteuerung.c" 3
            7
-# 210 ".././motoransteuerung.c"
+# 211 ".././motoransteuerung.c"
            )) | (1<<
-# 210 ".././motoransteuerung.c" 3
+# 211 ".././motoransteuerung.c" 3
            6
-# 210 ".././motoransteuerung.c"
+# 211 ".././motoransteuerung.c"
            ));
     
-# 211 ".././motoransteuerung.c" 3
+# 212 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 211 ".././motoransteuerung.c"
+# 212 ".././motoransteuerung.c"
           = (
-# 211 ".././motoransteuerung.c" 3
+# 212 ".././motoransteuerung.c" 3
             (*(volatile uint8_t *)(0xC4)) 
-# 211 ".././motoransteuerung.c"
+# 212 ".././motoransteuerung.c"
             | (1<<
-# 211 ".././motoransteuerung.c" 3
+# 212 ".././motoransteuerung.c" 3
             5
-# 211 ".././motoransteuerung.c"
+# 212 ".././motoransteuerung.c"
             )|(1<<
-# 211 ".././motoransteuerung.c" 3
+# 212 ".././motoransteuerung.c" 3
             4
-# 211 ".././motoransteuerung.c"
+# 212 ".././motoransteuerung.c"
             ));
     break;
    }
    case 0x01:
    {
     
-# 216 ".././motoransteuerung.c" 3
+# 217 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 216 ".././motoransteuerung.c"
+# 217 ".././motoransteuerung.c"
           = 0x00;
     
-# 217 ".././motoransteuerung.c" 3
+# 218 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 217 ".././motoransteuerung.c"
+# 218 ".././motoransteuerung.c"
          = (
-# 217 ".././motoransteuerung.c" 3
+# 218 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 217 ".././motoransteuerung.c"
+# 218 ".././motoransteuerung.c"
            &~ (1<<
-# 217 ".././motoransteuerung.c" 3
+# 218 ".././motoransteuerung.c" 3
            7
-# 217 ".././motoransteuerung.c"
+# 218 ".././motoransteuerung.c"
            ) &~ (1<<
-# 217 ".././motoransteuerung.c" 3
+# 218 ".././motoransteuerung.c" 3
            6
-# 217 ".././motoransteuerung.c"
+# 218 ".././motoransteuerung.c"
            ));
     
-# 218 ".././motoransteuerung.c" 3
+# 219 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 218 ".././motoransteuerung.c"
+# 219 ".././motoransteuerung.c"
          = ((
-# 218 ".././motoransteuerung.c" 3
+# 219 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 218 ".././motoransteuerung.c"
+# 219 ".././motoransteuerung.c"
            &~ (1<<
-# 218 ".././motoransteuerung.c" 3
+# 219 ".././motoransteuerung.c" 3
            6
-# 218 ".././motoransteuerung.c"
+# 219 ".././motoransteuerung.c"
            )) | (1<<
-# 218 ".././motoransteuerung.c" 3
+# 219 ".././motoransteuerung.c" 3
            5
-# 218 ".././motoransteuerung.c"
+# 219 ".././motoransteuerung.c"
            ));
     
-# 219 ".././motoransteuerung.c" 3
+# 220 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 219 ".././motoransteuerung.c"
+# 220 ".././motoransteuerung.c"
           = (
-# 219 ".././motoransteuerung.c" 3
+# 220 ".././motoransteuerung.c" 3
             (*(volatile uint8_t *)(0xC4)) 
-# 219 ".././motoransteuerung.c"
+# 220 ".././motoransteuerung.c"
             | (1<<
-# 219 ".././motoransteuerung.c" 3
+# 220 ".././motoransteuerung.c" 3
             5
-# 219 ".././motoransteuerung.c"
+# 220 ".././motoransteuerung.c"
             )|(1<<
-# 219 ".././motoransteuerung.c" 3
+# 220 ".././motoransteuerung.c" 3
             4
-# 219 ".././motoransteuerung.c"
+# 220 ".././motoransteuerung.c"
             ));
     break;
    }
    case 0x03:
    {
     
-# 224 ".././motoransteuerung.c" 3
+# 225 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 224 ".././motoransteuerung.c"
+# 225 ".././motoransteuerung.c"
           = 0x00;
     
-# 225 ".././motoransteuerung.c" 3
+# 226 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 225 ".././motoransteuerung.c"
+# 226 ".././motoransteuerung.c"
          = (
-# 225 ".././motoransteuerung.c" 3
+# 226 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 225 ".././motoransteuerung.c"
+# 226 ".././motoransteuerung.c"
            &~ (1<<
-# 225 ".././motoransteuerung.c" 3
+# 226 ".././motoransteuerung.c" 3
            7
-# 225 ".././motoransteuerung.c"
+# 226 ".././motoransteuerung.c"
            ) &~ (1<<
-# 225 ".././motoransteuerung.c" 3
+# 226 ".././motoransteuerung.c" 3
            6
-# 225 ".././motoransteuerung.c"
+# 226 ".././motoransteuerung.c"
            ));
     
-# 226 ".././motoransteuerung.c" 3
+# 227 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 226 ".././motoransteuerung.c"
+# 227 ".././motoransteuerung.c"
          = ((
-# 226 ".././motoransteuerung.c" 3
+# 227 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 226 ".././motoransteuerung.c"
+# 227 ".././motoransteuerung.c"
            &~ (1<<
-# 226 ".././motoransteuerung.c" 3
+# 227 ".././motoransteuerung.c" 3
            6
-# 226 ".././motoransteuerung.c"
+# 227 ".././motoransteuerung.c"
            )) | (1<<
-# 226 ".././motoransteuerung.c" 3
+# 227 ".././motoransteuerung.c" 3
            5
-# 226 ".././motoransteuerung.c"
+# 227 ".././motoransteuerung.c"
            ));
     
-# 227 ".././motoransteuerung.c" 3
+# 228 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 227 ".././motoransteuerung.c"
+# 228 ".././motoransteuerung.c"
           = (
-# 227 ".././motoransteuerung.c" 3
+# 228 ".././motoransteuerung.c" 3
             (*(volatile uint8_t *)(0xC4)) 
-# 227 ".././motoransteuerung.c"
+# 228 ".././motoransteuerung.c"
             | (1<<
-# 227 ".././motoransteuerung.c" 3
+# 228 ".././motoransteuerung.c" 3
             0
-# 227 ".././motoransteuerung.c"
+# 228 ".././motoransteuerung.c"
             )|(1<<
-# 227 ".././motoransteuerung.c" 3
+# 228 ".././motoransteuerung.c" 3
             1
-# 227 ".././motoransteuerung.c"
+# 228 ".././motoransteuerung.c"
             ));
     break;
    }
    case 0x02:
    {
     
-# 232 ".././motoransteuerung.c" 3
+# 233 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 232 ".././motoransteuerung.c"
+# 233 ".././motoransteuerung.c"
           = 0x00;
     
-# 233 ".././motoransteuerung.c" 3
+# 234 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 233 ".././motoransteuerung.c"
+# 234 ".././motoransteuerung.c"
          = (
-# 233 ".././motoransteuerung.c" 3
+# 234 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 233 ".././motoransteuerung.c"
+# 234 ".././motoransteuerung.c"
            &~ (1<<
-# 233 ".././motoransteuerung.c" 3
+# 234 ".././motoransteuerung.c" 3
            6
-# 233 ".././motoransteuerung.c"
+# 234 ".././motoransteuerung.c"
            ) &~ (1<<
-# 233 ".././motoransteuerung.c" 3
+# 234 ".././motoransteuerung.c" 3
            5
-# 233 ".././motoransteuerung.c"
+# 234 ".././motoransteuerung.c"
            ));
     
-# 234 ".././motoransteuerung.c" 3
+# 235 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 234 ".././motoransteuerung.c"
+# 235 ".././motoransteuerung.c"
          = ((
-# 234 ".././motoransteuerung.c" 3
+# 235 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 234 ".././motoransteuerung.c"
+# 235 ".././motoransteuerung.c"
            &~ (1<<
-# 234 ".././motoransteuerung.c" 3
+# 235 ".././motoransteuerung.c" 3
            7
-# 234 ".././motoransteuerung.c"
+# 235 ".././motoransteuerung.c"
            )) | (1<<
-# 234 ".././motoransteuerung.c" 3
+# 235 ".././motoransteuerung.c" 3
            6
-# 234 ".././motoransteuerung.c"
+# 235 ".././motoransteuerung.c"
            ));
     
-# 235 ".././motoransteuerung.c" 3
+# 236 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 235 ".././motoransteuerung.c"
+# 236 ".././motoransteuerung.c"
           = (
-# 235 ".././motoransteuerung.c" 3
+# 236 ".././motoransteuerung.c" 3
             (*(volatile uint8_t *)(0xC4)) 
-# 235 ".././motoransteuerung.c"
+# 236 ".././motoransteuerung.c"
             | (1<<
-# 235 ".././motoransteuerung.c" 3
+# 236 ".././motoransteuerung.c" 3
             0
-# 235 ".././motoransteuerung.c"
+# 236 ".././motoransteuerung.c"
             )|(1<<
-# 235 ".././motoransteuerung.c" 3
+# 236 ".././motoransteuerung.c" 3
             1
-# 235 ".././motoransteuerung.c"
+# 236 ".././motoransteuerung.c"
             ));
     break;
    }
    case 0x06:
    {
     
-# 240 ".././motoransteuerung.c" 3
+# 241 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 240 ".././motoransteuerung.c"
+# 241 ".././motoransteuerung.c"
           = 0x00;
     
-# 241 ".././motoransteuerung.c" 3
+# 242 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 241 ".././motoransteuerung.c"
+# 242 ".././motoransteuerung.c"
          = (
-# 241 ".././motoransteuerung.c" 3
+# 242 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 241 ".././motoransteuerung.c"
+# 242 ".././motoransteuerung.c"
            &~ (1<<
-# 241 ".././motoransteuerung.c" 3
+# 242 ".././motoransteuerung.c" 3
            7
-# 241 ".././motoransteuerung.c"
+# 242 ".././motoransteuerung.c"
            ) &~ (1<<
-# 241 ".././motoransteuerung.c" 3
+# 242 ".././motoransteuerung.c" 3
            6
-# 241 ".././motoransteuerung.c"
+# 242 ".././motoransteuerung.c"
            ));
     
-# 242 ".././motoransteuerung.c" 3
+# 243 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 242 ".././motoransteuerung.c"
+# 243 ".././motoransteuerung.c"
          = ((
-# 242 ".././motoransteuerung.c" 3
+# 243 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 242 ".././motoransteuerung.c"
+# 243 ".././motoransteuerung.c"
            &~ (1<<
-# 242 ".././motoransteuerung.c" 3
+# 243 ".././motoransteuerung.c" 3
            7
-# 242 ".././motoransteuerung.c"
+# 243 ".././motoransteuerung.c"
            )) | (1<<
-# 242 ".././motoransteuerung.c" 3
+# 243 ".././motoransteuerung.c" 3
            6
-# 242 ".././motoransteuerung.c"
+# 243 ".././motoransteuerung.c"
            ));
     
-# 243 ".././motoransteuerung.c" 3
+# 244 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 243 ".././motoransteuerung.c"
+# 244 ".././motoransteuerung.c"
           = (
-# 243 ".././motoransteuerung.c" 3
+# 244 ".././motoransteuerung.c" 3
             (*(volatile uint8_t *)(0xC4)) 
-# 243 ".././motoransteuerung.c"
+# 244 ".././motoransteuerung.c"
             | (1<<
-# 243 ".././motoransteuerung.c" 3
+# 244 ".././motoransteuerung.c" 3
             2
-# 243 ".././motoransteuerung.c"
+# 244 ".././motoransteuerung.c"
             ) | (1<<
-# 243 ".././motoransteuerung.c" 3
+# 244 ".././motoransteuerung.c" 3
             3
-# 243 ".././motoransteuerung.c"
+# 244 ".././motoransteuerung.c"
             ));
     break;
    }
    case 0x04:
    {
     
-# 248 ".././motoransteuerung.c" 3
+# 249 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 248 ".././motoransteuerung.c"
+# 249 ".././motoransteuerung.c"
           = 0x00;
     
-# 249 ".././motoransteuerung.c" 3
+# 250 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 249 ".././motoransteuerung.c"
+# 250 ".././motoransteuerung.c"
          = (
-# 249 ".././motoransteuerung.c" 3
+# 250 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 249 ".././motoransteuerung.c"
+# 250 ".././motoransteuerung.c"
            &~ (1<<
-# 249 ".././motoransteuerung.c" 3
+# 250 ".././motoransteuerung.c" 3
            7
-# 249 ".././motoransteuerung.c"
+# 250 ".././motoransteuerung.c"
            ) &~ (1<<
-# 249 ".././motoransteuerung.c" 3
+# 250 ".././motoransteuerung.c" 3
            6
-# 249 ".././motoransteuerung.c"
+# 250 ".././motoransteuerung.c"
            ));
     
-# 250 ".././motoransteuerung.c" 3
+# 251 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 250 ".././motoransteuerung.c"
+# 251 ".././motoransteuerung.c"
          = ((
-# 250 ".././motoransteuerung.c" 3
+# 251 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)((0x08) + 0x20)) 
-# 250 ".././motoransteuerung.c"
+# 251 ".././motoransteuerung.c"
            &~ (1<<
-# 250 ".././motoransteuerung.c" 3
+# 251 ".././motoransteuerung.c" 3
            7
-# 250 ".././motoransteuerung.c"
+# 251 ".././motoransteuerung.c"
            )) | (1<<
-# 250 ".././motoransteuerung.c" 3
+# 251 ".././motoransteuerung.c" 3
            6
-# 250 ".././motoransteuerung.c"
+# 251 ".././motoransteuerung.c"
            ));
     
-# 251 ".././motoransteuerung.c" 3
+# 252 ".././motoransteuerung.c" 3
    (*(volatile uint8_t *)(0xC4)) 
-# 251 ".././motoransteuerung.c"
+# 252 ".././motoransteuerung.c"
           = (
-# 251 ".././motoransteuerung.c" 3
+# 252 ".././motoransteuerung.c" 3
             (*(volatile uint8_t *)(0xC4)) 
-# 251 ".././motoransteuerung.c"
+# 252 ".././motoransteuerung.c"
             | (1<<
-# 251 ".././motoransteuerung.c" 3
+# 252 ".././motoransteuerung.c" 3
             2
-# 251 ".././motoransteuerung.c"
+# 252 ".././motoransteuerung.c"
             ) | (1<<
-# 251 ".././motoransteuerung.c" 3
+# 252 ".././motoransteuerung.c" 3
             3
-# 251 ".././motoransteuerung.c"
+# 252 ".././motoransteuerung.c"
             ));
     break;
    }
@@ -2347,10 +2348,10 @@ char adc_abfrage(void)
 }
 
 
-# 266 ".././motoransteuerung.c" 3
+# 267 ".././motoransteuerung.c" 3
 void __vector_9 (void) __attribute__ ((signal,used, externally_visible)) ; void __vector_9 (void)
 
-# 267 ".././motoransteuerung.c"
+# 268 ".././motoransteuerung.c"
 {
  geschwindigkeit_auslesen();
 
@@ -2361,79 +2362,97 @@ void __vector_9 (void) __attribute__ ((signal,used, externally_visible)) ; void 
  if (drehzahl_holen() >= 2001)
  {
   
-# 276 ".././motoransteuerung.c" 3
+# 277 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0xCF)) 
-# 276 ".././motoransteuerung.c"
+# 277 ".././motoransteuerung.c"
        = geschwindigkeits_regulierung(adc_high);
  }
 
 
 
 }
-# 297 ".././motoransteuerung.c"
+# 298 ".././motoransteuerung.c"
 
-# 297 ".././motoransteuerung.c" 3
+# 298 ".././motoransteuerung.c" 3
 void __vector_29 (void) __attribute__ ((signal,used, externally_visible)) ; void __vector_29 (void)
 
-# 298 ".././motoransteuerung.c"
+# 299 ".././motoransteuerung.c"
 {
 
 
  adc_low = 
-# 301 ".././motoransteuerung.c" 3
+# 302 ".././motoransteuerung.c" 3
           (*(volatile uint8_t *)(0x78))
-# 301 ".././motoransteuerung.c"
+# 302 ".././motoransteuerung.c"
               ;
  adc_high = 
-# 302 ".././motoransteuerung.c" 3
+# 303 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)(0x79))
-# 302 ".././motoransteuerung.c"
+# 303 ".././motoransteuerung.c"
                ;
 
 
- if (adc_high <= 0)
+ if (adc_high <= 0 && phasen_flag == 0)
  {
   adc_0_flag = 1;
+  phasen_flag = 1;
+ }
+
+ if(phasen_flag == 1 && adc_high >= 1)
+ {
+  phasen_flag = 2;
+  
+# 315 ".././motoransteuerung.c" 3
+ (*(volatile uint8_t *)(0x68)) 
+# 315 ".././motoransteuerung.c"
+       = 
+# 315 ".././motoransteuerung.c" 3
+          (*(volatile uint8_t *)(0x68)) 
+# 315 ".././motoransteuerung.c"
+                | (1<<
+# 315 ".././motoransteuerung.c" 3
+                      0
+# 315 ".././motoransteuerung.c"
+                           );
  }
 
 
-
- if (adc_0_flag)
+ if (phasen_flag == 2)
  {
   if ((drehzahl_holen() <= 2000))
   {
    
-# 316 ".././motoransteuerung.c" 3
+# 323 ".././motoransteuerung.c" 3
   (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 316 ".././motoransteuerung.c"
+# 323 ".././motoransteuerung.c"
         = 
-# 316 ".././motoransteuerung.c" 3
+# 323 ".././motoransteuerung.c" 3
           (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 316 ".././motoransteuerung.c"
+# 323 ".././motoransteuerung.c"
                 | (1<<
-# 316 ".././motoransteuerung.c" 3
+# 323 ".././motoransteuerung.c" 3
                       4
-# 316 ".././motoransteuerung.c"
+# 323 ".././motoransteuerung.c"
                             );
 
    
-# 318 ".././motoransteuerung.c" 3
+# 325 ".././motoransteuerung.c" 3
   (*(volatile uint8_t *)(0xCF)) 
-# 318 ".././motoransteuerung.c"
+# 325 ".././motoransteuerung.c"
         = geschwindigkeits_regulierung(adc_high);
 
    
-# 320 ".././motoransteuerung.c" 3
+# 327 ".././motoransteuerung.c" 3
   (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 320 ".././motoransteuerung.c"
+# 327 ".././motoransteuerung.c"
         = 
-# 320 ".././motoransteuerung.c" 3
+# 327 ".././motoransteuerung.c" 3
           (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 320 ".././motoransteuerung.c"
+# 327 ".././motoransteuerung.c"
                 &~ (1<<
-# 320 ".././motoransteuerung.c" 3
+# 327 ".././motoransteuerung.c" 3
                        4
-# 320 ".././motoransteuerung.c"
+# 327 ".././motoransteuerung.c"
                              );
 
   }
@@ -2441,23 +2460,23 @@ void __vector_29 (void) __attribute__ ((signal,used, externally_visible)) ; void
  else
  {
   
-# 326 ".././motoransteuerung.c" 3
+# 333 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0xCF)) 
-# 326 ".././motoransteuerung.c"
+# 333 ".././motoransteuerung.c"
        = 0;
  }
-# 358 ".././motoransteuerung.c"
+# 365 ".././motoransteuerung.c"
  
-# 358 ".././motoransteuerung.c" 3
+# 365 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0x7A)) 
-# 358 ".././motoransteuerung.c"
+# 365 ".././motoransteuerung.c"
        = 
-# 358 ".././motoransteuerung.c" 3
+# 365 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x7A)) 
-# 358 ".././motoransteuerung.c"
+# 365 ".././motoransteuerung.c"
                 | (1<<
-# 358 ".././motoransteuerung.c" 3
+# 365 ".././motoransteuerung.c" 3
                       6
-# 358 ".././motoransteuerung.c"
+# 365 ".././motoransteuerung.c"
                           );
 }

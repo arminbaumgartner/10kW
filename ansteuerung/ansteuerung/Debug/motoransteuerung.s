@@ -13,7 +13,7 @@ __zero_reg__ = 1
 Init_PWM:
 .LFB11:
 	.file 1 ".././motoransteuerung.c"
-	.loc 1 47 0
+	.loc 1 48 0
 	.cfi_startproc
 	push r28
 .LCFI0:
@@ -27,98 +27,98 @@ Init_PWM:
 /* frame size = 0 */
 /* stack size = 2 */
 .L__stack_usage = 2
-	.loc 1 49 0
+	.loc 1 50 0
 	ldi r30,lo8(-63)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 49 0
+	.loc 1 50 0
 	andi r24,lo8(-2)
 	st Z,r24
-	.loc 1 50 0
+	.loc 1 51 0
 	ld r24,Z
-	.loc 1 50 0
+	.loc 1 51 0
 	andi r24,lo8(-3)
 	st Z,r24
-	.loc 1 51 0
+	.loc 1 52 0
 	ld r24,Z
-	.loc 1 51 0
+	.loc 1 52 0
 	ori r24,lo8(4)
 	st Z,r24
-	.loc 1 52 0
+	.loc 1 53 0
 	ld r24,Z
-	.loc 1 52 0
+	.loc 1 53 0
 	andi r24,lo8(-9)
 	st Z,r24
-	.loc 1 54 0
+	.loc 1 55 0
 	ldi r26,lo8(-64)
 	ldi r27,0
 	ld r24,X
-	.loc 1 54 0
+	.loc 1 55 0
 	ori r24,lo8(2)
 	st X,r24
-	.loc 1 55 0
+	.loc 1 56 0
 	ldi r28,lo8(-61)
 	ldi r29,0
 	ld r24,Y
-	.loc 1 55 0
+	.loc 1 56 0
 	andi r24,lo8(-2)
 	st Y,r24
-	.loc 1 56 0
+	.loc 1 57 0
 	ld r24,Y
-	.loc 1 56 0
+	.loc 1 57 0
 	ori r24,lo8(2)
 	st Y,r24
-	.loc 1 58 0
+	.loc 1 59 0
 	ld r24,X
-	.loc 1 58 0
+	.loc 1 59 0
 	ori r24,lo8(64)
 	st X,r24
-	.loc 1 59 0
+	.loc 1 60 0
 	ld r24,X
-	.loc 1 59 0
+	.loc 1 60 0
 	andi r24,lo8(127)
 	st X,r24
-	.loc 1 61 0
+	.loc 1 62 0
 	ld r24,X
-	.loc 1 61 0
+	.loc 1 62 0
 	ori r24,lo8(16)
 	st X,r24
-	.loc 1 62 0
+	.loc 1 63 0
 	ld r24,X
-	.loc 1 62 0
+	.loc 1 63 0
 	andi r24,lo8(-33)
 	st X,r24
-	.loc 1 63 0
+	.loc 1 64 0
 	ldi r26,lo8(-62)
 	ldi r27,0
 	ld r24,X
-	.loc 1 63 0
+	.loc 1 64 0
 	ori r24,lo8(4)
 	st X,r24
-	.loc 1 64 0
+	.loc 1 65 0
 	ld r24,X
-	.loc 1 64 0
+	.loc 1 65 0
 	andi r24,lo8(-9)
 	st X,r24
-	.loc 1 66 0
+	.loc 1 67 0
 	ld r24,Z
-	.loc 1 66 0
+	.loc 1 67 0
 	andi r24,lo8(-17)
 	st Z,r24
-	.loc 1 67 0
+	.loc 1 68 0
 	ld r24,Z
-	.loc 1 67 0
+	.loc 1 68 0
 	andi r24,lo8(-33)
 	st Z,r24
-	.loc 1 73 0
+	.loc 1 74 0
 	ldi r24,lo8(-1)
 	sts 209,r24
-	.loc 1 75 0
+	.loc 1 76 0
 	sts 196,__zero_reg__
-	.loc 1 77 0
+	.loc 1 78 0
 	sts 212,r24
 /* epilogue start */
-	.loc 1 79 0
+	.loc 1 80 0
 	pop r29
 	pop r28
 	ret
@@ -130,54 +130,54 @@ Init_PWM:
 	.type	Init_Pinchange, @function
 Init_Pinchange:
 .LFB12:
-	.loc 1 81 0
+	.loc 1 82 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 82 0
+	.loc 1 83 0
 	ldi r30,lo8(104)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 82 0
-	ori r24,lo8(1)
+	.loc 1 83 0
+	andi r24,lo8(-2)
 	st Z,r24
-	.loc 1 84 0
+	.loc 1 85 0
 	ldi r30,lo8(107)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 84 0
+	.loc 1 85 0
 	ori r24,lo8(2)
 	st Z,r24
-	.loc 1 85 0
+	.loc 1 86 0
 	ld r24,Z
-	.loc 1 85 0
+	.loc 1 86 0
 	ori r24,lo8(4)
 	st Z,r24
-	.loc 1 86 0
+	.loc 1 87 0
 	ld r24,Z
-	.loc 1 86 0
+	.loc 1 87 0
 	ori r24,lo8(8)
 	st Z,r24
-	.loc 1 87 0
+	.loc 1 88 0
 	ld r24,Z
-	.loc 1 87 0
+	.loc 1 88 0
 	ori r24,lo8(16)
 	st Z,r24
-	.loc 1 91 0
+	.loc 1 92 0
 	ldi r30,lo8(105)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 91 0
+	.loc 1 92 0
 	ori r24,lo8(1)
 	st Z,r24
-	.loc 1 92 0
+	.loc 1 93 0
 	ld r24,Z
-	.loc 1 92 0
+	.loc 1 93 0
 	andi r24,lo8(-3)
 	st Z,r24
-	.loc 1 94 0
+	.loc 1 95 0
 	sbi 0x1d,0
 	ret
 	.cfi_endproc
@@ -188,91 +188,91 @@ Init_Pinchange:
 	.type	Init_ADC, @function
 Init_ADC:
 .LFB13:
-	.loc 1 98 0
+	.loc 1 99 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 99 0
+	.loc 1 100 0
 	ldi r30,lo8(124)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 99 0
+	.loc 1 100 0
 	ori r24,lo8(64)
 	st Z,r24
-	.loc 1 100 0
+	.loc 1 101 0
 	ld r24,Z
-	.loc 1 100 0
+	.loc 1 101 0
 	andi r24,lo8(127)
 	st Z,r24
-	.loc 1 102 0
+	.loc 1 103 0
 	ld r24,Z
-	.loc 1 102 0
+	.loc 1 103 0
 	ori r24,lo8(32)
 	st Z,r24
-	.loc 1 104 0
+	.loc 1 105 0
 	ld r24,Z
-	.loc 1 104 0
+	.loc 1 105 0
 	andi r24,lo8(-2)
 	st Z,r24
-	.loc 1 105 0
+	.loc 1 106 0
 	ld r24,Z
-	.loc 1 105 0
+	.loc 1 106 0
 	andi r24,lo8(-3)
 	st Z,r24
-	.loc 1 106 0
+	.loc 1 107 0
 	ld r24,Z
-	.loc 1 106 0
+	.loc 1 107 0
 	andi r24,lo8(-5)
 	st Z,r24
-	.loc 1 107 0
+	.loc 1 108 0
 	ld r24,Z
-	.loc 1 107 0
+	.loc 1 108 0
 	andi r24,lo8(-9)
 	st Z,r24
-	.loc 1 108 0
+	.loc 1 109 0
 	ld r24,Z
-	.loc 1 108 0
+	.loc 1 109 0
 	andi r24,lo8(-17)
 	st Z,r24
-	.loc 1 109 0
+	.loc 1 110 0
 	ldi r30,lo8(123)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 109 0
+	.loc 1 110 0
 	andi r24,lo8(-33)
 	st Z,r24
-	.loc 1 111 0
+	.loc 1 112 0
 	ldi r30,lo8(122)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 111 0
+	.loc 1 112 0
 	ori r24,lo8(-128)
 	st Z,r24
-	.loc 1 112 0
+	.loc 1 113 0
 	ld r24,Z
-	.loc 1 112 0
+	.loc 1 113 0
 	ori r24,lo8(8)
 	st Z,r24
-	.loc 1 114 0
+	.loc 1 115 0
 	ld r24,Z
-	.loc 1 114 0
+	.loc 1 115 0
 	andi r24,lo8(-2)
 	st Z,r24
-	.loc 1 115 0
+	.loc 1 116 0
 	ld r24,Z
-	.loc 1 115 0
+	.loc 1 116 0
 	ori r24,lo8(2)
 	st Z,r24
-	.loc 1 116 0
+	.loc 1 117 0
 	ld r24,Z
-	.loc 1 116 0
+	.loc 1 117 0
 	ori r24,lo8(4)
 	st Z,r24
-	.loc 1 118 0
+	.loc 1 119 0
 	ld r24,Z
-	.loc 1 118 0
+	.loc 1 119 0
 	ori r24,lo8(64)
 	st Z,r24
 	ret
@@ -284,42 +284,42 @@ Init_ADC:
 	.type	Hallsensoren_abfragen, @function
 Hallsensoren_abfragen:
 .LFB14:
-	.loc 1 122 0
+	.loc 1 123 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 123 0
-	in r24,0x3
 	.loc 1 124 0
+	in r24,0x3
+	.loc 1 125 0
 	andi r24,lo8(14)
 	lsr r24
 	sts stufe,r24
-	.loc 1 128 0
+	.loc 1 129 0
 	call umschalt_null
 .LVL0:
 	tst r24
 	breq .L5
-	.loc 1 131 0
+	.loc 1 132 0
 	sbic 0x3,4
 	rjmp .L6
-	.loc 1 133 0
+	.loc 1 134 0
 	ldi r24,lo8(1)
 	sts vor,r24
 	rjmp .L7
 .L6:
-	.loc 1 137 0
+	.loc 1 138 0
 	sts vor,__zero_reg__
 	rjmp .L8
 .L5:
-	.loc 1 142 0
+	.loc 1 143 0
 	lds r24,vor
 	tst r24
 	brne .+2
 	rjmp .L8
 .L7:
-	.loc 1 145 0
+	.loc 1 146 0
 	lds r24,stufe
 	cpi r24,lo8(3)
 	breq .L10
@@ -338,145 +338,145 @@ Hallsensoren_abfragen:
 	breq .L16
 	ret
 .L14:
-	.loc 1 149 0
+	.loc 1 150 0
 	ldi r30,lo8(-60)
 	ldi r31,0
 	st Z,__zero_reg__
-	.loc 1 150 0
+	.loc 1 151 0
 	in r24,0x5
-	.loc 1 150 0
+	.loc 1 151 0
 	andi r24,lo8(-97)
 	out 0x5,r24
-	.loc 1 151 0
+	.loc 1 152 0
 	in r24,0xb
-	.loc 1 151 0
+	.loc 1 152 0
 	andi r24,lo8(63)
 	ori r24,lo8(64)
 	out 0xb,r24
-	.loc 1 152 0
+	.loc 1 153 0
 	ld r24,Z
-	.loc 1 152 0
+	.loc 1 153 0
 	ori r24,lo8(3)
 	st Z,r24
-	.loc 1 153 0
+	.loc 1 154 0
 	ret
 .L12:
-	.loc 1 157 0
+	.loc 1 158 0
 	ldi r30,lo8(-60)
 	ldi r31,0
 	st Z,__zero_reg__
-	.loc 1 158 0
+	.loc 1 159 0
 	in r24,0x8
-	.loc 1 158 0
+	.loc 1 159 0
 	andi r24,lo8(63)
 	out 0x8,r24
-	.loc 1 159 0
+	.loc 1 160 0
 	in r24,0xb
-	.loc 1 159 0
+	.loc 1 160 0
 	andi r24,lo8(63)
 	ori r24,lo8(64)
 	out 0xb,r24
-	.loc 1 160 0
+	.loc 1 161 0
 	ld r24,Z
-	.loc 1 160 0
+	.loc 1 161 0
 	ori r24,lo8(12)
 	st Z,r24
-	.loc 1 161 0
+	.loc 1 162 0
 	ret
 .L10:
-	.loc 1 165 0
+	.loc 1 166 0
 	ldi r30,lo8(-60)
 	ldi r31,0
 	st Z,__zero_reg__
-	.loc 1 166 0
+	.loc 1 167 0
 	in r24,0xb
-	.loc 1 166 0
+	.loc 1 167 0
 	andi r24,lo8(63)
 	out 0xb,r24
-	.loc 1 167 0
+	.loc 1 168 0
 	in r24,0x8
-	.loc 1 167 0
+	.loc 1 168 0
 	andi r24,lo8(63)
 	ori r24,lo8(64)
 	out 0x8,r24
-	.loc 1 168 0
+	.loc 1 169 0
 	ld r24,Z
-	.loc 1 168 0
+	.loc 1 169 0
 	ori r24,lo8(12)
 	st Z,r24
-	.loc 1 169 0
+	.loc 1 170 0
 	ret
 .L13:
-	.loc 1 173 0
+	.loc 1 174 0
 	ldi r30,lo8(-60)
 	ldi r31,0
 	st Z,__zero_reg__
-	.loc 1 174 0
+	.loc 1 175 0
 	in r24,0x5
-	.loc 1 174 0
+	.loc 1 175 0
 	andi r24,lo8(-97)
 	out 0x5,r24
-	.loc 1 175 0
+	.loc 1 176 0
 	in r24,0x8
-	.loc 1 175 0
+	.loc 1 176 0
 	andi r24,lo8(63)
 	ori r24,lo8(64)
 	out 0x8,r24
-	.loc 1 176 0
+	.loc 1 177 0
 	ld r24,Z
-	.loc 1 176 0
+	.loc 1 177 0
 	ori r24,lo8(48)
 	st Z,r24
-	.loc 1 177 0
+	.loc 1 178 0
 	ret
 .L16:
-	.loc 1 181 0
+	.loc 1 182 0
 	ldi r30,lo8(-60)
 	ldi r31,0
 	st Z,__zero_reg__
-	.loc 1 182 0
+	.loc 1 183 0
 	in r24,0x8
-	.loc 1 182 0
+	.loc 1 183 0
 	andi r24,lo8(63)
 	out 0x8,r24
-	.loc 1 183 0
+	.loc 1 184 0
 	in r24,0x5
-	.loc 1 183 0
+	.loc 1 184 0
 	andi r24,lo8(-97)
 	ori r24,lo8(32)
 	out 0x5,r24
-	.loc 1 184 0
+	.loc 1 185 0
 	ld r24,Z
-	.loc 1 184 0
+	.loc 1 185 0
 	ori r24,lo8(48)
 	st Z,r24
-	.loc 1 185 0
+	.loc 1 186 0
 	ret
 .L15:
-	.loc 1 189 0
+	.loc 1 190 0
 	ldi r30,lo8(-60)
 	ldi r31,0
 	st Z,__zero_reg__
-	.loc 1 190 0
+	.loc 1 191 0
 	in r24,0xb
-	.loc 1 190 0
+	.loc 1 191 0
 	andi r24,lo8(63)
 	out 0xb,r24
-	.loc 1 191 0
+	.loc 1 192 0
 	in r24,0x5
-	.loc 1 191 0
+	.loc 1 192 0
 	andi r24,lo8(-97)
 	ori r24,lo8(32)
 	out 0x5,r24
-	.loc 1 192 0
+	.loc 1 193 0
 	ld r24,Z
-	.loc 1 192 0
+	.loc 1 193 0
 	ori r24,lo8(3)
 	st Z,r24
-	.loc 1 193 0
+	.loc 1 194 0
 	ret
 .L8:
-	.loc 1 204 0
+	.loc 1 205 0
 	lds r24,stufe
 	cpi r24,lo8(3)
 	breq .L17
@@ -495,139 +495,139 @@ Hallsensoren_abfragen:
 	breq .L23
 	ret
 .L21:
-	.loc 1 208 0
+	.loc 1 209 0
 	ldi r30,lo8(-60)
 	ldi r31,0
 	st Z,__zero_reg__
-	.loc 1 209 0
+	.loc 1 210 0
 	in r24,0x5
-	.loc 1 209 0
+	.loc 1 210 0
 	andi r24,lo8(-97)
 	out 0x5,r24
-	.loc 1 210 0
+	.loc 1 211 0
 	in r24,0x8
-	.loc 1 210 0
+	.loc 1 211 0
 	andi r24,lo8(63)
 	ori r24,lo8(64)
 	out 0x8,r24
-	.loc 1 211 0
+	.loc 1 212 0
 	ld r24,Z
-	.loc 1 211 0
+	.loc 1 212 0
 	ori r24,lo8(48)
 	st Z,r24
-	.loc 1 212 0
+	.loc 1 213 0
 	ret
 .L19:
-	.loc 1 216 0
+	.loc 1 217 0
 	ldi r30,lo8(-60)
 	ldi r31,0
 	st Z,__zero_reg__
-	.loc 1 217 0
+	.loc 1 218 0
 	in r24,0x8
-	.loc 1 217 0
+	.loc 1 218 0
 	andi r24,lo8(63)
 	out 0x8,r24
-	.loc 1 218 0
+	.loc 1 219 0
 	in r24,0x5
-	.loc 1 218 0
+	.loc 1 219 0
 	andi r24,lo8(-97)
 	ori r24,lo8(32)
 	out 0x5,r24
-	.loc 1 219 0
+	.loc 1 220 0
 	ld r24,Z
-	.loc 1 219 0
+	.loc 1 220 0
 	ori r24,lo8(48)
 	st Z,r24
-	.loc 1 220 0
+	.loc 1 221 0
 	ret
 .L17:
-	.loc 1 224 0
+	.loc 1 225 0
 	ldi r30,lo8(-60)
 	ldi r31,0
 	st Z,__zero_reg__
-	.loc 1 225 0
+	.loc 1 226 0
 	in r24,0xb
-	.loc 1 225 0
+	.loc 1 226 0
 	andi r24,lo8(63)
 	out 0xb,r24
-	.loc 1 226 0
+	.loc 1 227 0
 	in r24,0x5
-	.loc 1 226 0
+	.loc 1 227 0
 	andi r24,lo8(-97)
 	ori r24,lo8(32)
 	out 0x5,r24
-	.loc 1 227 0
+	.loc 1 228 0
 	ld r24,Z
-	.loc 1 227 0
+	.loc 1 228 0
 	ori r24,lo8(3)
 	st Z,r24
-	.loc 1 228 0
+	.loc 1 229 0
 	ret
 .L20:
-	.loc 1 232 0
+	.loc 1 233 0
 	ldi r30,lo8(-60)
 	ldi r31,0
 	st Z,__zero_reg__
-	.loc 1 233 0
+	.loc 1 234 0
 	in r24,0x5
-	.loc 1 233 0
+	.loc 1 234 0
 	andi r24,lo8(-97)
 	out 0x5,r24
-	.loc 1 234 0
+	.loc 1 235 0
 	in r24,0xb
-	.loc 1 234 0
+	.loc 1 235 0
 	andi r24,lo8(63)
 	ori r24,lo8(64)
 	out 0xb,r24
-	.loc 1 235 0
+	.loc 1 236 0
 	ld r24,Z
-	.loc 1 235 0
+	.loc 1 236 0
 	ori r24,lo8(3)
 	st Z,r24
-	.loc 1 236 0
+	.loc 1 237 0
 	ret
 .L23:
-	.loc 1 240 0
+	.loc 1 241 0
 	ldi r30,lo8(-60)
 	ldi r31,0
 	st Z,__zero_reg__
-	.loc 1 241 0
+	.loc 1 242 0
 	in r24,0x8
-	.loc 1 241 0
+	.loc 1 242 0
 	andi r24,lo8(63)
 	out 0x8,r24
-	.loc 1 242 0
+	.loc 1 243 0
 	in r24,0xb
-	.loc 1 242 0
+	.loc 1 243 0
 	andi r24,lo8(63)
 	ori r24,lo8(64)
 	out 0xb,r24
-	.loc 1 243 0
+	.loc 1 244 0
 	ld r24,Z
-	.loc 1 243 0
+	.loc 1 244 0
 	ori r24,lo8(12)
 	st Z,r24
-	.loc 1 244 0
+	.loc 1 245 0
 	ret
 .L22:
-	.loc 1 248 0
+	.loc 1 249 0
 	ldi r30,lo8(-60)
 	ldi r31,0
 	st Z,__zero_reg__
-	.loc 1 249 0
+	.loc 1 250 0
 	in r24,0xb
-	.loc 1 249 0
+	.loc 1 250 0
 	andi r24,lo8(63)
 	out 0xb,r24
-	.loc 1 250 0
+	.loc 1 251 0
 	in r24,0x8
-	.loc 1 250 0
+	.loc 1 251 0
 	andi r24,lo8(63)
 	ori r24,lo8(64)
 	out 0x8,r24
-	.loc 1 251 0
+	.loc 1 252 0
 	ld r24,Z
-	.loc 1 251 0
+	.loc 1 252 0
 	ori r24,lo8(12)
 	st Z,r24
 	ret
@@ -639,13 +639,13 @@ Hallsensoren_abfragen:
 	.type	adc_abfrage, @function
 adc_abfrage:
 .LFB15:
-	.loc 1 262 0
+	.loc 1 263 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 264 0
+	.loc 1 265 0
 	lds r24,adc_high
 	ret
 	.cfi_endproc
@@ -657,7 +657,7 @@ adc_abfrage:
 	.type	__vector_9, @function
 __vector_9:
 .LFB16:
-	.loc 1 267 0
+	.loc 1 268 0
 	.cfi_startproc
 	push r1
 .LCFI2:
@@ -722,16 +722,16 @@ __vector_9:
 /* frame size = 0 */
 /* stack size = 15 */
 .L__stack_usage = 15
-	.loc 1 268 0
+	.loc 1 269 0
 	call geschwindigkeit_auslesen
 .LVL1:
-	.loc 1 270 0
+	.loc 1 271 0
 	call Hallsensoren_abfragen
 .LVL2:
-	.loc 1 272 0
+	.loc 1 273 0
 	call drehzahl_berechnung
 .LVL3:
-	.loc 1 274 0
+	.loc 1 275 0
 	call drehzahl_holen
 .LVL4:
 	ldi r18,0
@@ -742,14 +742,14 @@ __vector_9:
 .LVL5:
 	tst r24
 	brlt .L25
-	.loc 1 276 0
+	.loc 1 277 0
 	lds r24,adc_high
 	call geschwindigkeits_regulierung
 .LVL6:
 	sts 207,r24
 .L25:
 /* epilogue start */
-	.loc 1 281 0
+	.loc 1 282 0
 	pop r31
 	pop r30
 	pop r27
@@ -776,7 +776,7 @@ __vector_9:
 	.type	__vector_29, @function
 __vector_29:
 .LFB17:
-	.loc 1 298 0
+	.loc 1 299 0
 	.cfi_startproc
 	push r1
 .LCFI16:
@@ -841,24 +841,42 @@ __vector_29:
 /* frame size = 0 */
 /* stack size = 15 */
 .L__stack_usage = 15
-	.loc 1 301 0
+	.loc 1 302 0
 	lds r24,120
 	sts adc_low,r24
-	.loc 1 302 0
+	.loc 1 303 0
 	lds r24,121
 	sts adc_high,r24
-	.loc 1 305 0
+	.loc 1 306 0
 	cpse r24,__zero_reg__
 	rjmp .L30
-	.loc 1 307 0
+	.loc 1 306 0 is_stmt 0 discriminator 1
+	lds r24,phasen_flag
+	cpse r24,__zero_reg__
+	rjmp .L31
+	.loc 1 308 0 is_stmt 1
 	ldi r24,lo8(1)
 	sts adc_0_flag,r24
-.L30:
-	.loc 1 312 0
-	lds r24,adc_0_flag
-	tst r24
-	breq .L31
+	.loc 1 309 0
+	sts phasen_flag,r24
+	rjmp .L31
+.L35:
 	.loc 1 314 0
+	ldi r24,lo8(2)
+	sts phasen_flag,r24
+	.loc 1 315 0
+	ldi r30,lo8(104)
+	ldi r31,0
+	ld r24,Z
+	.loc 1 315 0
+	ori r24,lo8(1)
+	st Z,r24
+.L36:
+	.loc 1 319 0
+	lds r24,phasen_flag
+	cpi r24,lo8(2)
+	brne .L32
+	.loc 1 321 0
 	call drehzahl_holen
 .LVL7:
 	ldi r18,0
@@ -868,30 +886,42 @@ __vector_29:
 	call __lesf2
 .LVL8:
 	cp __zero_reg__,r24
-	brlt .L32
-	.loc 1 316 0
+	brlt .L33
+	.loc 1 323 0
 	sbi 0xb,4
-	.loc 1 318 0
+	.loc 1 325 0
 	lds r24,adc_high
 	call geschwindigkeits_regulierung
 .LVL9:
 	sts 207,r24
-	.loc 1 320 0
+	.loc 1 327 0
 	cbi 0xb,4
-	rjmp .L32
-.L31:
-	.loc 1 326 0
-	sts 207,__zero_reg__
+	rjmp .L33
 .L32:
-	.loc 1 358 0
+	.loc 1 333 0
+	sts 207,__zero_reg__
+.L33:
+	.loc 1 365 0
 	ldi r30,lo8(122)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 358 0
+	.loc 1 365 0
 	ori r24,lo8(64)
 	st Z,r24
+	.loc 1 366 0
+	rjmp .L38
+.L30:
+	.loc 1 312 0
+	lds r24,phasen_flag
+	cpi r24,lo8(1)
+	brne .L36
+	rjmp .L35
+.L31:
+	lds r24,phasen_flag
+	rjmp .L36
+.L38:
 /* epilogue start */
-	.loc 1 359 0
+	.loc 1 366 0
 	pop r31
 	pop r30
 	pop r27
@@ -912,6 +942,12 @@ __vector_29:
 	.cfi_endproc
 .LFE17:
 	.size	__vector_29, .-__vector_29
+.global	phasen_flag
+	.section	.bss.phasen_flag,"aw",@nobits
+	.type	phasen_flag, @object
+	.size	phasen_flag, 1
+phasen_flag:
+	.zero	1
 .global	adc_0_flag
 	.section	.bss.adc_0_flag,"aw",@nobits
 	.type	adc_0_flag, @object
@@ -953,15 +989,15 @@ richtung:
 	.file 4 "c:\\program files (x86)\\atmel\\studio\\7.0\\toolchain\\avr8\\avr8-gnu-toolchain\\avr\\include\\stdint.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0x250
+	.long	0x262
 	.word	0x2
 	.long	.Ldebug_abbrev0
 	.byte	0x4
 	.uleb128 0x1
-	.long	.LASF27
-	.byte	0xc
 	.long	.LASF28
+	.byte	0xc
 	.long	.LASF29
+	.long	.LASF30
 	.long	.Ldebug_ranges0+0
 	.long	0
 	.long	0
@@ -971,7 +1007,7 @@ richtung:
 	.byte	0x6
 	.long	.LASF0
 	.uleb128 0x3
-	.long	.LASF30
+	.long	.LASF31
 	.byte	0x4
 	.byte	0x7e
 	.long	0x3b
@@ -1011,7 +1047,7 @@ richtung:
 	.byte	0x1
 	.long	.LASF8
 	.byte	0x1
-	.byte	0x2f
+	.byte	0x30
 	.byte	0x1
 	.long	.LFB11
 	.long	.LFE11
@@ -1021,7 +1057,7 @@ richtung:
 	.byte	0x1
 	.long	.LASF9
 	.byte	0x1
-	.byte	0x50
+	.byte	0x51
 	.byte	0x1
 	.long	.LFB12
 	.long	.LFE12
@@ -1034,7 +1070,7 @@ richtung:
 	.byte	0x1
 	.long	.LASF10
 	.byte	0x1
-	.byte	0x61
+	.byte	0x62
 	.byte	0x1
 	.long	.LFB13
 	.long	.LFE13
@@ -1047,7 +1083,7 @@ richtung:
 	.byte	0x1
 	.long	.LASF11
 	.byte	0x1
-	.byte	0x79
+	.byte	0x7a
 	.byte	0x1
 	.long	.LFB14
 	.long	.LFE14
@@ -1059,13 +1095,13 @@ richtung:
 	.long	0xd9
 	.uleb128 0x8
 	.long	.LVL0
-	.long	0x212
+	.long	0x224
 	.byte	0
 	.uleb128 0x9
 	.byte	0x1
-	.long	.LASF31
+	.long	.LASF32
 	.byte	0x1
-	.word	0x105
+	.word	0x106
 	.byte	0x1
 	.long	0x6c
 	.long	.LFB15
@@ -1079,7 +1115,7 @@ richtung:
 	.byte	0x1
 	.long	.LASF12
 	.byte	0x1
-	.word	0x10a
+	.word	0x10b
 	.byte	0x1
 	.long	.LFB16
 	.long	.LFE16
@@ -1088,25 +1124,25 @@ richtung:
 	.long	0x13d
 	.uleb128 0x8
 	.long	.LVL1
-	.long	0x21f
+	.long	0x231
 	.uleb128 0x8
 	.long	.LVL2
 	.long	0xb5
 	.uleb128 0x8
 	.long	.LVL3
-	.long	0x22c
+	.long	0x23e
 	.uleb128 0x8
 	.long	.LVL4
-	.long	0x239
+	.long	0x24b
 	.uleb128 0x8
 	.long	.LVL6
-	.long	0x246
+	.long	0x258
 	.byte	0
 	.uleb128 0xa
 	.byte	0x1
 	.long	.LASF13
 	.byte	0x1
-	.word	0x129
+	.word	0x12a
 	.byte	0x1
 	.long	.LFB17
 	.long	.LFE17
@@ -1115,10 +1151,10 @@ richtung:
 	.long	0x16b
 	.uleb128 0x8
 	.long	.LVL7
-	.long	0x239
+	.long	0x24b
 	.uleb128 0x8
 	.long	.LVL9
-	.long	0x246
+	.long	0x258
 	.byte	0
 	.uleb128 0xb
 	.long	.LASF14
@@ -1203,39 +1239,48 @@ richtung:
 	.long	adc_0_flag
 	.uleb128 0xd
 	.long	0x30
+	.uleb128 0xb
+	.long	.LASF22
+	.byte	0x1
+	.byte	0x2e
+	.long	0x20d
+	.byte	0x1
+	.byte	0x5
+	.byte	0x3
+	.long	phasen_flag
 	.uleb128 0xe
 	.byte	0x1
 	.byte	0x1
-	.long	.LASF22
-	.long	.LASF22
+	.long	.LASF23
+	.long	.LASF23
 	.byte	0x2
 	.byte	0x15
 	.uleb128 0xe
 	.byte	0x1
 	.byte	0x1
-	.long	.LASF23
-	.long	.LASF23
+	.long	.LASF24
+	.long	.LASF24
 	.byte	0x2
 	.byte	0x7
 	.uleb128 0xe
 	.byte	0x1
 	.byte	0x1
-	.long	.LASF24
-	.long	.LASF24
+	.long	.LASF25
+	.long	.LASF25
 	.byte	0x2
 	.byte	0x9
 	.uleb128 0xe
 	.byte	0x1
 	.byte	0x1
-	.long	.LASF25
-	.long	.LASF25
+	.long	.LASF26
+	.long	.LASF26
 	.byte	0x2
 	.byte	0x11
 	.uleb128 0xe
 	.byte	0x1
 	.byte	0x1
-	.long	.LASF26
-	.long	.LASF26
+	.long	.LASF27
+	.long	.LASF27
 	.byte	0x3
 	.byte	0x1c
 	.byte	0
@@ -1742,41 +1787,43 @@ richtung:
 	.section	.debug_str,"MS",@progbits,1
 .LASF18:
 	.string	"current_adc_wert"
-.LASF29:
+.LASF30:
 	.string	"C:\\\\Users\\\\Armin Baumgartner\\\\Desktop\\\\ansteuerung\\\\ansteuerung\\\\Debug"
-.LASF22:
+.LASF23:
 	.string	"umschalt_null"
 .LASF20:
 	.string	"hilfe"
 .LASF17:
 	.string	"adc_high"
-.LASF31:
+.LASF22:
+	.string	"phasen_flag"
+.LASF32:
 	.string	"adc_abfrage"
 .LASF8:
 	.string	"Init_PWM"
 .LASF1:
 	.string	"unsigned char"
-.LASF27:
+.LASF28:
 	.string	"GNU C99 5.4.0 -mn-flash=1 -mno-skip-bug -mmcu=avr5 -g2 -O1 -std=gnu99 -funsigned-char -funsigned-bitfields -ffunction-sections -fdata-sections -fpack-struct -fshort-enums"
 .LASF4:
 	.string	"long unsigned int"
-.LASF24:
+.LASF25:
 	.string	"drehzahl_berechnung"
 .LASF2:
 	.string	"unsigned int"
 .LASF6:
 	.string	"long long unsigned int"
-.LASF30:
+.LASF31:
 	.string	"uint8_t"
 .LASF14:
 	.string	"stufe"
-.LASF28:
+.LASF29:
 	.string	".././motoransteuerung.c"
 .LASF16:
 	.string	"adc_low"
 .LASF9:
 	.string	"Init_Pinchange"
-.LASF25:
+.LASF26:
 	.string	"drehzahl_holen"
 .LASF5:
 	.string	"long long int"
@@ -1796,9 +1843,9 @@ richtung:
 	.string	"richtung"
 .LASF0:
 	.string	"signed char"
-.LASF23:
+.LASF24:
 	.string	"geschwindigkeit_auslesen"
-.LASF26:
+.LASF27:
 	.string	"geschwindigkeits_regulierung"
 .LASF19:
 	.string	"adc_counter"
