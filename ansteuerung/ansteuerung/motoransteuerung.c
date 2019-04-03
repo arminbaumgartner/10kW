@@ -301,16 +301,15 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 	adc_low = ADCL;					//zuerst immer Low Bits holen
 	adc_high = ADCH;				//dann High Bits holen
 	
-	/*
-	
-	if (adc_high == 0)
+		
+	if (adc_high <= 0)
 	{
 		adc_0_flag = 1;
 	}
 	
-	*/
 	
-	if (1)
+	
+	if (adc_0_flag)
 	{
 		if ((drehzahl_holen() <= 2000))
 		{

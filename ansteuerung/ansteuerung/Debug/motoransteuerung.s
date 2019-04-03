@@ -847,7 +847,18 @@ __vector_29:
 	.loc 1 302 0
 	lds r24,121
 	sts adc_high,r24
-	.loc 1 315 0
+	.loc 1 305 0
+	cpse r24,__zero_reg__
+	rjmp .L30
+	.loc 1 307 0
+	ldi r24,lo8(1)
+	sts adc_0_flag,r24
+.L30:
+	.loc 1 312 0
+	lds r24,adc_0_flag
+	tst r24
+	breq .L31
+	.loc 1 314 0
 	call drehzahl_holen
 .LVL7:
 	ldi r18,0
@@ -857,26 +868,30 @@ __vector_29:
 	call __lesf2
 .LVL8:
 	cp __zero_reg__,r24
-	brlt .L30
-	.loc 1 317 0
+	brlt .L32
+	.loc 1 316 0
 	sbi 0xb,4
-	.loc 1 319 0
+	.loc 1 318 0
 	lds r24,adc_high
 	call geschwindigkeits_regulierung
 .LVL9:
 	sts 207,r24
-	.loc 1 321 0
+	.loc 1 320 0
 	cbi 0xb,4
-.L30:
-	.loc 1 359 0
+	rjmp .L32
+.L31:
+	.loc 1 326 0
+	sts 207,__zero_reg__
+.L32:
+	.loc 1 358 0
 	ldi r30,lo8(122)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 359 0
+	.loc 1 358 0
 	ori r24,lo8(64)
 	st Z,r24
 /* epilogue start */
-	.loc 1 360 0
+	.loc 1 359 0
 	pop r31
 	pop r30
 	pop r27
